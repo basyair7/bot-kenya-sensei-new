@@ -1,3 +1,3 @@
 # bot-kenya-sensei
->> migrasi js ke ts
->> perbaruan commands
+.> migrasi js ke ts
+.> perbaruan commands
