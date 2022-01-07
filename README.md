@@ -1,2 +1,3 @@
-# bot-kenya-sensei-2
-ECHO is on.
+# bot-kenya-sensei
+>> migrasi js ke ts
+>> perbaruan commands
