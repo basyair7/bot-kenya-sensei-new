@@ -124,7 +124,7 @@ exports.run = async (client, message, args) => {
           filter: "audioonly",
           bitrate: 192000,
           quality: "highest",
-          highWaterMark: 1 << 25,
+          highWaterMark: 50,
           opusEncoded: true,
         });
 
