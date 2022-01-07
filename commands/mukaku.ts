@@ -7,6 +7,20 @@ exports.run = async (client, msg, args) => {
   .setTitle(`${user.tag}`)
   .setDescription("Noh Muka mu nak.")
   .setImage(user.displayAvatarURL({dynamic:true, size:4096}))
-  .setColor("RANDOM")
-  msg.channel.send(embed)
+  .setColor("RANDOM");
+
+  const filter = (reaction, user) => {
+    return [`❎`].includes(reaction.emoji.name) && user.id === msg.author.id;
+  };
+
+  msg.channel.send(embed).then(embedMessage => {
+      embedMessage.react(`❎`);
+      embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+          const reaction = collected.first();
+
+          if (reaction.emoji.name === `❎`){
+              embedMessage.delete(embed);
+          }
+      });
+  });
 }
