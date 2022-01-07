@@ -159,7 +159,7 @@ exports.run = async (client, message, args) => {
             embedMessage.react(`🛑`);
             embedMessage.react(`⏭️`);
             embedMessage.react(`↪️`);
-            embedMessage.awaitReactions(filter, { max: 1, time: 30000}).then(collected =>{
+            embedMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] }).then(collected =>{
               const reaction = collected.first();
               if (reaction.emoji.name === `🛑`){
                   embedMessage.delete(playnow);
@@ -177,7 +177,9 @@ exports.run = async (client, message, args) => {
                 const looping = require('./loop.ts')
                 looping.run(client, message, args)
               }
-            });
+            }).catch(collected => {
+              console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+          });
         });
 
         client.user.setActivity(`Music : ${track.name}`);
