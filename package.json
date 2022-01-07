@@ -2,12 +2,12 @@
   "name": "bot-kenya-sensei",
   "version": "2.0.0",
   "description": "Kenya-sensei ingin bernyanyi",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "node .": "node run server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.ts",
+    "node .": "node run server.ts",
+    "dev": "nodemon server.ts"
   },
   "engines": {
     "node": "16.x"
