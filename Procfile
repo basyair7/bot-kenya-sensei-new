@@ -1,1 +1,1 @@
-Worker: yarn start
+Worker: yarn start server.ts
