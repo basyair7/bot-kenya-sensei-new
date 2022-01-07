@@ -1,0 +1,49 @@
+{
+  "name": "bot-kenya-sensei",
+  "version": "2.0.0",
+  "description": "Kenya-sensei ingin bernyanyi",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.ts",
+    "node .": "node run server.ts",
+    "dev": "nodemon server.ts"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "author": "basyair7",
+  "dependencies": {
+    "@discordjs/opus": "^0.6.0",
+    "axios": "^0.24.0",
+    "discord-ytdl-core": "^5.0.4",
+    "discord.js": "^12.5.3",
+    "discord.js-menu": "^2.3.1",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "lyrics-finder": "^21.7.0",
+    "node-opus": "^0.3.3",
+    "opusscript": "0.0.7",
+    "os": "^0.1.2",
+    "pretty-ms": "^7.0.1",
+    "snekfetch": "^4.0.4",
+    "ts-node": "^10.4.0",
+    "yt-search": "^2.10.1",
+    "ytdl-core": "^4.9.2"
+  },
+  "repository": "git+https://github.com/basyair7/bot-kenya-sensei-2.git",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/basyair7/bot-kenya-sensei-2/issues"
+  },
+  "homepage": "https://github.com/basyair7/bot-kenya-sensei-2#readme"
+}
