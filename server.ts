@@ -5,7 +5,7 @@ require("dotenv").config();
 run(process.env.token, process.env.prefix);
 
 function run(token, prefix){
-  const client = new Client({ intent: [ Intents.ALL ]});
+  const client = new Client({ intent: [ Intents.ALL, Intents.FLAGS.GUILD_MESSAGE_REACTIONS ]});
   const config = {
     token: token,
     prefix: prefix
