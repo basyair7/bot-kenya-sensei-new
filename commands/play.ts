@@ -160,7 +160,7 @@ exports.run = async (client, message, args) => {
             embedMessage.react(`🛑`);
             embedMessage.react(`⏭️`);
             embedMessage.react(`↪️`);
-            embedMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] }).then(collected =>{
+            embedMessage.awaitReactions(filter, { max: 5, time: 60000, errors: ['time'] }).then(collected =>{
               const reaction = collected.first();
               if (reaction.emoji.name === `🛑`){
                   embedMessage.delete(playnow);
