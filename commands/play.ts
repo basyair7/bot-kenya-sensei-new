@@ -124,9 +124,9 @@ exports.run = async (client, message, args) => {
           filter: "audioonly",
           bitrate: 512000,
           quality: "highest",
-          highWaterMark: 1<<1024,
+          highWaterMark: 1<<25,
           opusEncoded: true,
-        }, {highWaterMark: 1});
+        }, {highWaterMark: 50});
 
         const player = data.connection
           .play(source, { type: "opus" })
