@@ -195,7 +195,7 @@ exports.run = async (client, message, args) => {
           }
         })
 
-        client.user.setActivity(`Music : ${track.name}`);
+        client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING", url: `${track.url}` });
 
       } catch (e) {
         console.error(e);
