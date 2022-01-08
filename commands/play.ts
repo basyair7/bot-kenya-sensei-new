@@ -115,6 +115,7 @@ exports.run = async (client, message, args) => {
           client.user.setActivity("Online");
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
+          //messagePlay.delete({timeout: 5000}, true)
           return deletequeue(message.guild.id);
         }
 
@@ -128,60 +129,76 @@ exports.run = async (client, message, args) => {
           opusEncoded: true,
         }, {highWaterMark: 50});
 
-        const player = data.connection
-          .play(source, { type: "opus" })
-          .on("finish", () => {
-            var removed = data.queue.shift();
-            if(data.loop == true){
-              data.queue.push(removed)
-            }
-            play(data.queue[0]);
-          });
-        player.setVolumeLogarithmic(data.volume / 100);
-
         const playnow = new MessageEmbed()
             .setAuthor(
               "Started Playing",
               "https://img.icons8.com/color/2x/cd--v3.gif"
             )
             .setColor("9D5CFF")
-            .setThumbnail(track.thumbnail)
+            .setImage(track.thumbnail)
             .addField("Song Name", track.name, false)
             .addField("Views", track.views, false)
             .addField("Duration", track.duration, false)
+            .addField("URL", track.url, false)
             .addField("Requested By", track.requested, false)
             .setFooter("Youtube Music Player");
-        
-        const filter = (reaction, user) => {
-          return [`🛑`, `⏭️`, `↪️`, `⏸`, `⏯️`].includes(reaction.emoji.name) && user.id === message.author.id;
-        };
 
-        data.channel.send(playnow).then(embedMessage => {
-            embedMessage.react(`🛑`);
-            embedMessage.react(`⏭️`);
-            embedMessage.react(`↪️`);
-            embedMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] }).then(collected =>{
-              const reaction = collected.first();
-              if (reaction.emoji.name === `🛑`){
-                  embedMessage.delete(playnow);
-                  client.user.setActivity("Online");
-                  embedMessage.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
-                  message.guild.me.voice.channel.leave();
-                  return deletequeue(message.guild.id);
+        const messagePlay = await message.channel.send(playnow);
+        messagePlay.react(`🛑`);
+        messagePlay.react(`⏭️`);
+        messagePlay.react(`↪️`);
+
+        try{
+          const player = data.connection
+            .play(source, { type: "opus" })
+            .on("finish", () => {
+              var removed = data.queue.shift();
+              if(data.loop == true){
+                data.queue.push(removed)
               }
-              else if(reaction.emoji.name === `⏭️`){
-                const skipcmd = require('./skip.ts')
-                skipcmd.run(client, message, args)
-                embedMessage.delete(playnow)
-              }
-              else if(reaction.emoji.name === `↪️`){
-                const looping = require('./loop.ts')
-                looping.run(client, message, args)
-              }
-            }).catch(collected => {
-              console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
-          });
-        });
+              play(data.queue[0]);
+              messagePlay.delete(playnow);
+            });
+
+          player.setVolumeLogarithmic(data.volume / 100);
+
+        } catch(e){
+          console.log("Error");
+        }
+        
+        client.on('messageReactionAdd', async (reaction, user) => {
+          try {
+            try{
+              if (reaction.message.partial) await reaction.message.fetch();
+              if (reaction.partial) await reaction.fetch();
+              if (user.bot) return;
+              if (!reaction.message.guild) return;
+            } catch(e){
+              console.log("error");
+            }
+
+            if (reaction.emoji.name === `🛑`){
+              let stopPlayer = require('./stop.ts');
+              await reaction.users.remove(user);
+              return stopPlayer.run(client, message, args)
+            }
+            else if(reaction.emoji.name === `⏭️`){
+              let skip = require('./skip.ts');
+              await reaction.users.remove(user);
+              return skip.run(client, message, args);
+            }
+            else if(reaction.emoji.name === `↪️`){
+              await reaction.users.remove(user);
+              const looping = require('./loop.ts');
+              looping.run(client, message, args).catch(e => {console.log("error")})
+            }
+            else{
+              return;
+            }
+          } catch(e){
+            console.log("error");
+          }
+        })
 
         client.user.setActivity(`Music : ${track.name}`);
 
