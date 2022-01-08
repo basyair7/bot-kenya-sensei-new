@@ -21,7 +21,7 @@ module.exports = {
                 if (reaction.emoji.name === `❎`){
                     embedMessage.delete(embed);
                 }
-            });
+            }).catch(collected => {console.log("error")});
         });
     }
 }
