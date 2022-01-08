@@ -144,10 +144,25 @@ exports.run = async (client, message, args) => {
             .addField("URL", track.url, false)
             .addField("Requested By", track.requested, false)
             .setFooter("Youtube Music Player");
+        const filter = (reaction, user) => {
+            return [`⏭️`, `🛑`].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
 
-        const messagePlay = await message.channel.send(playnow);
-        messagePlay.react(`🛑`);
-        messagePlay.react(`⏭️`);
+        const messagePlay = await message.channel.send(playnow).then(embedMessage => {
+            embedMessage.react(`🛑`);
+            embedMessage.react(`⏭️`);
+            embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === `🛑`){
+                    const stopPlay = required('./stop.ts');
+                    return stopPlay.run(client, message, args);
+                }
+                else if (reaction.emoji.name === `⏭️`) {
+                    const skipPlay = required('./skip.ts');
+                    return skipPlay.run(client, message, args);
+            }).catch(collected => {console.log("error")});
+        });
 
         try{
           const player = data.connection
