@@ -7,5 +7,5 @@ exports.run = async(client, message, args) => {
   .addField("Bot Uptime", uptime)
   .setColor("RANDOM")
   
-  message.channel.send(embed)
+  message.channel.send(embed).then(message => message.delete({timeout: 10000}));
 }
