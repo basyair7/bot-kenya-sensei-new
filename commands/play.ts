@@ -146,7 +146,6 @@ exports.run = async (client, message, args) => {
         const messagePlay = await message.channel.send(playnow);
         messagePlay.react(`🛑`);
         messagePlay.react(`⏭️`);
-        messagePlay.react(`↪️`);
 
         try{
           const player = data.connection
@@ -176,7 +175,6 @@ exports.run = async (client, message, args) => {
             } catch(e){
               console.log("error");
             }
-
             if (reaction.emoji.name === `🛑`){
               let stopPlayer = require('./stop.ts');
               await reaction.users.remove(user);
@@ -186,11 +184,6 @@ exports.run = async (client, message, args) => {
               let skip = require('./skip.ts');
               await reaction.users.remove(user);
               return skip.run(client, message, args);
-            }
-            else if(reaction.emoji.name === `↪️`){
-              await reaction.users.remove(user);
-              const looping = require('./loop.ts');
-              looping.run(client, message, args).catch(e => {console.log("error")})
             }
             else{
               return;
