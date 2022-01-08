@@ -3,15 +3,15 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message) => {
   let command_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
-    .setDescription("Commands ks?")
+    .setDescription("Commands ks.")
     .setColor("RANDOM")
     .setThumbnail(client.user.displayAvatarURL())
     .addField("Core",
-    '`help`, `ping`, `says`, `servericon`, `stats`, `uptime`', true);
+    '`help`, `ping`, `says`, `servericon`, `stats`, `uptime`, 'clear`', true);
 
     let command_not_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
-    .setDescription("Command Not ks?")
+    .setDescription("Command Not ks.")
     .setColor("RANDOM")
     .setThumbnail(client.user.displayAvatarURL())
     .addField("Commands 1",
