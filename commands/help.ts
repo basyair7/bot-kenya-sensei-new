@@ -7,7 +7,7 @@ exports.run = async (client, message) => {
     .setColor("RANDOM")
     .setThumbnail(client.user.displayAvatarURL())
     .addField("Core",
-    '`help`, `ping`, `says`, `servericon`, `stats`, `uptime`, 'clear`', true);
+    '`help`, `ping`, `says`, `servericon`, `stats`, `uptime`, `clear`', true);
 
     let command_not_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
