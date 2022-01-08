@@ -29,6 +29,6 @@ message.channel.send(embed).then(embedMessage => {
       if (reaction.emoji.name === `❎`){
           embedMessage.delete(embed);
       }
-  });
+  }).catch(collected => {console.log("Error")});
 });
 }
