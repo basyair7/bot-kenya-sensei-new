@@ -3,6 +3,7 @@ const youtubeScraper = require("yt-search");
 const yt = require("ytdl-core");
 const { MessageEmbed, Util } = require("discord.js");
 const forHumans = require("../utils/forhumans.js");
+const ms = require("pretty-ms");
 
 exports.run = async (client, message, args) => {
   try{
@@ -110,9 +111,10 @@ exports.run = async (client, message, args) => {
     async function play(track) {
       try {
         const data = message.client.queue.get(message.guild.id);
+        const uptime = ms(client.uptime, {verbose:true})
         
         if (!track) {
-          client.user.setActivity("Online");
+          client.user.setActivity(`Online at ${uptime}`);
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
           //messagePlay.delete({timeout: 5000}, true)
