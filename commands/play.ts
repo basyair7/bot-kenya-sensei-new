@@ -166,6 +166,7 @@ exports.run = async (client, message, args) => {
             else if(reaction.emoji.name === `↪️`){
                 const looping = require('./loop.ts');
                 looping.run(client, message, args);
+                messagePlay.clearReactions();
              }
         }).catch(collected => console.log("Error"));
 
