@@ -146,12 +146,13 @@ exports.run = async (client, message, args) => {
             .setFooter("Youtube Music Player");
 
         const filter = (reaction, user) => {
-            return [`🛑`, `⏭️`].includes(reaction.emoji.name) && user.id === message.author.id;
+            return [`🛑`, `⏭️`, `↪️`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
         const messagePlay = await message.channel.send(playnow)
         messagePlay.react(`🛑`);
         messagePlay.react(`⏭️`);
+        messagePlay.react(`↪️`);
         messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
             const reaction = collected.first();
             if (reaction.emoji.name === `🛑` || message.content.toLowerCase() === 'ks.stop'){
@@ -162,6 +163,10 @@ exports.run = async (client, message, args) => {
                 const skipPlay = require('./skip.ts');
                 skipPlay.run(client, message, args);
             }
+            else if(reaction.emoji.name === `↪️`){
+                const looping = require('./loop.ts');
+                looping.run(client, message, args);
+             }
         }).catch(collected => console.log("Error"));
 
         try{
