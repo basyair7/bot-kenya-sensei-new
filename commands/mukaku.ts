@@ -15,12 +15,12 @@ exports.run = async (client, msg, args) => {
 
   msg.channel.send(embed).then(embedMessage => {
       embedMessage.react(`❎`);
-      embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+      embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
           const reaction = collected.first();
 
           if (reaction.emoji.name === `❎`){
               embedMessage.delete(embed);
           }
-      });
+      }).catch(collected => {console.log("Error")});
   });
 }
