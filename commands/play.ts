@@ -181,34 +181,6 @@ exports.run = async (client, message, args) => {
         } catch(e){
           console.log("Error");
         }
-        
-        client.on('messageReactionAdd', async (reaction, user) => {
-          try {
-            try{
-              if (reaction.message.partial) await reaction.message.fetch();
-              if (reaction.partial) await reaction.fetch();
-              if (user.bot) return;
-              if (!reaction.message.guild) return;
-            } catch(e){
-              console.log("error");
-            }
-            if (reaction.emoji.name === `🛑`){
-              let stopPlayer = require('./stop.ts');
-              await reaction.users.remove(user);
-              return stopPlayer.run(client, message, args)
-            }
-            else if(reaction.emoji.name === `⏭️`){
-              let skip = require('./skip.ts');
-              await reaction.users.remove(user);
-              return skip.run(client, message, args);
-            }
-            else{
-              return;
-            }
-          } catch(e){
-            console.log("error");
-          }
-        })
 
         client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING", url: `${track.url}` });
 
