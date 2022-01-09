@@ -155,15 +155,18 @@ exports.run = async (client, message, args) => {
         messagePlay.react(`↪️`);
         messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
             const reaction = collected.first();
-            if (reaction.emoji.name === `🛑` && message.member.voice.channel == true) {
+            if (reaction.emoji.name === `🛑` ) {
+                if (!message.member.voice.channel) return;
                 const stopPlay = require('./stop.ts');
                 stopPlay.run(client, message, args);
             }
-            else if (reaction.emoji.name === `⏭️` && message.member.voice.channel == true) {
+            else if (reaction.emoji.name === `⏭️`) {
+                if (!message.member.voice.channel) return;
                 const skipPlay = require('./skip.ts');
                 skipPlay.run(client, message, args);
             }
-            else if(reaction.emoji.name === `↪️` && message.member.voice.channel == true) {
+            else if(reaction.emoji.name === `↪️`) {
+                if (!message.member.voice.channel) return;
                 const looping = require('./loop.ts');
                 looping.run(client, message, args);
              }
