@@ -156,7 +156,7 @@ exports.run = async (client, message, args) => {
         messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
             const reaction = collected.first();
             if (reaction.emoji.name === `🛑`) {
-                if (!channel) {
+                if (!message.member.voice.channel) {
                    return error("KAMU HARUS JOIN CHANNEL DULU NAK!")
                             .then(message => message.delete({timeout: 10000}));
                 }
@@ -164,7 +164,7 @@ exports.run = async (client, message, args) => {
                 stopPlay.run(client, message, args);
             }
             else if (reaction.emoji.name === `⏭️`) {
-                if (!channel) {
+                if (!message.member.voice.channel) {
                    return error("KAMU HARUS JOIN CHANNEL DULU NAK!")
                             .then(message => message.delete({timeout: 10000}));
                 }
@@ -172,7 +172,7 @@ exports.run = async (client, message, args) => {
                 skipPlay.run(client, message, args);
             }
             else if(reaction.emoji.name === `↪️`) {
-                if (!channel) {
+                if (!message.member.voice.channel) {
                    return error("KAMU HARUS JOIN CHANNEL DULU NAK!")
                             .then(message => message.delete({timeout: 10000}));
                 }
