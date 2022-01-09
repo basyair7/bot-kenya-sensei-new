@@ -155,24 +155,15 @@ exports.run = async (client, message, args) => {
         messagePlay.react(`↪️`);
         messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
             const reaction = collected.first();
-            if (reaction.emoji.name === `🛑`) {
-                if (!message.member.voice.channel) {
-                   error("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
-                }
+            if (reaction.emoji.name === `🛑` && message.member.voice.channel === true) {
                 const stopPlay = require('./stop.ts');
                 stopPlay.run(client, message, args);
             }
-            else if (reaction.emoji.name === `⏭️`) {
-                if (!message.member.voice.channel) {
-                   error("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
-                }
+            else if (reaction.emoji.name === `⏭️` && message.member.voice.channel === true) {
                 const skipPlay = require('./skip.ts');
                 skipPlay.run(client, message, args);
             }
-            else if(reaction.emoji.name === `↪️`) {
-                if (!message.member.voice.channel) {
-                   error("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
-                }
+            else if(reaction.emoji.name === `↪️` && message.member.voice.channel === true) {
                 const looping = require('./loop.ts');
                 looping.run(client, message, args);
              }
