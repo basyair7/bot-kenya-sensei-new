@@ -157,21 +157,21 @@ exports.run = async (client, message, args) => {
             const reaction = collected.first();
             if (reaction.emoji.name === `🛑`) {
                 if (!message.member.voice.channel) {
-                   message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
+                   return;
                 }
                 const stopPlay = require('./stop.ts');
                 stopPlay.run(client, message, args);
             }
             else if (reaction.emoji.name === `⏭️`) {
                 if (!message.member.voice.channel) {
-                   message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
+                   return;
                 }
                 const skipPlay = require('./skip.ts');
                 skipPlay.run(client, message, args);
             }
             else if(reaction.emoji.name === `↪️`) {
                 if (!message.member.voice.channel) {
-                   message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({timeout: 10000}));
+                   return;
                 }
                 const looping = require('./loop.ts');
                 looping.run(client, message, args);
