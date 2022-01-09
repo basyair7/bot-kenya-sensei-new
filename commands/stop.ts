@@ -5,7 +5,7 @@ exports.run = async (client, message) => {
   if (!channel)
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
-    );
+    ).then(message => message.delete({timeout: 10000}));
   let queue = message.client.queue.get(message.guild.id);
   if (!queue)
     return message.channel.send(
