@@ -2,53 +2,62 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
-  if (!channel)
+  if (!channel){
+    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
-    ).then(message => message.delete({timeout: 10000}));
-  if (!args[0])
+    ).then(message => message.delete({timeout: 10000}));}
+  if (!args[0]){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: No song number provided")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (isNaN(args[0]))
+    ).then(message => message.delete({timeout: 10000}));}
+  if (isNaN(args[0])){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **Args must be number [Example: -remove 2]**")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
   let queue = message.client.queue.get(message.guild.id);
-  if (args[0] == 1)
+  if (args[0] == 1){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(
           ":x: **Can't remove currently playing song, use command skip**"
         )
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (queue.queue.length == 1)
+    ).then(message => message.delete({timeout: 10000}));}
+  if (queue.queue.length == 1){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(
           ":x: **Can't remove when only one song is playing, Use command stop**"
         )
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (args[0] > queue.queue.length)
+    ).then(message => message.delete({timeout: 10000}));}
+  if (args[0] > queue.queue.length){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **The queue doesn't have that much songs**")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (!queue)
+    ).then(message => message.delete({timeout: 10000}));}
+  if (!queue){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **There are no songs playing in this server**")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
+
   var name = queue.queue[args[0] - 1].name;
   queue.queue.splice(args[0] - 1);
+  message.delete({timeout: 1000});
   return message.channel.send(
     new MessageEmbed()
       .setDescription(
