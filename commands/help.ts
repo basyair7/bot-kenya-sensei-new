@@ -52,6 +52,10 @@ exports.run = async (client, message) => {
     .map((x) => "• " + "``" + client.config.prefix + x.trim())
     .join("\n");
 
+  const filter = (reaction, user) => {
+            return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
+
   message.channel.send(
     new MessageEmbed()
       .setTitle("Kenya-sensei Music Commands Help")
@@ -60,5 +64,14 @@ exports.run = async (client, message) => {
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp()
       .setDescription(revised)
-  ).then(message => message.delete({timeout: 300000}));
+  ).then(message => message.delete({timeout: 300000})).then(embedMessage => {
+            embedMessage.react(`❎`);
+            embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === `❎`){
+                    embedMessage.delete(embed);
+                }
+            }).catch(collected => {console.log("error")});
+        });
 };
