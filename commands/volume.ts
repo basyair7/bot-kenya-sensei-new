@@ -2,14 +2,17 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
-  if (!channel)
+  if (!channel){
+    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
+  }
 
   let queue = message.client.queue.get(message.guild.id);
 
-  if (!args[0])
+  if (!args[0]){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -18,9 +21,10 @@ exports.run = async (client, message, args) => {
         )
         .setColor("BLUE")
         .setDescription("**Current volume is " + queue.volume + " **")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
 
-  if (args[0] > 100)
+  if (args[0] > 100){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -29,10 +33,11 @@ exports.run = async (client, message, args) => {
         )
         .setColor("RED")
         .setDescription("**Volume cannot exceed 100 :x: **")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
 
   queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
   queue.volume = args[0];
+  message.delete({timeout: 1000});
   message.channel.send(
     new MessageEmbed()
       .setAuthor(
