@@ -2,12 +2,12 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   const queue = message.client.queue.get(message.guild.id);
-  message.delete({timeout: 1000});
 
-  if (!queue)
+  if (!queue){
+    message.delete({timeout: 1000});
     return message.channel.send(
       ":x: There are no songs playing in this server"
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
 
   queue.loop = !queue.loop;
   message.channel.send(
