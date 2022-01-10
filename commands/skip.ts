@@ -20,7 +20,6 @@ exports.run = async (client, message) => {
   }
   
   queue.connection.dispatcher.end('skipped');
-  message.delete({timeout: 1000});
   return message.channel.send(
     new MessageEmbed()
       .setDescription("**Skipped the music :white_check_mark: **")
