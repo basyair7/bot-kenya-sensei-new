@@ -64,7 +64,7 @@ exports.run = async (client, message) => {
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp()
       .setDescription(revised)
-  ).then(message => message.delete({timeout: 300000})).then(embedMessage => {
+  ).then(embedMessage => {
             embedMessage.react(`❎`);
             embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
                 const reaction = collected.first();
