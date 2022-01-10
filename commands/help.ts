@@ -27,9 +27,6 @@ exports.run = async (client, message) => {
     .addField("Commands 6",
     '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`', true);
 
-    message.channel.send(command_ks).then(message => message.delete({timeout: 300000}));
-    message.channel.send(command_not_ks).then(message => message.delete({timeout: 300000}));
-
   const commands = `connect\`\` - join the voice channel you are in
    disconnect\`\` - leave the voice channel you are in
    play <Song Name or url>\`\` - play songs from youtube
@@ -56,6 +53,9 @@ exports.run = async (client, message) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
+  message.channel.send(command_ks).then(message => message.delete({timeout: 300000}));
+  message.channel.send(command_not_ks).then(message => message.delete({timeout: 300000}));
+
   message.channel.send(
     new MessageEmbed()
       .setTitle("Kenya-sensei Music Commands Help")
@@ -70,7 +70,9 @@ exports.run = async (client, message) => {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === `❎`){
-                    embedMessage.delete(embed);
+                    embedMessage.delete(revised);
+                    embedMessage.delete(command_ks);
+                    embedMessage.delete(command_not_ks);
                 }
             }).catch(collected => {console.log("error")});
         });
