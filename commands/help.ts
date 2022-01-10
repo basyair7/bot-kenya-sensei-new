@@ -53,33 +53,8 @@ exports.run = async (client, message) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
-  message.channel.send(command_ks)
-         .then(embedMessage => { 
-                embedMessage.react(`❎`);
-                embedMessage.awaitReactions(filter, { max: 1})
-                .then(collected =>{
-                const reaction = collected.first();
-
-                if (reaction.emoji.name === `❎`){
-                    
-                    embedMessage.delete({timeout: 1000});
-                    
-                }
-            }).catch(collected => {console.log("error")});
-        });
-
-
-  message.channel.send(command_not_ks)
-         .then(embedMessage => { 
-           embedMessage.react(`❎`);
-           embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
-                const reaction = collected.first();
-
-                if (reaction.emoji.name === `❎`){
-                    embedMessage.delete({timeout: 1000});
-                }
-            }).catch(collected => {console.log("error")});
-        });
+  const message_command_ks = await message.channel.send(command_ks)
+  const message_command_not_ks = await message.channel.send(command_not_ks)
 
   message.channel.send(
     new MessageEmbed()
@@ -95,7 +70,9 @@ exports.run = async (client, message) => {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === `❎`){
-                    embedMessage.delete({timeout: 1000});
+                    embedMessage.delete({timeout: 5000});
+                    message_command_ks.delete({timeout: 5000});
+                    message_command_not_ks.delete({timeout: 5000});
                 }
             }).catch(collected => {console.log("error")});
         });
