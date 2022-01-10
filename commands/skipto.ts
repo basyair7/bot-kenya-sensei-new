@@ -2,29 +2,34 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
-  if (!channel)
+  if (!channel){
+    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
+  }
   let queue = message.client.queue.get(message.guild.id);
-  if (!queue)
+  if (!queue){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: There are no songs playing in this server")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (!args[0])
+    ).then(message => message.delete({timeout: 10000}));}
+  if (!args[0]){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription("**You must specify the number to skip** :x:")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
-  if (isNaN(args[0]))
+    ).then(message => message.delete({timeout: 10000}));}
+  if (isNaN(args[0])){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setDescription("**Value must be a number** :x:")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
   queue.playing = !false;
 
   if (queue.loop) {
@@ -43,7 +48,8 @@ exports.run = async (client, message, args) => {
     message.client.queue.delete(message.guild.id);
     queue.vc.leave();
   }
-
+  
+  message.delete({timeout: 1000});
   return message.channel.send(
     new MessageEmbed()
       .setDescription(
