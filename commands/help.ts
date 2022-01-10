@@ -62,7 +62,7 @@ exports.run = async (client, message) => {
 
                 if (reaction.emoji.name === `❎`){
                     
-                    embedMessage.delete(command_ks);
+                    embedMessage.delete({timeout: 1000});
                     
                 }
             }).catch(collected => {console.log("error")});
@@ -76,7 +76,7 @@ exports.run = async (client, message) => {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === `❎`){
-                    embedMessage.delete(command_not_ks);
+                    embedMessage.delete({timeout: 1000});
                 }
             }).catch(collected => {console.log("error")});
         });
@@ -95,7 +95,7 @@ exports.run = async (client, message) => {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === `❎`){
-                    embedMessage.delete(revised);
+                    embedMessage.delete({timeout: 1000});
                 }
             }).catch(collected => {console.log("error")});
         });
