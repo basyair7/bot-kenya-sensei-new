@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   const queue = message.client.queue.get(message.guild.id);
+  message.delete({timeout: 1000});
 
   if (!queue)
     return message.channel.send(
