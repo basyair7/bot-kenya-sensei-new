@@ -19,7 +19,6 @@ exports.run = async (client, message) => {
 
   queue.connection.dispatcher.end();
   queue.queue = [];
-  message.delete({timeout: 1000});
   return message.channel.send(
     new MessageEmbed()
       .setDescription("**Stopped the music :white_check_mark: **")
