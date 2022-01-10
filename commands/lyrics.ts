@@ -7,6 +7,7 @@ exports.run = async (client, message, args) => {
   if (!queue)
     return message.channel
       .send("There is nothing playing.")
+      .then(message => message.delete({timeout: 10000}))
       .catch(console.error);
 
   let lyrics = null;
