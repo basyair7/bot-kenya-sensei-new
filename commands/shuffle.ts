@@ -2,12 +2,15 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
-  if (!channel)
+  if (!channel){
+    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
+  }
   const queue = message.client.queue.get(message.guild.id);
-  if (!queue)
+  if (!queue){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -16,7 +19,7 @@ exports.run = async (client, message, args) => {
         )
         .setDescription("** :x: There are no songs in queue to shuffle**")
         .setColor("RED")
-    ).then(message => message.delete({timeout: 10000}));
+    ).then(message => message.delete({timeout: 10000}));}
   let songs = queue.queue;
     for (let i = songs.length - 1; i > 1; i--) {
       let j = 1 + Math.floor(Math.random() * i);
@@ -24,6 +27,7 @@ exports.run = async (client, message, args) => {
   }
   queue.queue = songs;
   message.client.queue.set(message.guild.id, queue);
+  message.delete({timeout: 1000});
   message.channel
     .send(
       new MessageEmbed()
