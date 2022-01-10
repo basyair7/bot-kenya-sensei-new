@@ -2,17 +2,22 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
-  if (!channel)
+  if (!channel){
+    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
+  }
   let queue = message.client.queue.get(message.guild.id);
-  if (!queue)
+  if (!queue){
+    message.delete({timeout: 1000});
     return message.channel.send(
       new MessageEmbed()
         .setColor("RED")
         .setDescription(":x: There are no songs playing in this server")
     ).then(message => message.delete({timeout: 10000}));
+  }
+  message.delete({timeout: 1000});
   message.channel.send(
     new MessageEmbed()
       .setAuthor(
