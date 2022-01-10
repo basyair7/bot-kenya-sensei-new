@@ -18,6 +18,9 @@ exports.run = async (client, message, args) => {
   } catch (error) {
     lyrics = `No lyrics found for ${queue.queue[0].name} :x:`;
   }
+  const filter = (reaction, user) => {
+            return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
 
   let lyricsEmbed = new MessageEmbed()
     .setAuthor(
@@ -30,5 +33,14 @@ exports.run = async (client, message, args) => {
 
   if (lyricsEmbed.description.length >= 2048)
     lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
-  return message.channel.send(lyricsEmbed).catch(console.error);
+  return message.channel.send(lyricsEmbed).then(embedMessage => {
+            embedMessage.react(`❎`);
+            embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === `❎`){
+                    embedMessage.delete(embed);
+                }
+            }).catch(collected => {console.log("error")});
+        }).catch(console.error);
 };
