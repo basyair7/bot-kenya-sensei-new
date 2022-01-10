@@ -55,6 +55,7 @@ exports.run = async (client, message) => {
 
   message.channel.send(command_ks)
          .then(embedMessage => { 
+                embedMessage.react(`❎`);
                 embedMessage.awaitReactions(filter, { max: 1})
                 .then(collected =>{
                 const reaction = collected.first();
@@ -70,6 +71,7 @@ exports.run = async (client, message) => {
 
   message.channel.send(command_not_ks)
          .then(embedMessage => { 
+           embedMessage.react(`❎`);
            embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
                 const reaction = collected.first();
 
