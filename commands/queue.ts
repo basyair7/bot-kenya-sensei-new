@@ -11,6 +11,7 @@ exports.run = async (client, message) => {
   const queue = message.client.queue.get(message.guild.id);
   var status;
   var np;
+  var thumbnail;
   var count = 0;
   if (!queue) status = "There is nothing in queue!";
   else
