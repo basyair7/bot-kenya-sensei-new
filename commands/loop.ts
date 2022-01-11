@@ -4,7 +4,7 @@ exports.run = async (client, message) => {
   const queue = message.client.queue.get(message.guild.id);
 
   if (!queue){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       ":x: There are no songs playing in this server"
     ).then(message => message.delete({timeout: 10000}));}
