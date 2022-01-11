@@ -35,8 +35,12 @@ exports.run = async (client, message) => {
   if (queue) thumbnail = queue.queue[0].thumbnail;
   else thumbnail = message.guild.iconURL();
 
+  const filter = (reaction, user) => {
+            return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
+
   message.channel.send(
-    new MessageEmbed()
+  new MessageEmbed()
       .setAuthor(
         "Music Queue",
         "https://img.icons8.com/color/2x/rhombus-loader.gif"
@@ -45,5 +49,14 @@ exports.run = async (client, message) => {
       .setColor("GREEN")
       .addField("Now Playing", np, true)
       .setDescription(status)
-  ).then(message => message.delete({timeout: 10000}));
+  ).then(embedMessage => {
+            embedMessage.react(`❎`);
+            embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === `❎`){
+                    embedMessage.delete({timeout: 5000});
+                }
+            }).catch(collected => {console.log("error")});
+        });
 };
