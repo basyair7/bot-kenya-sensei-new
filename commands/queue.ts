@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
   if (!channel){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));}
@@ -34,7 +34,6 @@ exports.run = async (client, message) => {
   if (queue) thumbnail = queue.queue[0].thumbnail;
   else thumbnail = message.guild.iconURL();
 
-  message.delete({timeout: 1000});
   message.channel.send(
     new MessageEmbed()
       .setAuthor(
