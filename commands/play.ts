@@ -146,7 +146,7 @@ exports.run = async (client, message, args) => {
             .setFooter("Youtube Music Player");
 
         const filter = (reaction, user) => {
-            return [`🛑`, `⏭️`, `↪️`, `🔀 `].includes(reaction.emoji.name) && user.id === message.author.id;
+            return [`🛑`, `⏭️`, `↪️`, `🔀`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
         const messagePlay = await message.channel.send(playnow)
@@ -178,7 +178,9 @@ exports.run = async (client, message, args) => {
                 looping.run(client, message, args);
              }
             else if(reaction.emoji.name === `🔀`) {
-              if(!message.member.voice.channel) return;
+              if(!message.member.voice.channel) { 
+                return;
+              }
               
               const shufflePlay = require(`./shuffle.ts`);
               shufflePlay.run(client, message, args);
