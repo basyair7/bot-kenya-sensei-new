@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
+  message.delete({timeout: 1000});
   if (!channel){
-    message.delete({timeout: 1000});
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
   let queue = message.client.queue.get(message.guild.id);
 
   if (!args[0]){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     ).then(message => message.delete({timeout: 10000}));}
 
   if (args[0] > 100){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
 
   queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
   queue.volume = args[0];
-  message.delete({timeout: 1000});
+  
   message.channel.send(
     new MessageEmbed()
       .setAuthor(
