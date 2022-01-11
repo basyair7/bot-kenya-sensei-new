@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
   client.user.setActivity("Online");
-  message.delete({timeout: 1000});
+  
   if (!channel)
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
