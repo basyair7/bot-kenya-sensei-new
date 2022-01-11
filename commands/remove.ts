@@ -3,19 +3,19 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
   if (!channel){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));}
   if (!args[0]){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: No song number provided")
         .setColor("RED")
     ).then(message => message.delete({timeout: 10000}));}
   if (isNaN(args[0])){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **Args must be number [Example: -remove 2]**")
@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
     ).then(message => message.delete({timeout: 10000}));}
   let queue = message.client.queue.get(message.guild.id);
   if (args[0] == 1){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(
@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
         .setColor("RED")
     ).then(message => message.delete({timeout: 10000}));}
   if (queue.queue.length == 1){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(
@@ -41,14 +41,14 @@ exports.run = async (client, message, args) => {
         .setColor("RED")
     ).then(message => message.delete({timeout: 10000}));}
   if (args[0] > queue.queue.length){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **The queue doesn't have that much songs**")
         .setColor("RED")
     ).then(message => message.delete({timeout: 10000}));}
   if (!queue){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setDescription(":x: **There are no songs playing in this server**")
@@ -57,7 +57,7 @@ exports.run = async (client, message, args) => {
 
   var name = queue.queue[args[0] - 1].name;
   queue.queue.splice(args[0] - 1);
-  message.delete({timeout: 1000});
+  
   return message.channel.send(
     new MessageEmbed()
       .setDescription(
