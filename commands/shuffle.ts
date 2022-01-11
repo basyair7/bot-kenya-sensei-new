@@ -3,14 +3,14 @@ const { MessageEmbed } = require("discord.js");
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
   if (!channel){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
   }
   const queue = message.client.queue.get(message.guild.id);
   if (!queue){
-    message.delete({timeout: 1000});
+    
     return message.channel.send(
       new MessageEmbed()
         .setAuthor(
@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
   }
   queue.queue = songs;
   message.client.queue.set(message.guild.id, queue);
-  message.delete({timeout: 1000});
+  
   message.channel
     .send(
       new MessageEmbed()
