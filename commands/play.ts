@@ -131,7 +131,7 @@ exports.run = async (client, message, args) => {
           opusEncoded: true,
         }, {highWaterMark: 50});
 
-        const playnow = new MessageEmbed()
+        let playnow = new MessageEmbed()
             .setAuthor(
               "Started Playing",
               "https://img.icons8.com/color/2x/cd--v3.gif"
