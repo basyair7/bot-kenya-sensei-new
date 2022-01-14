@@ -192,7 +192,6 @@ exports.run = async (client, message, args) => {
             }
         }).catch(collected => console.log("Error"));
 
-        try{
           const player = data.connection
             .play(source, { type: "opus" })
             .on("finish", () => {
@@ -205,10 +204,6 @@ exports.run = async (client, message, args) => {
             });
 
           player.setVolumeLogarithmic(data.volume / 100);
-
-        } catch(e){
-          console.log("Error");
-        }
 
         client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING", url: `${track.url}` });
 
