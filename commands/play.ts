@@ -117,11 +117,15 @@ exports.run = async (client, message, args) => {
        var Interval1;
        var Interval2;
        if (statusType === 1){
-          Interval1 = client.user.setActivity(activityInfo, { type : "LISTENING" });
+          Interval1 = setInterval(() => {
+                         client.user.setActivity(activityInfo, { type : "LISTENING" });
+                      }, 3000);
           clearInterval(Interval2);
        } 
        else if (statusType === 0) {
-          Interval2 = client.user.setActivity(activityInfo);
+          Interval2 = setInterval(() => {
+                         client.user.setActivity(activityInfo);
+                      }, 3000);
           clearInterval(Interval1);
        }      
     }
