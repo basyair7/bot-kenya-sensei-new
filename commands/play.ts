@@ -203,13 +203,8 @@ exports.run = async (client, message, args) => {
             });
 
           player.setVolumeLogarithmic(data.volume / 100);
-          setInterval(() => {
-              const uptime = ms(client.uptime, {verbose:true});
-              if (!track) {
-                 client.user.setActivity(`Online at ${uptime}`);
-              } else {
-                 client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING" });
-          }, 3000);
+
+          client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING" });
 
       } catch (e) {
         console.error(e);
