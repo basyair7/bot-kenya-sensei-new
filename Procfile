@@ -1,1 +1,1 @@
-Worker: npm start server.ts
+Worker: yarn start
