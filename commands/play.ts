@@ -127,8 +127,7 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: "audioonly",
           quality: "highestaudio",
-          highWaterMark: 1<<50,
-          opusEncoded: true
+          highWaterMark: 1<<50
         }, {
           highWaterMark: 1<<25
         });
