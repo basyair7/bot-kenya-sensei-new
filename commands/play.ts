@@ -109,9 +109,18 @@ exports.run = async (client, message, args) => {
     return error("I couldn't join the voice channel, Please check console").then(message => message.delete({timeout: 10000}));
   }
     async function statusUp (statusType, activityInfo) {
+        /*
         setInterval(() => {
           client.user.setActivity(activityInfo, { type : statusType });
-        }, 3000);
+        }, 3000); 
+        */
+        client.user.setPresence({
+               status: "online",
+               game: {
+                     name: activityInfo,
+                     type: statusType
+               }
+        });
     }
 
     async function play(track) {
