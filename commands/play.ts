@@ -117,7 +117,8 @@ exports.run = async (client, message, args) => {
        let Interval1;
        if (statusType === 0){
           Interval1 = setInterval(() => {
-                         client.user.setActivity(activityInfo);
+                         const uptime = ms(client.uptime, {verbose:true});
+                         client.user.setActivity(`Online at ${uptime}`);
                       }, 3000);
        } 
        else if (statusType === 1) {
@@ -132,9 +133,7 @@ exports.run = async (client, message, args) => {
         const uptime = ms(client.uptime, {verbose:true})
         
         if (!track) {
-          const uptime = ms(client.uptime, {verbose:true});
-          const statusIdle = `Online at ${uptime}`;
-          statusUp(0, statusIdle);
+          statusUp(0, "statusIdle");
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
           //messagePlay.delete({timeout: 5000}, true)
