@@ -117,7 +117,10 @@ exports.run = async (client, message, args) => {
         if (!track) {
           setInterval(() => {
               const uptime = ms(client.uptime, {verbose:true});
-              client.user.setActivity(`Online at ${uptime}`);
+              if (!track) {
+                 client.user.setActivity(`Online at ${uptime}`);
+              } else {
+                 client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING" });
           }, 3000);
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
@@ -207,8 +210,6 @@ exports.run = async (client, message, args) => {
             });
 
           player.setVolumeLogarithmic(data.volume / 100);
-
-        client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING" });
 
       } catch (e) {
         console.error(e);
