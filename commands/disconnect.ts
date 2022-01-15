@@ -3,10 +3,12 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   client.user.setActivity("Online");
+  /*
   setInterval(() => {
           const uptime = ms(client.uptime, {verbose:true});
           client.user.setActivity(`Online at ${uptime}`);
   }, 3000);
+  */
   
   if (!channel)
     return message.channel.send(
