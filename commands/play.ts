@@ -99,8 +99,7 @@ exports.run = async (client, message, args) => {
   structure.queue.push(song);
 
   try {
-    const join = await channel.join();
-    join.voice.setSelfDeaf(true);
+    const join = await channel.join().then(connection => connection.voice.setSelfDeaf(true));
     structure.connection = join;
     play(structure.queue[0]);
   } catch (e) {
