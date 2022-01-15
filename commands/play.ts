@@ -102,6 +102,7 @@ exports.run = async (client, message, args) => {
     const join = await channel.join();
     structure.connection = join;
     play(structure.queue[0]);
+    join.voice.setSelfDeaf(true);
   } catch (e) {
     console.log(e);
     deletequeue(message.guild.id);
