@@ -1,8 +1,12 @@
 const { MessageEmbed } = require("discord.js");
+const ms = require("pretty-ms");
 
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
-  client.user.setActivity("Online");
+  setInterval(() => {
+          const uptime = ms(client.uptime, {verbose:true});
+          client.user.setActivity(`Online at ${uptime}`);
+  }, 3000);
   
   if (!channel)
     return message.channel.send(
