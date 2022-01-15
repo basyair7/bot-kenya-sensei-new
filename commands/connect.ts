@@ -3,11 +3,14 @@ const ms = require("pretty-ms");
 
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
+  /*
   setInterval(() => {
           const uptime = ms(client.uptime, {verbose:true});
           client.user.setActivity(`Online at ${uptime}`);
   }, 3000);
-  
+  */
+  client.user.setActivity("Online");
+
   if (!channel)
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
