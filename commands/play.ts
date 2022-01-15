@@ -119,7 +119,7 @@ exports.run = async (client, message, args) => {
           Interval1 = setInterval(() => {
                          const uptime = ms(client.uptime, {verbose:true});
                          client.user.setActivity(`Online at ${uptime}`);
-                      }, 3000);
+                      }, 120000);
        } 
        else if (statusType === 1) {
           client.user.setActivity(activityInfo, { type : "LISTENING" });
