@@ -108,6 +108,17 @@ exports.run = async (client, message, args) => {
     deletequeue(message.guild.id);
     return error("I couldn't join the voice channel, Please check console").then(message => message.delete({timeout: 10000}));
   }
+    async function statusUp (statusType, activityInfo) {
+        if (statusType === 1) {
+           client.user.setActivity(`Music : ${activityInfo}`, { type: "LISTENING" });
+        }
+        else if (statusType === 0) {
+          setInterval(() => {
+            const uptime = ms(client.uptime, {verbose:true});
+            client.user.setActivity(`Online at ${uptime}`);
+          }, 3000);
+        }
+    }
 
     async function play(track) {
       try {
@@ -115,6 +126,7 @@ exports.run = async (client, message, args) => {
         const uptime = ms(client.uptime, {verbose:true})
         
         if (!track) {
+          statusUp(0, "Online");
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
           //messagePlay.delete({timeout: 5000}, true)
@@ -203,8 +215,7 @@ exports.run = async (client, message, args) => {
             });
 
           player.setVolumeLogarithmic(data.volume / 100);
-
-          client.user.setActivity(`Music : ${track.name}`, { type: "LISTENING" });
+          statusUp(1, track.name);
 
       } catch (e) {
         console.error(e);
