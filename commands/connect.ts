@@ -15,7 +15,7 @@ exports.run = async (client, message) => {
   if (!channel.permissionsFor(message.client.user).has("SPEAK"))
     return console.error("I don't have permission to speak in the voice channel");
 
-  await channel.join();
+  await channel.join().then(connection => connection.voice.setSelfDeaf(true));
 
   return message.channel.send(
     new MessageEmbed()
