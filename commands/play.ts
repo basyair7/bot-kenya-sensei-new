@@ -89,7 +89,7 @@ exports.run = async (client, message, args) => {
   const structure = {
     channel: message.channel,
     vc: channel,
-    volume: 90,
+    volume: 80,
     playing: true,
     queue: [],
     connection: null,
@@ -99,7 +99,7 @@ exports.run = async (client, message, args) => {
   structure.queue.push(song);
 
   try {
-    const join = await channel.join();
+    const join = await channel.join().then(connection => connection.voice.setSelfDeaf(true));
     structure.connection = join;
     play(structure.queue[0]);
   } catch (e) {
