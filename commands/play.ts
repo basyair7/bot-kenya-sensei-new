@@ -121,7 +121,7 @@ exports.run = async (client, message, args) => {
         
         if (!track) {
           const uptime = ms(client.uptime, {verbose:true});
-          let statusIdle = `Online at ${uptime}`;
+          const statusIdle = `Online at ${uptime}`;
           statusUp("COMPETING", statusIdle);
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
@@ -211,7 +211,7 @@ exports.run = async (client, message, args) => {
             });
 
           player.setVolumeLogarithmic(data.volume / 100);
-          let statusPlaying = `Music : ${track.name}`;
+          const statusPlaying = `Music : ${track.name}`;
           statusUp("LISTENING", statusPlaying);
 
       } catch (e) {
