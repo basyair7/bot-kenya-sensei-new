@@ -115,7 +115,10 @@ exports.run = async (client, message, args) => {
         const uptime = ms(client.uptime, {verbose:true})
         
         if (!track) {
-          client.user.setActivity(`Online at ${uptime}`);
+          setInterval(() => {
+              const uptime = ms(client.uptime, {verbose:true});
+              client.user.setActivity(`Online at ${uptime}`);
+          }, 3000);
           data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({timeout: 10000}));
           message.guild.me.voice.channel.leave();
           //messagePlay.delete({timeout: 5000}, true)
