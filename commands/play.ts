@@ -114,7 +114,7 @@ exports.run = async (client, message, args) => {
           client.user.setActivity(activityInfo, { type : statusType });
         }, 3000); 
         */
-       let Interval1;
+       var Interval1 = null;
        if (statusType === 0){
           Interval1 = setInterval(() => {
                          const uptime = ms(client.uptime, {verbose:true});
