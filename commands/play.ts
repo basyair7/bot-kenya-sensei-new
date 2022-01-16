@@ -113,30 +113,19 @@ exports.run = async (client, message, args) => {
         setInterval(() => {
           client.user.setActivity(activityInfo, { type : statusType });
         }, 3000); 
-        
+       */
        var Interval1 = null;
        if (statusType === 0){
           Interval1 = setInterval(() => {
                          const uptime = ms(client.uptime, {verbose:true});
-                         client.user.setActivity(`Online at ${uptime}`);
+                         client.user.setActivity(`Online (${uptime})`, { type: "COMPETING" });
                       }, 120000);
        } 
        else if (statusType === 1) {
           client.user.setActivity(activityInfo, { type : "LISTENING" });
           clearInterval(Interval1);
        }      
-       */
-      var interval = null;
-      interval = setInterval(() => {
-        const uptime = ms(client.uptime, {verbose:true});
-        if (statusType === 0) {
-          client.user.setActivity(`Bot Online (${uptime})`);
-          clearInterval(interval);
-        }
-        else if (statusType === 1) {
-          client.user.setActivity(activityInfo, { type: "LISTENING" });
-        }
-      }, 4000);
+       
     }
 
     async function play(track) {
