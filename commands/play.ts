@@ -126,10 +126,12 @@ exports.run = async (client, message, args) => {
           clearInterval(Interval1);
        }      
        */
-      setInterval(() => {
+      var interval = null;
+      interval = setInterval(() => {
         const uptime = ms(client.uptime, {verbose:true});
         if (statusType === 0) {
           client.user.setActivity(`Bot Online (${uptime})`);
+          clearInterval(interval);
         }
         else if (statusType === 1) {
           client.user.setActivity(activityInfo, { type: "LISTENING" });
