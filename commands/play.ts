@@ -113,7 +113,7 @@ exports.run = async (client, message, args) => {
         setInterval(() => {
           client.user.setActivity(activityInfo, { type : statusType });
         }, 3000); 
-        */
+        
        var Interval1 = null;
        if (statusType === 0){
           Interval1 = setInterval(() => {
@@ -125,6 +125,16 @@ exports.run = async (client, message, args) => {
           client.user.setActivity(activityInfo, { type : "LISTENING" });
           clearInterval(Interval1);
        }      
+       */
+      setInterval(() => {
+        const uptime = ms(client.uptime, {verbose:true});
+        if (statusType === 0) {
+          client.user.setActivity(`Bot Online (${uptime})`);
+        }
+        else if (statusType === 1) {
+          client.user.setActivity(activityInfo, { type: "LISTENING" });
+        }
+      }, 4000);
     }
 
     async function play(track) {
