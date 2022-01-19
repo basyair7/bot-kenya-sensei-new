@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
     if(db.has(`afk-${message.author.id}+${message.guild.id}`)) {
         const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
         await db.delete(`afk-${message.author.id}+${message.guild.id}`)
-        message.reply(`Selamat Datang nak... Kamu telah kembali dari (${info})`)
+        message.reply(`Selamat Datang nak... Kamu telah kembali dari (${info})`).then(msg => msg.delete({ timeout: 10000 }));
     }
     //checking for mentions
     if(message.mentions.members.first()) {
