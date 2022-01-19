@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
     if(db.has(`afk-${message.author.id}+${message.guild.id}`)) {
         const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
         await db.delete(`afk-${message.author.id}+${message.guild.id}`)
-        message.reply(`Your afk status have been removed (${info})`)
+        message.reply(`Selamat Datang nak... Kamu telah kembali dari (${info})`)
     }
     //checking for mentions
     if(message.mentions.members.first()) {
@@ -16,7 +16,7 @@ module.exports = async (client, message) => {
                 .setTitle("Info Anggota AFK")
                 .setThumbnail(image.displayAvatarURL())
                 .setDescription(description)
-            message.reply(msg)
+            message.reply(msg).then(msg => msg.delete({ timeout: 10000 }));
         }else return;
     }else;
 
