@@ -1,4 +1,5 @@
 const db = require('quick.db');
+const { MessageEmbed } = require("discord.js");
 
 module.exports = async (client, message) => {
     if(db.has(`afk-${message.author.id}+${message.guild.id}`)) {
@@ -9,7 +10,13 @@ module.exports = async (client, message) => {
     //checking for mentions
     if(message.mentions.members.first()) {
         if(db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)) {
-            message.channel.send(message.mentions.members.first().user.tag + ":" + db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`))
+            const image = message.mentions.users.first()
+            let description = message.mentions.members.first().user.tag + " : " + db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`)
+            let msg = new MessageEmbed()
+                .setTitle("Info Anggota AFK")
+                .setThumbnail(image.displayAvatarURL())
+                .setDescription(description)
+            message.reply(msg)
         }else return;
     }else;
 
