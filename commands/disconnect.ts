@@ -10,10 +10,11 @@ exports.run = async (client, message) => {
   }, 3000);
   */
   
-  if (!channel)
+  if (!channel){
     return message.channel.send(
       "KAMU HARUS JOIN CHANNEL DULU NAK!"
     ).then(message => message.delete({timeout: 10000}));
+  }
 
   await channel.leave();
 
