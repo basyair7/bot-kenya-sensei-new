@@ -2,7 +2,7 @@ const firebase = require('../db/firebaseConfig');
 const { removeData } = require('../model/dbModel');
 
 module.exports = {
-    name: 'noafk',
+    name: 'nonafk',
     run: async(client, message, args) => {
         let idMember = `afk-${message.author.id}and${message.guild.id}`;
         firebase.ref('/afk/'+idMember+'/id/').once('value', function (snapshot) {
