@@ -1,11 +1,38 @@
 const db = require('quick.db');
 const { MessageEmbed } = require("discord.js");
+const firebase = require('../db/firebaseConfig');
+const { removeData, readReason, readId } = require('../model/dbModel')
 
 module.exports = async (client, message) => {
+    if(message.mentions.members.first()) {
+        let id = `afk-${message.mentions.members.first().id}and${message.guild.id}`;
+        firebase.ref('/afk/'+id+'/id/').once('value', function (snapshot) {
+            var data = snapshot.val()
+            if(data !== null) {
+                if(data === id){
+                    firebase.ref('/afk/'+id+'/reason/').once('value', function(SnapShot) {
+                        var msgReason = SnapShot.val()
+                        if(msgReason !== null) {
+                            const image = message.mentions.users.first()
+                            let description = message.mentions.members.first().user.tag + " : " + msgReason
+                            let msg = new MessageEmbed()
+                                .setTitle("Info Anggota AFK")
+                                .setThumbnail(image.displayAvatarURL())
+                                .setDescription(description)
+                            message.reply(msg)
+                        } else;
+                    })
+                } else return;
+            } else;
+        })
+    } else;
+
+
+    /*
     if(db.has(`afk-${message.author.id}+${message.guild.id}`)) {
         const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
         await db.delete(`afk-${message.author.id}+${message.guild.id}`)
-        message.reply(`Selamat Datang nak... Kamu telah kembali dari (${info})`).then(msg => msg.delete({ timeout: 10000 }));
+        message.reply(`Your afk status have been removed (${info})`)
     }
     //checking for mentions
     if(message.mentions.members.first()) {
@@ -16,9 +43,10 @@ module.exports = async (client, message) => {
                 .setTitle("Info Anggota AFK")
                 .setThumbnail(image.displayAvatarURL())
                 .setDescription(description)
-            message.reply(msg).then(msg => msg.delete({ timeout: 10000 }));
+            message.reply(msg)
         }else return;
     }else;
+    */
 
     // command not ks
     let notks = message.content.toLowerCase();
