@@ -2,6 +2,7 @@ const ms = require("pretty-ms");
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
+  const channel = message.member.voice.channel;
   client.user.setActivity("Online");
   /*
   setInterval(() => {
