@@ -1,7 +1,22 @@
 //requiring the package
 const db = require('quick.db')
 const { MessageEmbed } = require('discord.js')
+const { addData } = require('../model/dbModel')
 
+module.exports = {
+    name: 'afk',
+    run: async(client, message, args) => {
+        const content = args.join(' ');
+        const embed = new MessageEmbed()
+        .setDescription(`You have been set to afk\n**Reason :** ${content}`)
+        .setColor("RANDOM")
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic : true }))
+        message.channel.send(embed)
+        return addData(`afk-${message.author.id}and${message.guild.id}`, content)
+    }
+}
+
+/*
 module.exports = {
     name : 'afk',
     run : async(client, message, args) => {
@@ -11,6 +26,7 @@ module.exports = {
         .setDescription(`You have been set to afk\n**Reason :** ${content}`)
         .setColor("GREEN")
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic : true }))
-        message.channel.send(embed).then(msg => msg.delete({ timeout: 10000 }));                
+        message.channel.send(embed)                
     }
 }
+*/
