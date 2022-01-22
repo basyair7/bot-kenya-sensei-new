@@ -17,8 +17,8 @@ exports.run = async (client, message) => {
   const cmd5 = '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`';
   const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
 
-  const commands = `connect\`\`, disconnect\`\`, play <Song Name or url>\`\`, pause\`\`, resume\`\`, queue\`\`, skip\`\`, skipto <Target number>\`\`, stop\`\`,
-   volume <volume count or none>\`\`, np\`\`, lyrics\`\`, shuffle\`\`, invite\`\`,loop\`\`, remove <Target number>\`\`,`;
+  const commands = `connect\`\`, disconnect\`\`, play <Song Name or url>\`\`, pause\`\`, resume\`\`, queue\`\`, skip\`\`, skipto <Target number>\`\`, stop\`\`, `+
+   `volume <volume count or none>\`\`, np\`\`, lyrics\`\`, shuffle\`\`, invite\`\`, loop\`\`, remove <Target number>\`\`,`;
 
   const revised = commands
     .split(", ")
