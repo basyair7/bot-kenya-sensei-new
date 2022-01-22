@@ -22,13 +22,13 @@ exports.run = async (client, message) => {
 
   const revised = commands
     .split(", ")
-    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .map((x) =>"``" + client.config.prefix + x.trim())
     .join(", ");
   
   const revisedHelp = listHelp
     .split('\n')
     .map((x) => "• " + "``" + client.config.prefix + x.trim())
-    .join(', ');
+    .join('\n ');
 
   const filter = (reaction, user) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
