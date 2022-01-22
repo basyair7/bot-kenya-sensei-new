@@ -36,7 +36,7 @@ exports.run = async (client, message) => {
       .setTimestamp()
       .addField("Core", revisedHelp, true)
       .addField("Music Commands", revised, true)
-      .addField("Commands 1", cmd1, true)
+      .addField("Commands 1", cmd1)
       .addField("Commands 2", cmd2, true)
       .addField("Commands 3", cmd3, true)
       .addField("Commands 4", cmd4, true)
