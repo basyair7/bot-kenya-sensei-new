@@ -10,28 +10,17 @@ exports.run = async (client, message) => {
   afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
   nonafk\`\`=> menonaktifkan afk`;
 
+  const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
+  const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
+  const cmd3 = '`p`, `assalamualaikum`, `assalamualaikum warahmatullahi wabarakatuh`';
+  const cmd4 = '`buk kenya, gimana cara kita cepat lulus sekolah?`, `sensei, gimana cara cepat lulus sekolah?`, `curhat dong sensei`, `buk kenya, curhat dong`';
+  const cmd5 = '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`';
+  const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
+
   const revisedHelp = listHelp
     .split('\n')
     .map((x) => "• " + "``" + client.config.prefix + x.trim())
     .join('\n');
-
-    let command_not_ks = new MessageEmbed()
-    .setTitle("kenya-sensei Commands Help")
-    .setDescription("Command Not ks.")
-    .setColor("RANDOM")
-    .setThumbnail(client.user.displayAvatarURL())
-    .addField("Commands 1",
-    '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`', true)
-    .addField("Commands 2",
-    '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`', true)
-    .addField("Commands 3",
-    '`p`, `assalamualaikum`, `assalamualaikum warahmatullahi wabarakatuh`', true)
-    .addField("Commands 4",
-    '`buk kenya, gimana cara kita cepat lulus sekolah?`, `sensei, gimana cara cepat lulus sekolah?`, `curhat dong sensei`, `buk kenya, curhat dong`', true)
-    .addField("Commands 5",
-    '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`', true)
-    .addField("Commands 6",
-    '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`', true);
 
   const commands = `connect\`\` - join the voice channel you are in
    disconnect\`\` - leave the voice channel you are in
@@ -59,16 +48,19 @@ exports.run = async (client, message) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
-  const message_command_not_ks = await message.channel.send(command_not_ks)
-
   message.channel.send(
     new MessageEmbed()
-      .setTitle("Kenya-sensei Music Commands Help")
-      .setDescription("Commands ks.")
+      .setTitle("Kenya-sensei Commands Help")
       .setColor("RANDOM")
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp()
       .addField("Core", revisedHelp, true)
+      .addField("Commands 1", cmd1, true)
+      .addField("Commands 2", cmd2, true)
+      .addField("Commands 3", cmd3, true)
+      .addField("Commands 4", cmd4, true)
+      .addField("Commands 5", cmd5, true)
+      .addField("Commands 6", cmd6, true)
       .addField("Music Commands", revised, true)
   ).then(embedMessage => {
             embedMessage.react(`❎`);
@@ -77,7 +69,6 @@ exports.run = async (client, message) => {
 
                 if (reaction.emoji.name === `❎`){
                     embedMessage.delete({timeout: 5000});
-                    message_command_not_ks.delete({timeout: 5000});
                 }
             }).catch(collected => {console.log("error")});
         });
