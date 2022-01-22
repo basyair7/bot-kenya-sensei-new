@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   const listHelp = `ping\`\`,  says (ks.says pesan)\`\`,  servericon\`\`, stats\`\`,` +
-  `uptime\`\`, clear\`\`, afk (ks.afk reason)\`\`, nonafk\`\` `;
+  ` uptime\`\`, clear\`\`, afk (ks.afk reason)\`\`, nonafk\`\` `;
 
   const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
   const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
@@ -21,7 +21,7 @@ exports.run = async (client, message) => {
   
   const revisedHelp = listHelp
     .split(', ')
-    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .map((x) => "``" + client.config.prefix + x.trim())
     .join(', ');
 
   const filter = (reaction, user) => {
