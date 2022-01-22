@@ -1,13 +1,21 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
+  const listHelp = `ping\`\` => cek kecepatan internet, 
+  says\`\` => perintah mengirimkan ulang pesan ke bot (ks.says pesan), 
+  servericon\`\` => menampilkan gambar icon server, 
+  stats\`\`=> status bot, 
+  uptime\`\`=> waktu start bot, 
+  clear\`\`=> membersihkan pesan channel, 
+  afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
+  nonafk\`\`=> menonaktifkan afk`;
+
   let command_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
     .setDescription("Commands ks.")
     .setColor("RANDOM")
     .setThumbnail(client.user.displayAvatarURL())
-    .addField("Core",
-    '`help`, `ping`, `says`, `servericon`, `stats`, `uptime`, `clear`, `afk`, `nonafk`', true);
+    .addField("Core",listHelp, true);
 
     let command_not_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
