@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
                                 .setTitle("Info Anggota AFK")
                                 .setThumbnail(image.displayAvatarURL())
                                 .setDescription(description)
-                            message.reply(msg)
+                            message.reply(msg).then(m => m.delete({timeout: 12000}))
                         } else;
                     })
                 } else return;
