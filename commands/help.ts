@@ -1,8 +1,14 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
-  const listHelp = `ping\`\`,  says (ks.says pesan)\`\`,  servericon\`\`, stats\`\`,` +
-  ` uptime\`\`, clear\`\`, afk (ks.afk reason)\`\`, nonafk\`\` `;
+  const listHelp = `ping\`\` => cek kecepatan internet, 
+  says\`\` => perintah mengirimkan ulang pesan ke bot (ks.says pesan), 
+  servericon\`\` => menampilkan gambar icon server, 
+  stats\`\`=> status bot, 
+  uptime\`\`=> waktu start bot, 
+  clear\`\`=> membersihkan pesan channel, 
+  afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
+  nonafk\`\`=> menonaktifkan afk`;
 
   const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
   const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
@@ -11,18 +17,32 @@ exports.run = async (client, message) => {
   const cmd5 = '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`';
   const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
 
-  const commands = `connect\`\`, disconnect\`\`, play <Song Name or url>\`\`, pause\`\`, resume\`\`, queue\`\`, skip\`\`, skipto <Target number>\`\`, stop\`\`, `+
-   `volume <volume count or none>\`\`, np\`\`, lyrics\`\`, shuffle\`\`, invite\`\`, loop\`\`, remove <Target number>\`\` `;
+  const revisedHelp = listHelp
+    .split('\n')
+    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .join('\n');
+
+  const commands = `connect\`\` - join the voice channel you are in
+   disconnect\`\` - leave the voice channel you are in
+   play <Song Name or url>\`\` - play songs from youtube
+   pause\`\` - pause currently playing songs in the server
+   resume\`\` - resume paused songs in the server
+   queue\`\` - shows the song queue of the server
+   skip\`\` - skips to next song in the queue
+   skipto <Target number>\`\` - Multiple skips until target
+   stop\`\` - stops the song and clears the queue
+   volume <volume count or none>\`\` - see or adjust volume of songs
+   np\`\` - see now playing song
+   lyrics\`\` - get lyrics of current song
+   shuffle\`\` - shuffle and randomize the queue
+   invite\`\` - get invite link for the bot
+   loop\`\` - enable / disable loop for the currently playing song
+   remove <Target number>\`\` - remove a song from the queue`;
 
   const revised = commands
-    .split(", ")
-    .map((x) =>"``" + client.config.prefix + x.trim())
-    .join(", ");
-  
-  const revisedHelp = listHelp
-    .split(', ')
-    .map((x) => "``" + client.config.prefix + x.trim())
-    .join(', ');
+    .split("\n")
+    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .join("\n");
 
   const filter = (reaction, user) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -34,9 +54,9 @@ exports.run = async (client, message) => {
       .setColor("RANDOM")
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp()
-      .addField("Core", revisedHelp, true)
-      .addField("Music Commands", revised, true)
-      .addField("Commands 1", cmd1)
+      .addField("Core", revisedHelp)
+      .addField("Music Commands", revised)
+      .addField("Commands 1", cmd1, true)
       .addField("Commands 2", cmd2, true)
       .addField("Commands 3", cmd3, true)
       .addField("Commands 4", cmd4, true)
