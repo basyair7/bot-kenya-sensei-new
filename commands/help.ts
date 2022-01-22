@@ -2,12 +2,13 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
   const listHelp = `ping\`\` => cek kecepatan internet, 
-  says\`\` => perintah mengirimkan ulang pesan ke bot (ks.says pesan), 
+  says (ks.says pesan)\`\` => perintah mengirimkan ulang pesan ke bot, 
   servericon\`\` => menampilkan gambar icon server, 
+  mukaku (ks.mukaku atau ks.mukaku @tag)\`\` => menampilkan gambar avatar member,
   stats\`\`=> status bot, 
   uptime\`\`=> waktu start bot, 
   clear\`\`=> membersihkan pesan channel, 
-  afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
+  afk (ks.afk reason)\`\`=> perintah mengaktifkan afk, 
   nonafk\`\`=> menonaktifkan afk`;
 
   const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
