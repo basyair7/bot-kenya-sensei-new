@@ -17,11 +17,6 @@ exports.run = async (client, message) => {
   const cmd5 = '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`';
   const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
 
-  const revisedHelp = listHelp
-    .split('\n')
-    .map((x) => "• " + "``" + client.config.prefix + x.trim())
-    .join('\n');
-
   const commands = `connect\`\` - join the voice channel you are in
    disconnect\`\` - leave the voice channel you are in
    play <Song Name or url>\`\` - play songs from youtube
@@ -42,7 +37,12 @@ exports.run = async (client, message) => {
   const revised = commands
     .split("\n")
     .map((x) => "• " + "``" + client.config.prefix + x.trim())
-    .join("\n");
+    .join(", ");
+  
+  const revisedHelp = listHelp
+    .split('\n')
+    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .join(', ');
 
   const filter = (reaction, user) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
