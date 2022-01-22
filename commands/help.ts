@@ -1,14 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
-  const listHelp = `ping\`\` => cek kecepatan internet, 
-  says\`\` => perintah mengirimkan ulang pesan ke bot (ks.says pesan), 
-  servericon\`\` => menampilkan gambar icon server, 
-  stats\`\`=> status bot, 
-  uptime\`\`=> waktu start bot, 
-  clear\`\`=> membersihkan pesan channel, 
-  afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
-  nonafk\`\`=> menonaktifkan afk`;
+  const listHelp = `ping\`\`,  says (ks.says pesan)\`\`,  servericon\`\`, stats\`\`,` +
+  `uptime\`\`, clear\`\`, afk (ks.afk reason)\`\`, nonafk\`\` `;
 
   const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
   const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
@@ -18,7 +12,7 @@ exports.run = async (client, message) => {
   const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
 
   const commands = `connect\`\`, disconnect\`\`, play <Song Name or url>\`\`, pause\`\`, resume\`\`, queue\`\`, skip\`\`, skipto <Target number>\`\`, stop\`\`, `+
-   `volume <volume count or none>\`\`, np\`\`, lyrics\`\`, shuffle\`\`, invite\`\`, loop\`\`, remove <Target number>\`\`,`;
+   `volume <volume count or none>\`\`, np\`\`, lyrics\`\`, shuffle\`\`, invite\`\`, loop\`\`, remove <Target number>\`\` `;
 
   const revised = commands
     .split(", ")
