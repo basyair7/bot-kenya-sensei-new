@@ -10,12 +10,10 @@ exports.run = async (client, message) => {
   afk\`\`=> perintah mengaktifkan afk (ks.afk reason), 
   nonafk\`\`=> menonaktifkan afk`;
 
-  let command_ks = new MessageEmbed()
-    .setTitle("kenya-sensei Commands Help")
-    .setDescription("Commands ks.")
-    .setColor("RANDOM")
-    .setThumbnail(client.user.displayAvatarURL())
-    .addField("Core",listHelp, true);
+  const revisedHelp = listHelp
+    .split('\n')
+    .map((x) => "• " + "``" + client.config.prefix + x.trim())
+    .join('\n');
 
     let command_not_ks = new MessageEmbed()
     .setTitle("kenya-sensei Commands Help")
@@ -61,17 +59,17 @@ exports.run = async (client, message) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
         };
 
-  const message_command_ks = await message.channel.send(command_ks)
   const message_command_not_ks = await message.channel.send(command_not_ks)
 
   message.channel.send(
     new MessageEmbed()
       .setTitle("Kenya-sensei Music Commands Help")
-      .setDescription("Command Not ks?")
+      .setDescription("Commands ks.")
       .setColor("RANDOM")
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp()
-      .setDescription(revised)
+      .addField("Core", revisedHelp, true)
+      .addField("Music Commands", revised, true)
   ).then(embedMessage => {
             embedMessage.react(`❎`);
             embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
@@ -79,7 +77,6 @@ exports.run = async (client, message) => {
 
                 if (reaction.emoji.name === `❎`){
                     embedMessage.delete({timeout: 5000});
-                    message_command_ks.delete({timeout: 5000});
                     message_command_not_ks.delete({timeout: 5000});
                 }
             }).catch(collected => {console.log("error")});
