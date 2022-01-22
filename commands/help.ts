@@ -20,9 +20,9 @@ exports.run = async (client, message) => {
     .join(", ");
   
   const revisedHelp = listHelp
-    .split('\n')
+    .split(', ')
     .map((x) => "• " + "``" + client.config.prefix + x.trim())
-    .join('\n ');
+    .join(', ');
 
   const filter = (reaction, user) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
