@@ -9,7 +9,7 @@ exports.run = async(client, message, args) => {
              Jika Melanjutkan Tekan :white_check_mark: , Jika tidak tekan :negative_squared_cross_mark: `)
     
     const filter = (reaction, user) => {
-        return [`✅`, `❎`].includes(reaction.emoji.name) && user.id === msg.author.id;
+        return [`✅`, `❎`].includes(reaction.emoji.name) && user.id === message.author.id;
     };
     
     message.channel.send(peringatan).then(embedMessage => {
