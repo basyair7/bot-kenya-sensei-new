@@ -15,13 +15,13 @@ exports.run = async(client, message, args) => {
     message.channel.send(peringatan).then(embedMessage => {
           embedMessage.react(`✅`);
           embedMessage.react(`❎`);
-          embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
+          embedMessage.awaitReactions(filter, { max: 1 }).then(async collected =>{
               const reaction = collected.first();
 
               if (reaction.emoji.name === `✅`) {
                   embedMessage.channel.send('Restarting bot...');
                   embedMessage.delete({timeout: 10000});
-                  return process.exit();
+                  return await process.exit();
               }
               else if (reaction.emoji.name === `❎`) {
                   embedMessage.delete({timeout: 10000});
