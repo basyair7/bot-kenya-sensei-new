@@ -17,7 +17,7 @@ exports.run = async(client, message, args) => {
                   embedMessage.delete(embed);
               }
               else if (reaction.emoji.name === `:white_check_mark:`) {
-                  await message.channel.send('Restarting bot...');
+                  message.channel.send('Restarting bot...');
                   return process.exit();
               }
           }).catch(collected => {console.log("Error")});
