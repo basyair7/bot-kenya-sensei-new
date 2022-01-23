@@ -108,20 +108,19 @@ exports.run = async (client, message, args) => {
     deletequeue(message.guild.id);
     return error("I couldn't join the voice channel, Please check console").then(message => message.delete({timeout: 10000}));
   }
-    async function statusUp (statusType, activityInfo) {
+   async function statusUp (statusType, activityInfo) {
         /*
         setInterval(() => {
           client.user.setActivity(activityInfo, { type : statusType });
         }, 3000); 
        */
-       var Interval1 = null;
-       if (statusType === 0){
-          Interval1 = setInterval(() => {
-                         const uptime = ms(client.uptime, {verbose:true});
-                         client.user.setActivity(`Uptime (${uptime})`, { type: "COMPETING" });
-                      }, 120000);
-       } 
-       else if (statusType === 1) {
+     
+       let Interval1 = setInterval(() => {
+           const uptime = ms(client.uptime, {verbose:true});
+           client.user.setActivity(`Uptime (${uptime})`, { type: "COMPETING" });
+        }, 120000);
+      
+       if (statusType === 1) {
           client.user.setActivity(activityInfo, { type : "LISTENING" });
           clearInterval(Interval1);
        }      
