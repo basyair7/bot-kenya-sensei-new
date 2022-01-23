@@ -9,7 +9,8 @@ exports.run = async (client, message) => {
   uptime\`\`=> waktu start bot, 
   clear\`\`=> membersihkan pesan channel, 
   afk (ks.afk reason)\`\`=> perintah mengaktifkan afk, 
-  nonafk\`\`=> menonaktifkan afk`;
+  nonafk\`\`=> menonaktifkan afk,
+  restart\`\`=> restart ulang bot`;
 
   const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
   const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
