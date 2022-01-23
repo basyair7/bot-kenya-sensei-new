@@ -7,6 +7,10 @@ exports.run = async(client, message, args) => {
     .addField("Peringatan merestart bot!!!", `Jika bot direstart lebih dari 2x akan mengakibatkan bot kenya-sensei menjadi offline sementara...\n
              Jika Melanjutkan Tekan :white_check_mark: , Jika tidak tekan :negative_squared_cross_mark: `)
     
+    const filter = (reaction, user) => {
+        return [`:white_check_mark:`, `:negative_squared_cross_mark:`].includes(reaction.emoji.name) && user.id === msg.author.id;
+    };
+    
     message.channel.send(peringatan).then(embedMessage => {
           embedMessage.react(`:white_check_mark:`);
           embedMessage.react(`:negative_squared_cross_mark:`);
