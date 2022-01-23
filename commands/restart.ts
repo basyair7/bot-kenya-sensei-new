@@ -19,7 +19,8 @@ exports.run = async(client, message, args) => {
               const reaction = collected.first();
 
               if (reaction.emoji.name === `✅`) {
-                  message.channel.send('Restarting bot...');
+                  embedMessage.channel.send('Restarting bot...');
+                  embedMessage.delete({timeout: 10000});
                   return process.exit();
               }
               else if (reaction.emoji.name === `❎`) {
