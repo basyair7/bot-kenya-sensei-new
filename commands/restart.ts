@@ -8,7 +8,7 @@ exports.run = async(client, message, args) => {
              Jika Melanjutkan Tekan :white_check_mark: , Jika tidak tekan :negative_squared_cross_mark: `)
     
     const filter = (reaction, user) => {
-        return [`:white_check_mark:`, `:negative_squared_cross_mark:`].includes(reaction.emoji.name) && user.id === msg.author.id;
+        return [`✅`, `❎`].includes(reaction.emoji.name) && user.id === msg.author.id;
     };
     
     message.channel.send(peringatan).then(embedMessage => {
@@ -17,10 +17,10 @@ exports.run = async(client, message, args) => {
           embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
               const reaction = collected.first();
 
-              if (reaction.emoji.name === `:negative_squared_cross_mark:`){
+              if (reaction.emoji.name === `❎`){
                   embedMessage.delete(embed);
               }
-              else if (reaction.emoji.name === `:white_check_mark:`) {
+              else if (reaction.emoji.name === `✅`) {
                   message.channel.send('Restarting bot...');
                   return process.exit();
               }
