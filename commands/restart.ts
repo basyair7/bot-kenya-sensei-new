@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+
 exports.run = async(client, message, args) => {
     let peringatan = new MessageEmbed()
     .setTitle("Restart Bot Kenya-Sensei")
@@ -17,12 +18,12 @@ exports.run = async(client, message, args) => {
           embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
               const reaction = collected.first();
 
-              if (reaction.emoji.name === `❎`){
-                  embedMessage.delete(embed);
-              }
-              else if (reaction.emoji.name === `✅`) {
+              if (reaction.emoji.name === `✅`) {
                   message.channel.send('Restarting bot...');
                   return process.exit();
+              }
+              else if (reaction.emoji.name === `❎`) {
+                  embedMessage.delete({timeout: 10000});
               }
           }).catch(collected => {console.log("Error")});
       });
