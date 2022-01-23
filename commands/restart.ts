@@ -12,8 +12,8 @@ exports.run = async(client, message, args) => {
     };
     
     message.channel.send(peringatan).then(embedMessage => {
-          embedMessage.react(`:white_check_mark:`);
-          embedMessage.react(`:negative_squared_cross_mark:`);
+          embedMessage.react(`✅`);
+          embedMessage.react(`❎`);
           embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
               const reaction = collected.first();
 
