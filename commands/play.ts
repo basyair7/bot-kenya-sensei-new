@@ -117,7 +117,7 @@ exports.run = async (client, message, args) => {
      
        let Interval1 = setInterval(() => {
            const uptime = ms(client.uptime, {verbose:true});
-           client.user.setActivity(`Uptime (${uptime})`, { type: "COMPETING" });
+           client.user.setActivity(`Uptime (${uptime})`, { type: "CUSTOM_STATUS" });
         }, 120000);
       
        if (statusType === 1) {
