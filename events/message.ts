@@ -4,6 +4,7 @@ const firebase = require('../db/firebaseConfig');
 const { removeData, readReason, readId } = require('../model/dbModel')
 
 module.exports = async (client, message) => {
+    try{
     if(message.mentions.members.first()) {
         let id = `afk-${message.mentions.members.first().id}and${message.guild.id}`;
         firebase.ref('/afk/'+id+'/id/').once('value', function (snapshot) {
@@ -47,6 +48,9 @@ module.exports = async (client, message) => {
         }else return;
     }else;
     */
+    } catch(e){
+        console.log(e)
+    }
 
     // command not ks
     let notks = message.content.toLowerCase();
