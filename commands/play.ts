@@ -113,17 +113,31 @@ exports.run = async (client, message, args) => {
         setInterval(() => {
           client.user.setActivity(activityInfo, { type : statusType });
         }, 3000); 
-       */
+       
      
        let Interval1 = setInterval(() => {
            const uptime = ms(client.uptime, {verbose:true});
            client.user.setActivity(`Uptime (${uptime})`, { type: "CUSTOM_STATUS" });
+               
         }, 120000);
+       */
       
        if (statusType === 1) {
+          /*
           client.user.setActivity(activityInfo, { type : "LISTENING" });
           clearInterval(Interval1);
-       }      
+          */
+          client.user.setPresence({
+                  status: 'online',
+                  activity: {
+                    name: activityInfo,
+                    type: "LISTENING"
+                  }
+                })
+
+       } else if (statusType === 0) {
+           client.user.setPresence({ activity: null });
+       }
        
     }
 
