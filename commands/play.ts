@@ -136,7 +136,14 @@ exports.run = async (client, message, args) => {
                 })
 
        } else if (statusType === 0) {
-           client.user.setPresence({ activity: null });
+           const uptime = ms(client.uptime, {verbose:true});
+           client.user.setPresence({
+                  status: 'online',
+                  activity: {
+                     name: `Uptime (${uptime})`,
+                     type: "COMPETING"
+                  }
+             });
        }
        
     }
