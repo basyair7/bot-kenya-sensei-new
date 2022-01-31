@@ -20,7 +20,7 @@ exports.run = async(client, message, args) => {
 
               if (reaction.emoji.name === `✅`) {
                   embedMessage.delete({timeout: 5000});
-                  embedMessage.channel.send('Restarting bot...').then(m => {
+                  embedMessage.channel.send('Restarting bot...').then(async m => {
                       await process.exit();
                   });
               }
