@@ -36,9 +36,10 @@
     "snekfetch": "^4.0.4",
     "ts-node": "^10.4.0",
     "yt-search": "^2.10.1",
-    "ytdl-core": "^4.9.2"
+    "ytdl": "^1.4.1",
+    "ytdl-core": "^4.10.0"
   },
-  "repository": "git+https://github.com/basyair7/bot-kenya-sensei-2.git",
+  "repository": "git+https://github.com/basyair7/bot-kenya-sensei-new.git",
   "license": "MIT",
   "keywords": [
     "node",
@@ -46,7 +47,7 @@
     "express"
   ],
   "bugs": {
-    "url": "https://github.com/basyair7/bot-kenya-sensei-2/issues"
+    "url": "https://github.com/basyair7/bot-kenya-sensei-new/issues"
   },
   "homepage": "https://github.com/basyair7/bot-kenya-sensei-2#readme"
 }
