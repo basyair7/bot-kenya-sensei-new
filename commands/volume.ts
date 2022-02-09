@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
+  try{
   
   if (!channel){
     return message.channel.send(
@@ -47,4 +48,7 @@ exports.run = async (client, message, args) => {
       .setColor("BLUE")
       .setDescription("**Volume set to " + args[0] + " :white_check_mark: **")
   ).then(message => message.delete({timeout: 10000}));
+  } catch(e) {
+       console.log(e);
+  }
 };
