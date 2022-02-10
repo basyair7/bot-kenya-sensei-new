@@ -196,6 +196,7 @@ exports.run = async (client, message, args) => {
         messagePlay.react(`↪️`);
         messagePlay.react(`🔀`)
         messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
+            try {
             const reaction = collected.first();
             if (reaction.emoji.name === `🛑`) {
                 if (!message.member.voice.channel) {
@@ -229,6 +230,9 @@ exports.run = async (client, message, args) => {
             else {
               error("Error...").then(message => message.delete({timeout: 10000}));
             }
+           } catch(e) {
+               console.log("error");
+           }
         }).catch(collected => console.log("Error"));
 
           const player = data.connection
