@@ -156,6 +156,9 @@ module.exports = async (client, message) => {
     else if(notks === "bajul"){
         message.reply({files:['./images/2234132402.jpg']});
     } 
+    else if(not ks === "ges") {
+        message.channel.send("Ges...");
+    }
 
     if (message.author.bot) return;
 
