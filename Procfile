@@ -1,1 +1,1 @@
-Worker: nom start ./server.ts
+Worker: npm start ./server.ts
