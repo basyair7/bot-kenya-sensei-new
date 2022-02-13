@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
+  try{
   const channel = message.member.voice.channel;
   if (!channel){
     message.delete({timeout: 1000});
@@ -24,4 +25,7 @@ exports.run = async (client, message) => {
       .setDescription("**Stopped the music :white_check_mark: **")
       .setColor("BLUE")
   ).then(message => message.delete({timeout: 10000}));
+  } catch(e){
+      console.log(e);
+  }
 };
