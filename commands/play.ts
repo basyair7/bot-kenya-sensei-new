@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
 
     if (!query) return error("You didn't provide a song name to play!").then(message => message.delete({timeout: 10000}));
 
-    if (query.includes("www.youtube.co.id")) {
+    if (query.includes("www.youtube.com")) {
       try {
         const ytdata = await await yt.getBasicInfo(query);
         if (!ytdata) return error("No song found for the url provided").then(message => message.delete({timeout: 10000}));
