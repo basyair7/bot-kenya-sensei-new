@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
+  try{
   const queue = message.client.queue.get(message.guild.id);
 
   if (!queue){
@@ -24,4 +25,8 @@ exports.run = async (client, message) => {
         "for current song :white_check_mark: **"
       )
   ).then(message => message.delete({timeout: 10000}));
+  } catch(e){
+      console.log(e);
+  }
+
 };
