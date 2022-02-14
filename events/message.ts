@@ -82,6 +82,7 @@ module.exports = async (client, message) => {
 
     else if(notks === "halo" || notks === "hallo" || notks === "alo" || notks === "hello" || notks === "helo"){
         message.reply("Hallo nak.. :slight_smile:");
+        message.reply({files:['./images/STK-20220129-WA0213.webp']});
     }
 
     else if(notks === "ping"){
