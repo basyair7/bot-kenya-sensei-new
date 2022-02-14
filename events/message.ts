@@ -116,7 +116,7 @@ module.exports = async (client, message) => {
             || notks === "asu" || notks === "bbi" || notks === "njg" || notks === "anj" || notks === "asw" 
             || notks === "bgsd" || notks === "bangsat" || notks === "bgst"){
             
-            message.reply("Astaghfirullah, jarimu kasar nak");
+            message.reply("Astaghfirullah, jarimu kasar nak", {files:['./images/STK-20220129-WA0210.webp']});
     }
 
     else if(notks === "buk kenya, gimana cara kita cepat lulus sekolah?" || notks === "sensei, gimana cara cepat lulus sekolah?"){
