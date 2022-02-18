@@ -6,8 +6,7 @@ module.exports = {
             let selection = message.content.split(' | ');
             if(args[0] === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === "798157102249541684")
-               return ch.send(selection[1])
-               
+               return ch.send(selection[1])              
             }
             else if(args[0] === "ch02"){
                ch = client.channels.cache.find(channel => channel.id === "854379430963970058");
