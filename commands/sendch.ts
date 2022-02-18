@@ -3,7 +3,7 @@ module.exports = {
     run: async(client, message, args) => {
         try{
             let chselection = args.join(' ');
-            let selection = message.content.split('|');
+            let selection = message.content.split(' | ');
             if(chselection === "ch01"){
                const ch01 = client.channels.cache.find(channel => channel.id === "798157102249541684")
                ch01.send(selection[1])
