@@ -10,7 +10,7 @@ module.exports = {
             const ch03 = "798163730982502400";
             const ch04 = "821917495479894036";
             const ch05 = "929327327219957821";
-            let selection = message.content.split(' | ');
+            let selection = message.content.split(', ');
             
             if(args[0] === "info"){
                 const list = `ch01\`\` => perbincangan-makhluk-intropet,
@@ -26,7 +26,7 @@ module.exports = {
                 
                 message.channel.send(new MessageEmbed()
                                      .setTitle("Info Send Message to Channel")
-                                     .setDescription("<ks.sendch ch01 | message>")
+                                     .setDescription("<ks.sendch ch01, test message>")
                                      .addField("List Channel", revisedList)
                                      );
             }
