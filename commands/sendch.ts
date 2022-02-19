@@ -25,6 +25,7 @@ module.exports = {
                 
                 message.channel.send(new MessageEmbed()
                                      .setTitle("Info Send Message to Channel")
+                                     .setDescription("<ks.sendch ch01 | message>")
                                      .addField("List Channel", revisedList)
                                      );
             }
