@@ -10,18 +10,14 @@ module.exports = {
             const ch03 = "798163730982502400";
             const ch04 = "821917495479894036";
             const ch05 = "929327327219957821";
-            const chname01 = client.channels.cache.find(ch01)
-            const chname02 = client.channels.cache.find(ch02)
-            const chname03 = client.channels.cache.find(ch03)
-            const chname04 = client.channels.cache.find(ch04)
-            const chname05 = client.channels.cache.find(ch05)
             let selection = message.content.split(' | ');
+            
             if(args[0] === "info"){
                 const list = `ch01\`\` => perbincangan-makhluk-intropet,
                 ch02\`\` => jastip-coolyeah,
                 ch03\`\` => request-music,
                 ch04\`\` => coolyeah,
-                ch05\`\` => ${chname05.name}`;
+                ch05\`\` => general`;
                 
                 const revisedList = list
                                 .split('\n')
