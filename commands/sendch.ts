@@ -9,7 +9,9 @@ module.exports = {
             const ch02 = "854379430963970058";
             const ch03 = "798163730982502400";
             const ch04 = "821917495479894036";
-            const ch05 = "929327327219957821";
+            const ch05 = "944559480866209862";
+            const ch06 = "944560611327623188";
+            const ch00 = "929327327219957821";
             let selection = message.content.split(', ');
             
             if(args[0] === "info"){
@@ -17,7 +19,9 @@ module.exports = {
                 ch02\`\` => jastip-coolyeah,
                 ch03\`\` => request-music,
                 ch04\`\` => coolyeah,
-                ch05\`\` => general`;
+                ch05\`\` => genshin-impact,
+                ch06\`\` => moontod,
+                ch00\`\` => general`;
 
                 const revisedList = list
                                 .split('\n')
@@ -46,8 +50,16 @@ module.exports = {
                ch = client.channels.cache.find(channel => channel.id === ch04);
                return ch.send(selection[1])
             }
+            else if(args[0] === "ch00"){
+               ch = client.channels.cache.find(channel => channel.id === ch00);
+               return ch.send(selection[1])
+            }
             else if(args[0] === "ch05"){
                ch = client.channels.cache.find(channel => channel.id === ch05);
+               return ch.send(selection[1])
+            }
+            else if(args[0] === "ch06"){
+               ch = client.channels.cache.find(channel => channel.id === ch06);
                return ch.send(selection[1])
             }
             
