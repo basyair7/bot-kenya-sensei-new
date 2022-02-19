@@ -1,29 +1,51 @@
+const { MessageEmbed } = require("discord.js");
+
 module.exports = {
     name: 'send ch',
     run: async(client, message, args) => {
         try{
             let ch;
+            const ch01 = "798157102249541684";
+            const ch02 = "854379430963970058";
+            const ch03 = "798163730982502400";
+            const ch04 = "821917495479894036";
+            const ch05 = "929327327219957821";
             let selection = message.content.split(' | ');
             if(args[0] === "info"){
-                message.channel.send(new MessageEmbed
+                const list = `ch01\`\` => perbincangan-makhluk-intropet,
+                ch02\`\` => jastip-coolyeah,
+                ch03\`\` => request-music,
+                ch04\`\` => coolyeah,
+                ch05\`\` => general`;
+                
+                const revisedList = list
+                                .split('\n')
+                                .map((x) => "• " + "``" + client.config.prefix + x.trim())
+                                .join('\n');
+                
+                message.channel.send(new MessageEmbed()
+                                     .setTitle("Info Send Message to Channel")
+                                     .addField("List Channel", revisedList)
+                                     );
+            }
             else if(args[0] === "ch01"){
-               ch = client.channels.cache.find(channel => channel.id === "798157102249541684")
+               ch = client.channels.cache.find(channel => channel.id === ch01);
                return ch.send(selection[1])              
             }
             else if(args[0] === "ch02"){
-               ch = client.channels.cache.find(channel => channel.id === "854379430963970058");
+               ch = client.channels.cache.find(channel => channel.id === ch02);
                return ch.send(selection[1])
             }
             else if(args[0] === "ch03"){
-               ch = client.channels.cache.find(channel => channel.id === "798163730982502400");
+               ch = client.channels.cache.find(channel => channel.id === ch03);
                return ch.send(selection[1])
             }
             else if(args[0] === "ch04"){
-               ch = client.channels.cache.find(channel => channel.id === "821917495479894036");
+               ch = client.channels.cache.find(channel => channel.id === ch04);
                return ch.send(selection[1])
             }
             else if(args[0] === "ch05"){
-               ch = client.channels.cache.find(channel => channel.id === "929327327219957821")
+               ch = client.channels.cache.find(channel => channel.id === ch05);
                return ch.send(selection[1])
             }
         } catch(e){
