@@ -4,7 +4,9 @@ module.exports = {
         try{
             let ch;
             let selection = message.content.split(' | ');
-            if(args[0] === "ch01"){
+            if(args[0] === "info"){
+                message.channel.send(new MessageEmbed
+            else if(args[0] === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === "798157102249541684")
                return ch.send(selection[1])              
             }
