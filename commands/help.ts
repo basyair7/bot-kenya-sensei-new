@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
   stats\`\`=> status bot, 
   uptime\`\`=> waktu start bot, 
   clear\`\`=> membersihkan pesan channel, 
-  sendch \`\` => perintah bot mengirimkan ulang pesan ke channel lain,
+  sendch (ks.sendch info) \`\` => perintah bot mengirimkan ulang pesan ke channel lain,
   afk (ks.afk reason)\`\`=> perintah mengaktifkan afk, 
   nonafk\`\`=> menonaktifkan afk,
   restart\`\`=> restart ulang bot`;
