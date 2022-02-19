@@ -12,7 +12,25 @@ module.exports = {
             const ch05 = "929327327219957821";
             let selection = message.content.split(', ');
             
-            if(args[0] === "ch01"){
+            if(args[0] === "info"){
+                const list = `ch01\`\` => perbincangan-makhluk-intropet,
+                ch02\`\` => jastip-coolyeah,
+                ch03\`\` => request-music,
+                ch04\`\` => coolyeah,
+                ch05\`\` => general`;
+
+                const revisedList = list
+                                .split('\n')
+                                .map((x) => "• " + "``" + client.config.prefix + x.trim())
+                                .join('\n');
+
+                return message.channel.send(new MessageEmbed()
+                                     .setTitle("Info Send Message to Channel")
+                                     .setDescription("<ks.sendch ch01, test message>")
+                                     .addField("List Channel", revisedList)
+                                     );
+            }
+            else if(args[0] === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === ch01);
                return ch.send(selection[1])              
             }
@@ -33,22 +51,7 @@ module.exports = {
                return ch.send(selection[1])
             }
             
-            const list = `ch01\`\` => perbincangan-makhluk-intropet,
-            ch02\`\` => jastip-coolyeah,
-            ch03\`\` => request-music,
-            ch04\`\` => coolyeah,
-            ch05\`\` => general`;
-
-            const revisedList = list
-                            .split('\n')
-                            .map((x) => "• " + "``" + client.config.prefix + x.trim())
-                            .join('\n');
-
-            return message.channel.send(new MessageEmbed()
-                                 .setTitle("Info Send Message to Channel")
-                                 .setDescription("<ks.sendch ch01, test message>")
-                                 .addField("List Channel", revisedList)
-                                 );
+            
         } catch(e){
             console.log(e)
         }
