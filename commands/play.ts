@@ -186,8 +186,8 @@ exports.run = async (client, message, args) => {
             .addField("Requested By", track.requested, false)
             .setFooter("Youtube Music Player");
 
-        const filter = (reaction, user) => {
-            return [`🛑`, `⏭️`, `↪️`, `🔀`].includes(reaction.emoji.name) && user.id === message.author.id;
+        const filter = (reaction) => {
+            return [`🛑`, `⏭️`, `↪️`, `🔀`].includes(reaction.emoji.name)
         };
 
         const messagePlay = await message.channel.send(playnow)
