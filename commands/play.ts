@@ -195,7 +195,7 @@ exports.run = async (client, message, args) => {
         messagePlay.react(`⏭️`);
         messagePlay.react(`↪️`);
         messagePlay.react(`🔀`)
-        messagePlay.awaitReactions(filter, { max: 1 }).then(collected =>{
+        messagePlay.awaitReactions(filter, { max: 2 }).then(collected =>{
             try {
             const reaction = collected.first();
             if (reaction.emoji.name === `🛑`) {
