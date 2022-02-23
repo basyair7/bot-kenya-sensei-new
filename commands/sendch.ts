@@ -36,31 +36,31 @@ module.exports = {
             }
             else if(args[0] === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === ch01);
-               return ch.send(selection[0])              
+               return ch.send(selection[1])              
             }
             else if(args[0] === "ch02"){
                ch = client.channels.cache.find(channel => channel.id === ch02);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             else if(args[0] === "ch03"){
                ch = client.channels.cache.find(channel => channel.id === ch03);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             else if(args[0] === "ch04"){
                ch = client.channels.cache.find(channel => channel.id === ch04);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             else if(args[0] === "ch00"){
                ch = client.channels.cache.find(channel => channel.id === ch00);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             else if(args[0] === "ch05"){
                ch = client.channels.cache.find(channel => channel.id === ch05);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             else if(args[0] === "ch06"){
                ch = client.channels.cache.find(channel => channel.id === ch06);
-               return ch.send(selection[0])
+               return ch.send(selection[1])
             }
             
             
