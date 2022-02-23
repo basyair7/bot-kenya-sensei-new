@@ -23,16 +23,30 @@ module.exports = {
                 ch06\`\` => moontod,
                 ch00\`\` => general`;
 
+                const filter = (reaction, user) => {
+                      return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+
                 const revisedList = list
                                 .split('\n')
                                 .map((x) => "• " + "``" + client.config.prefix + "sendch " + x.trim())
                                 .join('\n');
 
-                return message.channel.send(new MessageEmbed()
-                                     .setTitle("Info Send Message to Channel")
-                                     .setDescription("<ks.sendch ch01 : test message>")
-                                     .addField("List Channel", revisedList)
-                                     );
+                const view_msg = new MessageEmbed()
+                        .setTitle("Info Send Message to Channel")
+                        .setDescription("<ks.sendch ch01 : test message>")
+                        .addField("List Channel", revisedList)
+
+                return message.channel.send(view_msg).then(embedMessage => {
+                       embedMessage.react(`❎`);
+                       embedMessage.awaitReactions(filter, { max: 1 }).then(collected =>{
+                           const reaction = collected.first();
+
+                           if (reaction.emoji.name === `❎`){
+                               embedMessage.delete(embed);
+                           }
+                       }).catch(collected => {console.log("Error")});
+                });
             }
             else if(args[0] === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === ch01);
