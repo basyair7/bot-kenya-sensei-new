@@ -18,7 +18,7 @@ module.exports = {
                 const list = `ch01\`\` => perbincangan-makhluk-intropet,
                 ch02\`\` => jastip-coolyeah,
                 ch03\`\` => request-music,
-                ch04\`\` => coolyeah,
+                ch04\`\` => coolyeah-room-2,
                 ch05\`\` => genshin-impact,
                 ch06\`\` => moontod,
                 ch00\`\` => general`;
