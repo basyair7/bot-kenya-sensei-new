@@ -12,7 +12,7 @@ module.exports = {
             const ch05 = "944559480866209862";
             const ch06 = "944560611327623188";
             const ch00 = "929327327219957821";
-            let selection = message.content.split(':');
+            let selection = message.content.split(': ');
             
             if(args[0] === "info"){
                 const list = `ch01\`\` => perbincangan-makhluk-intropet,
