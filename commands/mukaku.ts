@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js")
 
 exports.run = async (client, msg, args) => {
-  const input = args.join(' ')
+  const input = args[0]
   const user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || msg.mentions.users.first() || msg.author
   const embed = new MessageEmbed()
   .setTitle(`${user.tag}`)
