@@ -30,7 +30,7 @@ module.exports = {
 
                 return message.channel.send(new MessageEmbed()
                                      .setTitle("Info Send Message to Channel")
-                                     .setDescription("<ks.sendch ch01 :test message>")
+                                     .setDescription("<ks.sendch ch01 : test message>")
                                      .addField("List Channel", revisedList)
                                      );
             }
