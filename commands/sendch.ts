@@ -43,7 +43,7 @@ module.exports = {
                            const reaction = collected.first();
 
                            if (reaction.emoji.name === `❎`){
-                               embedMessage.delete(embed);
+                               embedMessage.delete({timeout: 5000});
                            }
                        }).catch(collected => {console.log("Error")});
                 });
