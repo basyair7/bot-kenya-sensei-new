@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js")
 
 exports.run = async (client, msg, args) => {
-  let input = args[0]
-  let user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || msg.guild.members.cache.get(input)?.user || msg.mentions.users.first() || msg.author
-  const embed = new MessageEmbed()
+  var input = args[0]
+  var user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || msg.guild.members.cache.get(input)?.user || msg.mentions.users.first() || msg.author
+  let embed = new MessageEmbed()
   .setTitle(`${user.tag}`)
   .setDescription("Noh Muka mu nak.")
   .setImage(user.displayAvatarURL({dynamic:true, size:4096}))
