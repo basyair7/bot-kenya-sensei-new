@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 exports.run = async (client, message) => {
+  try {
   const channel = message.member.voice.channel;
   if (!channel){
     
@@ -59,4 +60,7 @@ exports.run = async (client, message) => {
                 }
             }).catch(collected => {console.log("error")});
         });
+     } catch(e){
+        console.log(e);
+     }
 };
