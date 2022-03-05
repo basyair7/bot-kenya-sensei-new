@@ -169,7 +169,7 @@ exports.run = async (client, message, args) => {
           highWaterMark: 1<<25,
           opusEncoded: true,
         }, {
-          highWaterMark: 50,
+          highWaterMark: 1<<50,
         });
 
         let playnow = new MessageEmbed()
