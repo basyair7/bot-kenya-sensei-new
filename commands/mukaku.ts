@@ -19,6 +19,8 @@ exports.run = async (client, msg, args) => {
           const reaction = collected.first();
 
           if (reaction.emoji.name === `❎`){
+              reaction.message.reactions.cache.first() // fetch the reaction (you could use `.get()` as well)
+                      .users.remove(user.id); // remove the user
               embedMessage.delete({timeout: 5000});
           }
       }).catch(collected => {console.log("Error")});
