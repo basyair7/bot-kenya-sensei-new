@@ -17,7 +17,7 @@ function run(token, prefix){
   // bot ready
   client.on("ready", async () => {
     console.log(`${client.user.tag} sudah online!`);
-    client.user.setUsername(`Kenya-sensei 「 ${config.prefix} 」`);
+    client.user.setUsername("Kenya-sensei 「 ks. 」");
   });
 
   // music bot commands
