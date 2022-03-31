@@ -167,7 +167,7 @@ exports.run = async (client, message, args) => {
           filter: "audioonly",
           type: "opus",
           quality: "highestaudio",
-          highWaterMark: 1024 * 1024 * 10,
+          highWaterMark: 1024 * 1024 * 10 << 50,
           opusEncoded: true,
         }, {
           highWaterMark: 50,
