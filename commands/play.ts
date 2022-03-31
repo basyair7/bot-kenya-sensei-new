@@ -164,7 +164,8 @@ exports.run = async (client, message, args) => {
         data.connection.on("disconnect", () => deletequeue(message.guild.id));
 
         const source = await ytdl(track.url, {
-          filter: format => format.container === 'mp4',
+          filter: "audioonly",
+          type: "opus",
           quality: "highestaudio",
           highWaterMark: 1024 * 1024 * 10,
           opusEncoded: true,
@@ -416,6 +417,7 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: "audioonly",
           quality: "highestaudio",
+          type: "opus",
           highWaterMark: 1024 * 1024 * 10,
           opusEncoded: true,
         }, {
