@@ -166,7 +166,7 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: format => format.container === 'mp4',
           quality: "highestaudio",
-          highWaterMark: 1<<30,
+          highWaterMark: 1024 * 1024 * 10,
           opusEncoded: true,
         }, {
           highWaterMark: 50,
@@ -416,7 +416,7 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: "audioonly",
           quality: "highestaudio",
-          highWaterMark: 1<<25,
+          highWaterMark: 1024 * 1024 * 10,
           opusEncoded: true,
         }, {
           highWaterMark: 50,
