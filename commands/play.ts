@@ -168,6 +168,7 @@ exports.run = async (client, message, args) => {
           quality: "highestaudio",
           highWaterMark: 1024 * 1024 * 10,
           opusEncoded: true,
+          type: 'opus'
         });
 
         let playnow = new MessageEmbed()
