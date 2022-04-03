@@ -168,7 +168,7 @@ exports.run = async (client, message, args) => {
           quality: "highestaudio",
           highWaterMark: 1<<25,
           opusEncoded: true
-        }, highWaterMark: 1<<50);
+        }, {highWaterMark: 1<<50});
 
         let playnow = new MessageEmbed()
             .setAuthor(
