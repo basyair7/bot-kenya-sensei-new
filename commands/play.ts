@@ -166,9 +166,9 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: "audioonly",
           quality: "highestaudio",
-          highWaterMark: 1024 * 1024 * 10,
+          highWaterMark: 1<<25,
           opusEncoded: true
-        });
+        }, highWaterMark: 1<<50);
 
         let playnow = new MessageEmbed()
             .setAuthor(
@@ -233,7 +233,7 @@ exports.run = async (client, message, args) => {
            }
         }).catch(collected => console.log("Error"));
 
-          const player = data.connection
+          const player = await data.connection
             .play(source, { type: "opus" })
             .on("finish", () => {
               var removed = data.queue.shift();
