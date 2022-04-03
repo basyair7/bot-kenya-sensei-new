@@ -166,9 +166,7 @@ exports.run = async (client, message, args) => {
         const source = await ytdl(track.url, {
           filter: "audioonly",
           quality: "highestaudio",
-          highWaterMark: 1024 * 1024 * 10,
-          opusEncoded: true,
-          type: 'opus'
+          highWaterMark: 1024 * 1024 * 10
         });
 
         let playnow = new MessageEmbed()
