@@ -234,7 +234,7 @@ exports.run = async (client, message, args) => {
         }).catch(collected => console.log("Error"));
 
           const player = await data.connection
-            .play(source, { type: "opus" })
+            .play(source, { type: "opus", bitrate: 192000})
             .on("finish", () => {
               var removed = data.queue.shift();
               if(data.loop == true){
