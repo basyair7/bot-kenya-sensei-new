@@ -40,7 +40,8 @@ exports.run = async (client, message) => {
    shuffle\`\` - shuffle and randomize the queue
    invite\`\` - get invite link for the bot
    loop\`\` - enable / disable loop for the currently playing song
-   remove <Target number>\`\` - remove a song from the queue`;
+   remove <Target number>\`\` - remove a song from the queue
+lofi <ks.lofi help>\`\` - Play lofi hip hop radio 24/7`;
 
   const revised = commands
     .split("\n")
