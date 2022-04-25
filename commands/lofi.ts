@@ -15,7 +15,8 @@ exports.run = async(client, message, args) => {
     let cmd = args[0].toLowerCase();
     const channel = message.member.voice.channel;
 
-    const list = `play\`\` => Play lofi hip hop radio 24/7,
+    if(cmd === "help"){
+      const list = `play\`\` => Play lofi hip hop radio 24/7,
                 stop\`\` => Stop the song and leave the voice channel you are in `;
 
                 const filter = (reaction, user) => {
@@ -42,6 +43,7 @@ exports.run = async(client, message, args) => {
                            }
                        }).catch(collected => {console.log("Error")});
                 });
+    }
 
     else if(cmd === "play"){
       
