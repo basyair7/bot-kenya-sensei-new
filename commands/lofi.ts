@@ -7,8 +7,8 @@ exports.run = async(client, message, args) => {
     const channel = message.member.voice.channel;
 
     if(cmd === "help"){
-      const list = `play\`\` => Play lofi hip hop radio 24/7,
-                stop\`\` => Stop the song and leave the voice channel you are in `;
+      const list = `on\`\` => Play lofi hip hop radio 24/7,
+                off\`\` => Stop the song and leave the voice channel you are in `;
 
                 const filter = (reaction, user) => {
                       return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -36,7 +36,7 @@ exports.run = async(client, message, args) => {
                 });
     }
 
-    else if(cmd === "play"){
+    else if(cmd === "on"){
       
       if (!channel)
         return message.channel.send(
@@ -62,7 +62,7 @@ exports.run = async(client, message, args) => {
       
     }
 
-    else if(cmd === "stop"){
+    else if(cmd === "off"){
       if (!channel){
         return message.channel.send(
           "KAMU HARUS JOIN CHANNEL DULU NAK!"
