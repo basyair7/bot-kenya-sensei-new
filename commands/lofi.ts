@@ -115,7 +115,9 @@ exports.run = async(client, message, args) => {
 
       message.channel.send(
         new MessageEmbed()
-        .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
+        .setAuthor(
+              "Started Playing",
+              "https://img.icons8.com/color/2x/cd--v3.gif")
         .setDescription(`Playing Lofi Hip Hop Radio 24/7 for ${message.author}`)
         .setColor("BLUE")
       ).then(msg => msg.delete({timeout: 10000}));
