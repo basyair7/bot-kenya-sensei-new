@@ -57,7 +57,7 @@ exports.run = async(client, message, args) => {
       client.user.setPresence({
                   status: 'online',
                   activity: {
-                    name: "Lofi Hip Hop Radio 24/7 https://youtu.be/5qap5aO4i9A",
+                    name: "Lofi Hip Hop Radio 24/7 \nhttps://youtu.be/5qap5aO4i9A",
                     type: "LISTENING",
                   }
                 });
