@@ -16,7 +16,7 @@ exports.run = async(client, message, args) => {
 
                 const revisedList = list
                                 .split('\n')
-                                .map((x) => "• " + "``" + client.config.prefix + "sendch " + x.trim())
+                                .map((x) => "• " + "``" + client.config.prefix + "lofi " + x.trim())
                                 .join('\n');
 
                 const view_msg = new MessageEmbed()
