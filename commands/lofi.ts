@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const ytdl = require("ytdl-core");
+const ms = require("pretty-ms");
 
 exports.run = async(client, message, args) => {
   try{
