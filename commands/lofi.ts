@@ -7,15 +7,6 @@ exports.run = async(client, message, args) => {
     const channel = message.member.voice.channel;
 
     if(cmd === "help"){
-      const { MessageEmbed } = require("discord.js");
-const ytdl = require("ytdl-core");
-
-exports.run = async(client, message, args) => {
-  try{
-    let cmd = args[0].toLowerCase();
-    const channel = message.member.voice.channel;
-
-    if(cmd === "help"){
       const list = `play\`\` => Play lofi hip hop radio 24/7,
                 stop\`\` => Stop the song and leave the voice channel you are in `;
 
