@@ -53,6 +53,15 @@ exports.run = async(client, message, args) => {
       connect.play(ytdl("https://youtu.be/5qap5aO4i9A"));
       connect.voice.setSelfDeaf(true);
 
+      client.user.setPresence({
+                  status: 'online',
+                  activity: {
+                    name: "Lofi Hip Hop Radio 24/7",
+                    type: "LISTENING",
+                    url: "https://youtu.be/5qap5aO4i9A"
+                  }
+                });
+
       message.channel.send(
         new MessageEmbed()
         .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
