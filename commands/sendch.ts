@@ -13,8 +13,9 @@ module.exports = {
             const ch06 = "944560611327623188";
             const ch00 = "929327327219957821";
             let selection = message.content.split(': ');
+            let cmd = args[0].toLowerCase();
             
-            if(args[0] === "info"){
+            if(cmd === "info"){
                 const list = `ch01\`\` => perbincangan-makhluk-intropet,
                 ch02\`\` => jastip-coolyeah,
                 ch03\`\` => request-music,
@@ -48,31 +49,31 @@ module.exports = {
                        }).catch(collected => {console.log("Error")});
                 });
             }
-            else if(args[0] === "ch01"){
+            else if(cmd === "ch01"){
                ch = client.channels.cache.find(channel => channel.id === ch01);
                return ch.send(selection[1])              
             }
-            else if(args[0] === "ch02"){
+            else if(cmd === "ch02"){
                ch = client.channels.cache.find(channel => channel.id === ch02);
                return ch.send(selection[1])
             }
-            else if(args[0] === "ch03"){
+            else if(cmd === "ch03"){
                ch = client.channels.cache.find(channel => channel.id === ch03);
                return ch.send(selection[1])
             }
-            else if(args[0] === "ch04"){
+            else if(cmd === "ch04"){
                ch = client.channels.cache.find(channel => channel.id === ch04);
                return ch.send(selection[1])
             }
-            else if(args[0] === "ch00"){
+            else if(cmd === "ch00"){
                ch = client.channels.cache.find(channel => channel.id === ch00);
                return ch.send(selection[1])
             }
-            else if(args[0] === "ch05"){
+            else if(cmd === "ch05"){
                ch = client.channels.cache.find(channel => channel.id === ch05);
                return ch.send(selection[1])
             }
-            else if(args[0] === "ch06"){
+            else if(cmd === "ch06"){
                ch = client.channels.cache.find(channel => channel.id === ch06);
                return ch.send(selection[1])
             }
