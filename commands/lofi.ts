@@ -5,7 +5,6 @@ exports.run = async(client, message, args) => {
   try{
     let cmd = args[0].toLowerCase();
     const channel = message.member.voice.channel;
-    let msg_play;
 
     if(cmd === "help"){
       const list = `play\`\` => Play lofi hip hop radio 24/7,
@@ -54,7 +53,7 @@ exports.run = async(client, message, args) => {
       connect.play(ytdl("https://youtu.be/5qap5aO4i9A"));
       connect.voice.setSelfDeaf(true);
 
-      msg_play = await message.channel.send(
+      message.channel.send(
         new MessageEmbed()
         .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
         .setDescription(`Playing Lofi Hip Hop Radio 24/7 for ${message.author}`)
@@ -71,8 +70,6 @@ exports.run = async(client, message, args) => {
       }
       
       await channel.leave();
-
-      msg_play.delete({timeout: 5000});
       return message.channel.send(
         new MessageEmbed()
           .setTitle("Stop Playing Lofi Song 24/7")
