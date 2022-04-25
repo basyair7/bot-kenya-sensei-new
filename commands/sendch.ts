@@ -77,7 +77,9 @@ module.exports = {
                ch = client.channels.cache.find(channel => channel.id === ch06);
                return ch.send(selection[1])
             }
-            
+            else{
+              //TODO
+            }
             
         } catch(e){
             console.log(e)
