@@ -79,12 +79,21 @@ exports.run = async(client, message, args) => {
       }
       
       await channel.leave();
-      return message.channel.send(
+      message.channel.send(
         new MessageEmbed()
           .setTitle("Stop Playing Lofi Song 24/7")
           .setDescription("**Left the voice channel :white_check_mark: **")
           .setColor("BLUE")
       ).then(message => message.delete({timeout: 10000}));
+      
+      const uptime = ms(client.uptime, {verbose:true});
+      return client.user.setPresence({
+                  status: 'online',
+                  activity: {
+                     name: `Uptime (${uptime})`,
+                     type: "COMPETING"
+                  }
+             });
     }
 
     else{
