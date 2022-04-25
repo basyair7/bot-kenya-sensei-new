@@ -48,9 +48,9 @@ exports.run = async(client, message, args) => {
       if (!channel.permissionsFor(message.client.user).has("SPEAK"))
         return console.error("I don't have permission to speak in the voice channel");
 
-      const connect = await channel.join().then(connection => connection.voice.setSelfDeaf(true));
-
+      const connect = await channel.join();
       connect.play(ytdl("https://youtu.be/5qap5aO4i9A"));
+      connect.voice.setSelfDeaf(true);
 
       message.channel.send(
         new MessageEmbed()
@@ -72,6 +72,7 @@ exports.run = async(client, message, args) => {
 
       return message.channel.send(
         new MessageEmbed()
+          .setTitle("Stop Playing Lofi Song 24/7")
           .setDescription("**Left the voice channel :white_check_mark: **")
           .setColor("BLUE")
       ).then(message => message.delete({timeout: 10000}));
