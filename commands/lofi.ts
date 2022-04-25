@@ -43,7 +43,7 @@ exports.run = async(client, message, args) => {
                        }).catch(collected => {console.log("Error")});
                 });
 
-    if(cmd === "play"){
+    else if(cmd === "play"){
       
       if (!channel)
         return message.channel.send(
