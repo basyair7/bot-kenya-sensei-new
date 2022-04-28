@@ -1,8 +1,11 @@
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require("fs");
+let DateTimeBot = require("./model/DateTimeBot.js");
 require("dotenv").config();
 
 run(process.env.token, process.env.prefix);
+
+require("http").createServer((_,res) => res.end("Bot is online")).listen(8080);
 
 function run(token, prefix){
   const client = new Client({ intent: [ Intents.ALL ]});
@@ -18,6 +21,15 @@ function run(token, prefix){
   client.on("ready", async () => {
     console.log(`${client.user.tag} sudah online!`);
     client.user.setUsername(`Kenya-sensei 「 ${config.prefix} 」`);
+
+    // Send Infomation Bot Online in Channel
+    const ch1 = "798163730982502400";
+    const ch2 = "929327327219957821";
+    let ch;
+    ch = client.channels.cache.find(channel => channel.id === ch1);
+    ch.send(`Sensei-bot Kembali (${DateTimeBot})`);
+    ch = client.channels.cache.find(channel => channel.id === ch2);
+    ch.send(`Sensei-bot Kembali (${DateTimeBot})`);
   });
 
   // music bot commands
