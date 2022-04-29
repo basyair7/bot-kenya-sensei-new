@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const ms = require("pretty-ms");
+var DateTimeBot = require("../model/DateTimeBot.js");
 
 exports.run = async (client, message) => {
   const channel = message.member.voice.channel;
@@ -9,7 +10,7 @@ exports.run = async (client, message) => {
           client.user.setActivity(`Online at ${uptime}`);
   }, 3000);
   */
-  client.user.setActivity("Online");
+  client.user.setActivity(`Online ${DateTimeBot}`);
 
   if (!channel)
     return message.channel.send(
