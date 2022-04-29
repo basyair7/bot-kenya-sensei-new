@@ -1,4 +1,4 @@
-const { DateTime } = require("luxon");
+let { DateTime } = require("luxon");
 
 
 var local = DateTime.local();
