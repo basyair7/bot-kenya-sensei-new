@@ -1,6 +1,6 @@
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require("fs");
-let DateTimeBot = require("./model/DateTimeBot.js");
+var DateTimeBot = require("./model/DateTimeBot.js");
 require("dotenv").config();
 
 run(process.env.token, process.env.prefix);
