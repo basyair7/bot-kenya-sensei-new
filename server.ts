@@ -1,10 +1,8 @@
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require("fs");
-var DateTimeBot = require("./model/DateTimeBot.js");
 require("dotenv").config();
 
 run(process.env.token, process.env.prefix);
-
 require("http").createServer((_,res) => res.end("Bot is online")).listen(8080);
 
 function run(token, prefix){
@@ -21,19 +19,20 @@ function run(token, prefix){
   client.on("ready", async () => {
     console.log(`${client.user.tag} sudah online!`);
     client.user.setUsername(`Kenya-sensei 「 ${config.prefix} 」`);
-    client.user.setActivity(`Online ${DateTimeBot}`);
+    client.user.setActivity(`Online ${DateTimeBot()}`);
 
     // Send Infomation Bot Online in Channel
     const ch1 = "798163730982502400";
     const ch2 = "929327327219957821";
     let ch;
     ch = client.channels.cache.find(channel => channel.id === ch1);
-    ch.send(`Sensei-bot Kembali (${DateTimeBot})`);
+    ch.send(`Sensei-bot Kembali (${DateTimeBot()})`);
     ch = client.channels.cache.find(channel => channel.id === ch2);
-    ch.send(`Sensei-bot Kembali (${DateTimeBot})`);
+    ch.send(`Sensei-bot Kembali (${DateTimeBot()})`);
+    
   });
 
-  // music bot commands
+
   fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach((file) => {
@@ -57,4 +56,24 @@ function run(token, prefix){
   });
 
   client.login(config.token);
+}
+
+var { DateTime } = require("luxon");
+
+function DateTimeBot(){
+  var local = DateTime.local();
+  var rezonedString = local.setZone("Asia/Jakarta");
+  
+  // get Date
+  let year = rezonedString.c.year;
+  let month = rezonedString.c.month;
+  let day = rezonedString.c.day;
+  
+  // get Time
+  let hour = rezonedString.c.hour;
+  let minute = rezonedString.c.minute;
+  let second = rezonedString.c.second;
+  
+  let datetime = year+"/"+month+"/"+day+" ("+hour+":"+minute+":"+second+")";
+  return datetime;
 }
