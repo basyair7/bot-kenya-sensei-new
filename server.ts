@@ -21,6 +21,7 @@ function run(token, prefix){
   client.on("ready", async () => {
     console.log(`${client.user.tag} sudah online!`);
     client.user.setUsername(`Kenya-sensei 「 ${config.prefix} 」`);
+    client.user.setActivity(`Online ${DateTimeBot}`);
 
     // Send Infomation Bot Online in Channel
     const ch1 = "798163730982502400";
