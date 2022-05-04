@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { addReport } = require("../model/dbReport");
 const ytdl = require("ytdl-core");
 const ms = require("pretty-ms");
 
@@ -171,5 +172,6 @@ exports.run = async(client, message, args) => {
     
   } catch(e){
     console.log(e);
+    addReport(`Bot-Error`, `lofi.ts Error: ${e}`);
   }
 }
