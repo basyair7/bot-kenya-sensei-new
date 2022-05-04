@@ -24,7 +24,7 @@ const readSubject = (subject, callback) => {
     )
 }
 
-const addReport = (subject, content, callback) => {
+const addReport = (subject, content) => {
     firebase.ref('/report/'+subject+'/message/').push(content);
 }
 
