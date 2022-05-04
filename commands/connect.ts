@@ -1,34 +1,40 @@
 const { MessageEmbed } = require("discord.js");
+const { addReport } = require("../model/dbReport")
 const ms = require("pretty-ms");
 
 exports.run = async (client, message) => {
-  const channel = message.member.voice.channel;
-  /*
-  setInterval(() => {
-          const uptime = ms(client.uptime, {verbose:true});
-          client.user.setActivity(`Online at ${uptime}`);
-  }, 3000);
-  */
-  client.user.setActivity(`Online ${DateTimeBot()}`);
+  try {
+    const channel = message.member.voice.channel;
+    /*
+    setInterval(() => {
+            const uptime = ms(client.uptime, {verbose:true});
+            client.user.setActivity(`Online at ${uptime}`);
+    }, 3000);
+    */
+    client.user.setActivity(`Online ${DateTimeBot()}`);
 
-  if (!channel)
+    if (!channel)
+      return message.channel.send(
+        "KAMU HARUS JOIN CHANNEL DULU NAK!"
+      ).then(message => message.delete({timeout: 10000}));
+
+    if (!channel.permissionsFor(message.client.user).has("CONNECT"))
+      return console.error("I don't have permission to join the voice channel");
+
+    if (!channel.permissionsFor(message.client.user).has("SPEAK"))
+      return console.error("I don't have permission to speak in the voice channel");
+
+    await channel.join().then(connection => connection.voice.setSelfDeaf(true));
+
     return message.channel.send(
-      "KAMU HARUS JOIN CHANNEL DULU NAK!"
+      new MessageEmbed()
+        .setDescription("**Joined the voice channel :white_check_mark: **")
+        .setColor("BLUE")
     ).then(message => message.delete({timeout: 10000}));
-
-  if (!channel.permissionsFor(message.client.user).has("CONNECT"))
-    return console.error("I don't have permission to join the voice channel");
-
-  if (!channel.permissionsFor(message.client.user).has("SPEAK"))
-    return console.error("I don't have permission to speak in the voice channel");
-
-  await channel.join().then(connection => connection.voice.setSelfDeaf(true));
-
-  return message.channel.send(
-    new MessageEmbed()
-      .setDescription("**Joined the voice channel :white_check_mark: **")
-      .setColor("BLUE")
-  ).then(message => message.delete({timeout: 10000}));
+  } catch (err) {
+    console.log(err);
+    addReport(`Bot-Error`, `clear.ts Error: ${err}`);
+  }
 };
 
 var { DateTime } = require("luxon");
