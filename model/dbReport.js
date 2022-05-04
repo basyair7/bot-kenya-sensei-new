@@ -25,8 +25,7 @@ const readId = (subject, callback) => {
 }
 
 const addData = (subject, content, callback) => {
-    firebase.ref('/report/'+subject+'/message/').set(content);
-    firebase.ref('/report/'+subject+'/subject/').set(subject);
+    firebase.ref('/report/'+subject+'/message/').push(content);
 }
 
 const removeData = (value) => {
