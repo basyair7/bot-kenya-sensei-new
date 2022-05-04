@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const {addReport} = require("../model/dbReport");
 
 module.exports = {
     name: 'send ch',
@@ -82,7 +83,8 @@ module.exports = {
             }
             
         } catch(e){
-            console.log(e)
+            console.log(e);
+            addReport(`Bot-Error`, `sendch.ts Error: ${e}`);
         }
     }
 }
