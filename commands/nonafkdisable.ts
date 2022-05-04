@@ -1,5 +1,5 @@
 const firebase = require('../db/firebaseConfig');
-const { removeData } = require('../model/dbModel');
+const { removeData } = require('../model/dbAfk');
 const { addReport } = require('../model/dbReport');
 
 module.exports = {
