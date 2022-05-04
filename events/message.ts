@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { addReport } = require("../model/dbReport");
 const firebase = require('../db/firebaseConfig');
-const { removeData, readReason, readId } = require('../model/dbModel');
+const { removeData, readReason, readId } = require('../model/dbAfk');
 //const db = require('quick.db');
 
 module.exports = async (client, message) => {
