@@ -1,7 +1,7 @@
 //requiring the package
 //const db = require('quick.db');
 const { MessageEmbed } = require('discord.js');
-const { addData } = require('../model/dbModel');
+const { addData } = require('../model/dbAfk');
 const { addReport } = require("../model/dbReport");
 
 module.exports = {
