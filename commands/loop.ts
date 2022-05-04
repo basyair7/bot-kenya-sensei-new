@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const {addReport} = require("../model/dbReport");
 
 exports.run = async (client, message) => {
   try{
@@ -25,8 +26,10 @@ exports.run = async (client, message) => {
         "for current song :white_check_mark: **"
       )
   ).then(message => message.delete({timeout: 10000}));
+
   } catch(e){
       console.log(e);
+      addReport(`Bot-Error`, `loop.ts Error: ${e}`);
   }
 
 };
