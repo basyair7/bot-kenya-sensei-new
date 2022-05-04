@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const {addReport} = require("../model/dbReport");
 
 exports.run = async (client, message) => {
   try {
@@ -62,5 +63,6 @@ exports.run = async (client, message) => {
         });
      } catch(e){
         console.log(e);
+        addReport(`Bot-Error`, `queue.ts Error: ${e}`);
      }
 };
