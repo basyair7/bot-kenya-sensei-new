@@ -1,143 +1,79 @@
 const { MessageEmbed } = require("discord.js");
 const { addReport } = require("../model/dbReport");
 const firebase = require('../db/firebaseConfig');
-const { removeData, readReason, readId } = require('../model/dbAfk');
+const { getQNA } = require("../model/dbMessage");
+const { removeData, readId } = require('../model/dbAfk');
 //const db = require('quick.db');
 
 module.exports = async (client, message) => {
-    try{
-    // Program Afk Client
-    programAfk(client, message);    
+    try {
+        programAfk(client, message);
 
-    // command not ks
-    let notks = message.content.toLowerCase();
+        // command not ks
+        let notks = message.content.toLowerCase();
 
-    if (notks === "help"){
-        message.channel.send("ks.help").then(msg => msg.delete({timeout: 3000}));
-    }
+        // Check in Database
+        getQNA((data) => {
+            Object.keys(data).map((key) => {
+                let answer = '';
+                if (notks === data[key].q) {
+                    answer = data[key].a;
+                }
 
-    else if (notks === "indonesia") {
-        message.reply(":flag_id:");
-    }
-    
-    else if(notks === "hm" || notks === "hmm"){
-        message.reply(" hamm hemm... hamm hemm doang.. sini ramein :v");
-    }
+                
+                if (answer === ":ping_pong: Pong!")
+                {
+                    var ping = Date.now() - message.createdTimestamp;
+                    message.reply(`:ping_pong: Pong! ${ping}ms`);
+                }
+                else if (answer === "seperti ini nak caranya..")
+                {
+                    message.reply("seperti ini nak caranya..",{files:['./images/1556546505120.jpg']});
+                }
+                else if (answer === "Astaghfirullah, jarimu kasar nak") 
+                {
+                    message.reply("Astaghfirullah, jarimu kasar nak", {files:['./images/STK-20220129-WA0210.webp']});
+                }
+                else if (answer === "Hallo nak.. :slight_smile:")
+                {
+                    message.reply("Hallo nak.. :slight_smile:", {files:['./images/STK-20220129-WA0213.webp']});
+                } 
+                else if (answer === "bajul")
+                {
+                    message.reply({files:['./images/2234132402.jpg']});
+                }
+                else {
+                    if (answer) {
+                        message.reply(`${answer}`);
+                    } else;
+                };
+            });
 
-    else if(notks === "iya buk" || notks === "yaa buk" || notks === "iya bu" || notks === "ya buk" 
-            || notks === "iyaa buk"){
             
-            message.reply(" Iya doang.. ulangi salam dulu");
-    }
 
-    else if(notks === "y"){
-        message.reply("Y doang nak, sok cool XD")
-    }
-
-    else if(notks === "gak mau buk" || notks === "engga mau buk" || notks === "ga mau buk" || notks === "gak mau"){
-        message.reply(` ini anak tidak mau didengar yaa... sensei pukul :angry:`);
-    }
-
-    else if(notks === "halo" || notks === "hallo" || notks === "alo" || notks === "hello" || notks === "helo"){
-        message.reply("Hallo nak.. :slight_smile:", {files:['./images/STK-20220129-WA0213.webp']});
-    }
-
-    else if(notks === "ping"){
-        var ping = Date.now() - message.createdTimestamp;
-        message.reply(`:ping_pong: Pong! ${ping}ms`);
-        //message.reply(`:ping_pong: Pong! ${client.ws.ping}ms`);
-        /*
-        message.reply(':ping_pong: Pong!').then(m => {
-            var ping = m.createdTimestamp - notks.createdTimestamp;
-            
-            m.edit(`:ping_pong: Pong! ${ping}ms`);
         });
-        */
-    
+
+        // prefix commands
+        if (message.author.bot) return;
+
+        if (message.content.toLowerCase().indexOf(client.config.prefix) !== 0) return;
+        
+        const args = message.content
+            .slice(client.config.prefix.length)
+            .trim()
+            .split(/ +/g);
+        const command = args.shift().toLowerCase();
+
+        const cmd = client.commands.get(command);
+
+        if (!cmd) return;
+
+        cmd.run(client, message, args);
+        
+    } catch (e) {
+        addReport(`Bot-Error`, `message.ts Error: ${e}`);
+        console.log(e);
     }
-
-    else if(notks === "p"){
-        message.reply("biasakan salam nak...");
-    }
-
-    else if(notks === "assalamualaikum" || notks === "assalamu'alaikum"){
-        message.reply("waalaikumsalam");
-    }
-
-    else if(notks === "assalamualaikum warahmatullahi wabarakatuh" 
-            || notks === "assalamu'alaikum warahmatullahi wabarakatuh"){
-            
-            message.reply("wa'alaikumsalam warahmatullahi wabarakatuh");
-    } 
-    
-    else if(notks === "ajg" || notks === "babi" || notks === "anjg" || notks ==="anjing" || notks === "njing" 
-            || notks === "asu" || notks === "bbi" || notks === "njg" || notks === "anj" || notks === "asw" 
-            || notks === "bgsd" || notks === "bangsat" || notks === "bgst"){
-            
-            message.reply("Astaghfirullah, jarimu kasar nak", {files:['./images/STK-20220129-WA0210.webp']});
-    }
-
-    else if(notks === "buk kenya, gimana cara kita cepat lulus sekolah?" || notks === "sensei, gimana cara cepat lulus sekolah?"){
-        message.reply("seperti ini nak caranya..",{files:['./images/1556546505120.jpg']});
-    }
-    
-    else if(notks === "curhat dong sensei" || notks === "buk kenya, curhat dong"){
-        message.reply("iya nakkkk!!! XD");
-        message.channel.send("Tidak menerima murid goblog murid sensei semua harus pintar");
-    }
-    
-    else if(notks === "ngakak"){
-        message.reply(`ngakak mulu anak setan! :unamused:`);
-    }
-    
-    else if(notks === "ohayou!" || notks === "ohayou" || notks === "oha" || notks === "konnichiwa" 
-            || notks === "konbanwa"){
-            
-            message.reply("wibu lu");
-            message.channel.send(`awas! ada wibu :joy: *canda wibu`);
-    }
-
-    else if(notks === "anyeonghaseo"){
-        message.reply("sasaeng laknat!");
-    }
-
-    else if(notks === "diam" || notks === "diam!" || notks === "diem lu" || notks === "diem" || notks === "diem lo"
-            || notks === "diam lu" || notks === "diam lo"){
-            
-            message.reply(`serah gua yeh, kalo ga terima lu keluar sekarang! :smirk: :leg:`);
-    }
-
-    else if(notks === "nugas"|| notks === "belajar" || notks === "ada tugas" || notks === "mau belajar" || notks === "mau bljr" || notks === "bljr"){
-        message.reply("semangat nugasnya, ingat masa depan anda suram nak ♡ :smiling_face_with_3_hearts:");
-    }
-    
-    else if(notks === "bajul"){
-        message.reply({files:['./images/2234132402.jpg']});
-    } 
-    else if(notks === "ges") {
-        message.channel.send("Ges...");
-    }
-
-    if (message.author.bot) return;
-
-    if (message.content.toLowerCase().indexOf(client.config.prefix) !== 0) return;
-    
-    const args = message.content
-        .slice(client.config.prefix.length)
-        .trim()
-        .split(/ +/g);
-    const command = args.shift().toLowerCase();
-
-    const cmd = client.commands.get(command);
-
-    if (!cmd) return;
-
-    cmd.run(client, message, args);
-
-} catch(e){
-    addReport(`Bot-Error`, `message.ts Error: ${e}`);
-    console.log(e);
-}
 
 };
 
