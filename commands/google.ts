@@ -24,7 +24,7 @@ exports.run = async(client, message, args) => {
         .setImage(res.pagemap.cse_image[0].src || res.pagemap.cse_thumbnail[0].src);
 
         const filter = (reaction, user) => {
-            return [`❎`].includes(reaction.emoji.name) && user.id === msg.author.id;
+            return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
         }
 
         return message.reply(embed).then(embedMessage => {
