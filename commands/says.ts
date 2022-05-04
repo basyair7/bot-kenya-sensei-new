@@ -1,4 +1,11 @@
+const {addReport} = require("../model/dbReport");
+
 exports.run = async(client, message, args) => {
-    let say = args.join(' ')
-    message.channel.send(say)
+    try {
+        let say = args.join(' ')
+        message.channel.send(say)
+    } catch (e) {
+        console.log(e);
+        addReport(`Bot-Error`, `says.ts Error: ${e}`);        
+    }    
 }
