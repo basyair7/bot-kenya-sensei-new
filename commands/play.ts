@@ -2,6 +2,7 @@ const ytdl = require("discord-ytdl-core");
 const youtubeScraper = require("yt-search");
 const yt = require("ytdl-core");
 const { MessageEmbed, Util } = require("discord.js");
+const {addReport} = require("../model/dbReport");
 const forHumans = require("../utils/forhumans.js");
 const ms = require("pretty-ms");
 
@@ -43,6 +44,7 @@ exports.run = async (client, message, args) => {
         };
     } catch (e) {
       console.log(e);
+      addReport(`Bot-Error`, `play.ts Error: ${e}`);
       return error("Error occured, please check console").then(message => message.delete({timeout: 10000}));
     }
   } else {
@@ -62,6 +64,7 @@ exports.run = async (client, message, args) => {
       };
     } catch (err) {
       console.log(err);
+      addReport(`Bot-Error`, `play.ts Error: ${err}`);
       return error("An error occured, Please check console").then(message => message.delete({timeout: 10000}));
     }
   }
@@ -105,6 +108,7 @@ exports.run = async (client, message, args) => {
     join.voice.setSelfDeaf(true);
   } catch (e) {
     console.log(e);
+    addReport(`Bot-Error`, `play.ts Error: ${e}`);
     deletequeue(message.guild.id);
     return error("I couldn't join the voice channel, Please check console").then(message => message.delete({timeout: 10000}));
   }
@@ -249,10 +253,12 @@ exports.run = async (client, message, args) => {
           statusUp(1, statusPlaying);
 
       } catch (e) {
+        addReport(`Bot-Error`, `play.ts Error: ${e}`);
         console.error(e);
       }
     }
   }catch(e){
+    addReport(`Bot-Error`, `play.ts Error: ${e}`);
     console.error(e);
   }
 };
