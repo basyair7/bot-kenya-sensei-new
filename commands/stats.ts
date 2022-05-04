@@ -31,7 +31,7 @@ exports.run = async(client, message, args) => {
           if (reaction.emoji.name === `❎`){
               embedMessage.delete(embed);
           }
-      }).catch(collected => {console.log("Error")});
+      }).catch(collected => {console.log("Error"); addReport(`Bot-Error`, `stats.ts Error: ${e}`);});
   });
   } catch (e) {
     console.log(e);
