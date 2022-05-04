@@ -33,7 +33,7 @@ exports.run = async (client, message) => {
     ).then(message => message.delete({timeout: 10000}));
   } catch (err) {
     console.log(err);
-    addReport(`Bot-Error`, `clear.ts Error: ${err}`);
+    addReport(`Bot-Error`, `connect.ts Error: ${err}`);
   }
 };
 
