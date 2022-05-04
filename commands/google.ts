@@ -21,7 +21,8 @@ exports.run = async(client, message, args) => {
         .setTitle(res.title)
         .setDescription(res.snippet)
         .setURL(res.link)
-        .setImage(res.pagemap.cse_image[0].src || res.pagemap.cse_thumbnail[0].src);
+        .setImage(res.pagemap.cse_image[0].src || res.pagemap.cse_thumbnail[0].src)
+        .setFooter("Programmable Search Engine by Google");
 
         const filter = (reaction, user) => {
             return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
