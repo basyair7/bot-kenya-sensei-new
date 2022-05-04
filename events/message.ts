@@ -1,7 +1,8 @@
 const db = require('quick.db');
 const { MessageEmbed } = require("discord.js");
 const firebase = require('../db/firebaseConfig');
-const { removeData, readReason, readId } = require('../model/dbModel')
+const { removeData, readReason, readId } = require('../model/dbModel');
+const { addData } = require("../model/dbReport");
 
 module.exports = async (client, message) => {
     try{
@@ -49,7 +50,8 @@ module.exports = async (client, message) => {
     }else;
     */
     } catch(e){
-        console.log(e)
+        addData(`Bot-Error`, `message.ts Error: ${e}`);
+        console.log(e);
     }
 
     // command not ks
