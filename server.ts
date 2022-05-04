@@ -22,7 +22,7 @@ function run(token, prefix){
       console.log(`${client.user.tag} sudah online!`);
       client.user.setUsername(`Kenya-sensei 「 ${config.prefix} 」`);
       client.user.setActivity(`Online ${DateTimeBot()}`);
-      addData(`History-Bot-re-login`, `Datetime : ${DateTimeBot()}`);
+      addReport(`History-Bot-re-login`, `Datetime : ${DateTimeBot()}`);
   
       // Send Infomation Bot Online in Channel
       const ch1 = "798163730982502400";
