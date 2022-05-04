@@ -1,7 +1,7 @@
 const firebase = require('../db/firebaseConfig');
 
-const readReason = (id, callback) => {
-    firebase.ref('report').child(id).once(
+const readMessage = (subject, callback) => {
+    firebase.ref('report').child(subject).once(
         'value',
         (snapshot) => {
             callback(snapshot.val());
@@ -13,7 +13,7 @@ const readReason = (id, callback) => {
     )
 }
 
-const readId = (subject, callback) => {
+const readSubject = (subject, callback) => {
     firebase.ref('/report/'+subject+'/').once(
         'value',
         (snapshot) => {
@@ -24,13 +24,13 @@ const readId = (subject, callback) => {
     )
 }
 
-const addData = (subject, content, callback) => {
+const addReport = (subject, content, callback) => {
     firebase.ref('/report/'+subject+'/message/').push(content);
 }
 
-const removeData = (value) => {
+const removeReport = (value) => {
     firebase.ref('/report/'+value+'/').remove();
 }
 
-module.exports = { readId, readReason, addData, removeData };
+module.exports = { readSubject, readMessage, addReport, removeReport };
 
