@@ -4,7 +4,9 @@ const getQNA = (callback) => {
     firebase.ref('commands').once(
         'value',
         (snapshot) => {
-            callback(snapshot.val());
+            if (snapshot.val() !== null){
+                callback(snapshot.val());
+            } else;
         },
         (err) => {
             console.log('Read failed' + err.name);
@@ -17,7 +19,9 @@ const readSnipemsg = (callback) => {
     firebase.ref('messages').once(
         'value',
         (snapshot) =>{
-            callback(snapshot.val());
+            if (snapshot.val() !== null){
+              callback(snapshot.val());
+            } else;
         },
         (err) => {
             console.log('Read Failed: ' + err.name);
