@@ -26,11 +26,15 @@ const readSnipemsg = (callback) => {
 }
 
 const addSnipemsg = (datetime, content, author, authorid, channelid) => {
-    firebase.ref(`/messages/${datetime}/datetime/`).set(datetime);
-    firebase.ref(`/messages/${datetime}/author/`).set(author);
-    firebase.ref(`/messages/${datetime}/content/`).set(content);
-    firebase.ref(`/messages/${datetime}/authorid/`).set(authorid);
-    firebase.ref(`/messages/${datetime}/channelid/`).set(channelid);
+    firebase.ref(`/messages/${authorid}/datetime/`).set(datetime);
+    firebase.ref(`/messages/${authorid}/author/`).set(author);
+    firebase.ref(`/messages/${authorid}/content/`).set(content);
+    firebase.ref(`/messages/${authorid}/authorid/`).set(authorid);
+    firebase.ref(`/messages/${authorid}/channelid/`).set(channelid);
 };
 
-module.exports = { getQNA, addSnipemsg, readSnipemsg };
+const removeSnipemsg = (authorid) =>{
+  firebase.ref(`/messages/${authorid}/`).remove();
+}
+
+module.exports = { getQNA, addSnipemsg, readSnipemsg, removeSnipemsg };
