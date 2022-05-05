@@ -6,7 +6,7 @@ const firebase = require("../db/firebaseConfig");
 module.exports.run = async(client, message, args) => {
     try {
        var input = args[0];
-       let cmd = message.content.split('. ');
+       let cmd = message.content.split(': ');
        var user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || message.guild.members.cache.get(input)?.user || message.mentions.users.first() || message.author;
        
         readSnipemsg((data) => {
@@ -17,12 +17,13 @@ module.exports.run = async(client, message, args) => {
                 if(user.tag === dbUser){
                     if(cmd[1] === "delete"){
                       removeSnipemsg(dbUserid);
+                    } else {
+                      const msgembed = new MessageEmbed()
+                      .setAuthor(dbUser, user.displayAvatarURL())
+                      .setDescription(data[key].content)
+                      .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
+                      return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
                     }
-                    const msgembed = new MessageEmbed()
-                    .setAuthor(dbUser, user.displayAvatarURL())
-                    .setDescription(data[key].content)
-                    .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
-                    return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
                 }
             })
         })
