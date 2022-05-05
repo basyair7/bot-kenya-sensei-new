@@ -9,24 +9,30 @@ module.exports.run = async(client, message, args) => {
        let cmd = message.content.split(': ');
        var user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || message.guild.members.cache.get(input)?.user || message.mentions.users.first() || message.author;
        
-        readSnipemsg((data) => {
-            Object.keys(data).map((key) =>{
-                let dbUser = data[key].author;
-                let dbUserid = data[key].authorid;
-                
-                if(user.tag === dbUser){
-                    if(cmd[1] === "delete"){
-                      removeSnipemsg(dbUserid);
-                    } else {
-                      const msgembed = new MessageEmbed()
-                      .setAuthor(dbUser, user.displayAvatarURL())
-                      .setDescription(data[key].content)
-                      .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
-                      return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
+        try {
+            readSnipemsg((data) => {
+                Object.keys(data).map((key) =>{
+                    let dbUser = data[key].author;
+                    let dbUserid = data[key].authorid;
+                    
+                    if(user.tag === dbUser){
+                        if(cmd[1] === "delete"){
+                          removeSnipemsg(dbUserid);
+                          message.reply(`Pesan Tercyduk ${user.tag} telah dihapus XD`).then(msg => msg.delete({timeout: 10000}))
+                        } else {
+                          const msgembed = new MessageEmbed()
+                          .setAuthor(dbUser, user.displayAvatarURL())
+                          .setDescription(data[key].content)
+                          .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
+                          return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
+                        }
                     }
-                }
+                })
             })
-        })
+        } catch (e) {
+            console.log(e);
+            addReport(`Bot-Error`, `snipe.ts Error: ${e}`);
+        }
 
         /*
         const msg = client.snipes.get(message.channel.id);
