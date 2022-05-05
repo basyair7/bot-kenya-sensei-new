@@ -4,7 +4,9 @@ const readMessage = (subject, callback) => {
     firebase.ref('report').child(subject).once(
         'value',
         (snapshot) => {
-            callback(snapshot.val());
+            if (snapshot.val() !== null){
+                callback(snapshot.val());
+            } else;
         },
         (err) => {
             console.log('Read failed' + err.name);
@@ -17,7 +19,9 @@ const readSubject = (subject, callback) => {
     firebase.ref('/report/'+subject+'/').once(
         'value',
         (snapshot) => {
-            callback(snapshot.val());
+            if (snapshot.val() !== null){
+                callback(snapshot.val());
+            } else;
         }, (err) => {
             console.log('Read failed' + err.name);
         }
