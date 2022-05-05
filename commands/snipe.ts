@@ -5,6 +5,7 @@ const firebase = require("../db/firebaseConfig");
 
 module.exports.run = async(client, message, args) => {
     try {
+       let ch = message.channel.id; 
        var input = args[0];
        let cmd = message.content.split(': ');
        var user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || message.guild.members.cache.get(input)?.user || message.mentions.users.first() || message.author;
@@ -13,9 +14,10 @@ module.exports.run = async(client, message, args) => {
             readSnipemsg((data) => {
                 Object.keys(data).map((key) =>{
                     let dbUser = data[key].author;
+                    let chid = data[key].channelid;
                     let dbUserid = data[key].authorid;
                     
-                    if(user.tag === dbUser){
+                    if(user.tag === dbUser && ch === chid){
                         if(cmd[1] === "delete"){
                           removeSnipemsg(dbUserid);
                           message.reply(`Pesan Tercyduk ${user.tag} telah dihapus XD`).then(msg => msg.delete({timeout: 10000}))
@@ -26,7 +28,7 @@ module.exports.run = async(client, message, args) => {
                           .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
                           return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
                         }
-                    }
+                    } else;
                 })
             })
         } catch (e) {
