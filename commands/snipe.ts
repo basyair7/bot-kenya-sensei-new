@@ -11,21 +11,21 @@ module.exports.run = async(client, message, args) => {
        var user = client.users.cache.get(input) || client.users.cache.find(x => x.username == input) || message.guild.members.cache.get(input)?.user || message.mentions.users.first() || message.author;
        
         try {
-            readSnipemsg((data) => {
-                Object.keys(data).map((key) =>{
-                    let dbUser = data[key].author;
-                    let chid = data[key].channelid;
-                    let dbUserid = data[key].authorid;
+            readSnipemsg(ch, (data) => {
+                Object.keys(data).map((keys) =>{
+                    let dbUser = data[keys].author;
+                    let chid = data[keys].channelid;
+                    let dbUserid = data[keys].authorid;
                     
                     if(user.tag === dbUser && ch === chid){
                         if(cmd[1] === "delete"){
-                          removeSnipemsg(dbUserid);
+                          removeSnipemsg(dbUserid, ch);
                           message.reply(`Pesan Tercyduk ${user.tag} telah dihapus XD`).then(msg => msg.delete({timeout: 10000}))
                         } else {
                           const msgembed = new MessageEmbed()
                           .setAuthor(dbUser, user.displayAvatarURL())
-                          .setDescription(data[key].content)
-                          .setFooter(`Pesan Terciduk Nak XD | ${data[key].datetime}`)
+                          .setDescription(data[keys].content)
+                          .setFooter(`Pesan Terciduk Nak XD | ${data[keys].datetime}`)
                           return message.channel.send(msgembed).then(msg => { msg.delete({timeout: 10000}) });
                         }
                     } else;
