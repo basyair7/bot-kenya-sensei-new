@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model/dbReport")
+const { addReport } = require("../model/dbReport");
 
 exports.run = async (client, message) => {
   try {
@@ -14,7 +14,8 @@ exports.run = async (client, message) => {
     afk (ks.afk reason)\`\`=> perintah mengaktifkan afk, 
     nonafk\`\`=> menonaktifkan afk,
     restart\`\`=> restart ulang bot,
-    google\`\`=> mesin pencarian google (ks.google halo)`;
+    google\`\`=> mesin pencarian google (ks.google halo)
+    snipe\`\` => menampilkan pesan member yang dihapus`;
 
     const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
     const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
