@@ -15,8 +15,8 @@ const getQNA = (callback) => {
     )
 };
 
-const readSnipemsg = (callback) => {
-    firebase.ref('messages').once(
+const readSnipemsg = (id, callback) => {
+    firebase.ref('messages').child(`${id}`).once(
         'value',
         (snapshot) =>{
             if (snapshot.val() !== null){
@@ -30,15 +30,15 @@ const readSnipemsg = (callback) => {
 }
 
 const addSnipemsg = (datetime, content, author, authorid, channelid) => {
-    firebase.ref(`/messages/${authorid}/datetime/`).set(datetime);
-    firebase.ref(`/messages/${authorid}/author/`).set(author);
-    firebase.ref(`/messages/${authorid}/content/`).set(content);
-    firebase.ref(`/messages/${authorid}/authorid/`).set(authorid);
-    firebase.ref(`/messages/${authorid}/channelid/`).set(channelid);
+    firebase.ref(`/messages/${channelid}/${authorid}/datetime/`).set(datetime);
+    firebase.ref(`/messages/${channelid}/${authorid}/author/`).set(author);
+    firebase.ref(`/messages/${channelid}/${authorid}/content/`).set(content);
+    firebase.ref(`/messages/${channelid}/${authorid}/authorid/`).set(authorid);
+    firebase.ref(`/messages/${channelid}/${authorid}/channelid/`).set(channelid);
 };
 
-const removeSnipemsg = (authorid) =>{
-  firebase.ref(`/messages/${authorid}/`).remove();
+const removeSnipemsg = (authorid, channelid) =>{
+  firebase.ref(`/messages/${channelid}/${authorid}/`).remove();
 }
 
 module.exports = { getQNA, addSnipemsg, readSnipemsg, removeSnipemsg };
