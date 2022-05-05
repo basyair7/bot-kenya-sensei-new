@@ -46,6 +46,7 @@ function run(token, prefix){
     });
   
     client.commands = new Collection();
+    client.snipes = new Collection();
   
     fs.readdir("./commands/", (err, files) => {
       if (err) return console.error(err);
