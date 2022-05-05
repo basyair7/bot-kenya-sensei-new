@@ -20,7 +20,7 @@ const readSnipemsg = (callback) => {
             callback(snapshot.val());
         },
         (err) => {
-            console.log(`Read Failed: ${err.name}`);
+            console.log('Read Failed: ' + err.name);
         }
     )
 }
