@@ -16,12 +16,12 @@ exports.run = async(client, message, args) => {
     .setTitle("Bot Statistics")
     .setThumbnail(client.user.displayAvatarURL())
     .addField("Bot", `
-      Username: ${client.user.username}
-      Tanggal Dibuat: ${tanggalBuat}`)
-        .addField("System", `
-      CPU: ${model}
-      Platform: ${platform}
-      Websocket: ${client.ws.ping} ms(miliseconds)`)
+    Username: ${client.user.username}
+    Tanggal Dibuat: ${tanggalBuat}`)
+    .addField("System", `
+    CPU: ${model}
+    Platform: ${platform}
+    Websocket: ${client.ws.ping} ms(miliseconds)`)
         
     message.channel.send(embed).then(embedMessage => {
       embedMessage.react(`❎`);
