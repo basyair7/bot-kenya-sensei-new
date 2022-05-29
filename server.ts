@@ -2,9 +2,22 @@ const { Client, Collection, Intents } = require("discord.js");
 const { addReport } = require("./model/dbReport");
 const fs = require("fs");
 require("dotenv").config();
+const express = require("express");
+const app = express();
+
+let port = process.env.port || 3000;
+
+
+app.get("/", (req, res) => {
+  res.send("Whatsapp-bot Project sudah online!");
+});
+app.listen(port, ()=>{
+  console.log(`Example app is listening on port https://localhost:${port}`);
+});
+
 
 run(process.env.token, process.env.prefix);
-require("http").createServer((_,res) => res.end("Bot is online")).listen(8080);
+//require("http").createServer((_,res) => res.end("Bot is online")).listen(8080);
 
 function run(token, prefix){
   try {
