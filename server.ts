@@ -9,7 +9,7 @@ let port = process.env.port || 3000;
 
 
 app.get("/", (req, res) => {
-  res.send("Whatsapp-bot Project sudah online!");
+  res.send("Bot Kenya-sensei sudah online!");
 });
 app.listen(port, ()=>{
   console.log(`Example app is listening on port https://localhost:${port}`);
