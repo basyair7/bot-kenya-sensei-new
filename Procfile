@@ -1,1 +1,1 @@
-Web: node server.ts
+Web: yarn server.ts
