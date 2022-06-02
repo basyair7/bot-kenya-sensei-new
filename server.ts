@@ -5,7 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
-let port = process.env.port || 3000;
+let port = process.env.port || 5000;
 
 
 app.get("/", (req, res) => {
