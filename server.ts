@@ -3,11 +3,11 @@ const { addReport } = require("./model/dbReport");
 const fs = require("fs");
 require("dotenv").config();
 
-/*
+
 const express = require("express");
 const app = express();
 
-let port = process.env.port || 5000;
+let port = process.env.PORT || 3000;
 
 
 app.get("/", (req, res) => {
@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 app.listen(port, ()=>{
   console.log(`Example app is listening on port https://localhost:${port}`);
 });
-*/
+
 
 run(process.env.token, process.env.prefix);
-require("http").createServer((_,res) => res.end("Bot Kenya-sensei sudah online!")).listen(process.env.port || 3000);
+//require("http").createServer((_,res) => res.end("Bot Kenya-sensei sudah online!")).listen(process.env.port || 3000);
 
 function run(token, prefix){
   try {
