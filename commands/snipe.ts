@@ -19,6 +19,7 @@ module.exports.run = async(client, message, args) => {
                     
                     if(user.tag === dbUser && ch === chid){
                         if(cmd[1] === "delete"){
+                          message.delete({timeout:2000});
                           removeSnipemsg(dbUserid, ch);
                           message.reply(`Pesan Tercyduk ${user.tag} telah dihapus XD`).then(msg => msg.delete({timeout: 10000}))
                         } else {
