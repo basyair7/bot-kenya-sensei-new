@@ -1,5 +1,5 @@
 const {addReport} = require("../model/dbReport");
-const {readSnipemsg, removeSnipemsg} = require("../model/dbMessage");
+const {readSnipemsg, removeSnipemsg, removeChannelmsg} = require("../model/dbMessage");
 const { MessageEmbed } = require("discord.js");
 const firebase = require("../db/firebaseConfig");
 
@@ -22,7 +22,12 @@ module.exports.run = async(client, message, args) => {
                           //message.delete({timeout:2000});
                           removeSnipemsg(dbUserid, ch);
                           message.reply(`Pesan Tercyduk ${user.tag} telah dihapus XD`).then(msg => msg.delete({timeout: 10000}))
-                        } else {
+                        }
+                        else if(cmd[1] === "deleteall"){
+                            removeChannelmsg(ch);
+                            message.reply(`Seluruh pesan tercyduk telah dihapus XD`).then(msg => msg.delete({timeout: 10000}));
+                        }
+                        else {
                           const msgembed = new MessageEmbed()
                           .setAuthor(dbUser, user.displayAvatarURL())
                           .setDescription(data[keys].content)
