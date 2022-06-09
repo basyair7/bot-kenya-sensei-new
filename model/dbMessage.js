@@ -41,4 +41,8 @@ const removeSnipemsg = (authorid, channelid) =>{
   firebase.ref(`/messages/${channelid}/${authorid}/`).remove();
 }
 
-module.exports = { getQNA, addSnipemsg, readSnipemsg, removeSnipemsg };
+const removeChannelmsg = (channelid) =>{
+    firebase.ref(`/messages/${channelid}/`).remove();
+}
+
+module.exports = { getQNA, addSnipemsg, readSnipemsg, removeSnipemsg, removeChannelmsg };
