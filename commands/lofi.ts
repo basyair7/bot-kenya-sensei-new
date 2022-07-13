@@ -25,7 +25,7 @@ exports.run = async(client, message, args) => {
 
                 const view_msg = new MessageEmbed()
                         .setTitle("Play Lofi Song 24/7")
-                        .setDescription("Play Lofi Hip Hop Radio 24/7 https://youtu.be/5qap5aO4i9A")
+                        .setDescription("Play Lofi Hip Hop Radio 24/7 https://youtu.be/jfKfPfyJRdk")
                         .addField("List Channel", revisedList)
 
                 return message.channel.send(view_msg).then(embedMessage => {
@@ -121,13 +121,13 @@ exports.run = async(client, message, args) => {
         return console.error("I don't have permission to speak in the voice channel");
 
       const connect = await channel.join();
-      connect.play(ytdl("https://youtu.be/5qap5aO4i9A"));
+      connect.play(ytdl("https://youtu.be/jfKfPfyJRdk"));
       connect.voice.setSelfDeaf(true);
 
       client.user.setPresence({
                   status: 'online',
                   activity: {
-                    name: "lofi hip hop radio - beats to relax/study to \nhttps://youtu.be/5qap5aO4i9A",
+                    name: "lofi hip hop radio - beats to relax/study to \nhttps://youtu.be/jfKfPfyJRdk",
                     type: "PLAYING",
                   }
                 });
