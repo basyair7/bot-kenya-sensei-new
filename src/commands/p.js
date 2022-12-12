@@ -3,7 +3,7 @@ const youtubeScraper = require("yt-search");
 const yt = require("ytdl-core");
 const { MessageEmbed, Util } = require("discord.js");
 const { addReport } = require("../model");
-const { forHumans }= require("../utils");
+const { forHumans } = require("../utils");
 const ms = require("pretty-ms");
 
 exports.run = async (client, message, args) => {
