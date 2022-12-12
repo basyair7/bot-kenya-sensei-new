@@ -1,0 +1,6 @@
+.vscode
+node_modules
+src/database/firebaseKey/https/index.json
+src/database/firebaseKey/to/serviceAccount.json
+.env
+package-lock.json

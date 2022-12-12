@@ -1,0 +1,12 @@
+/database/firebaseKey/https/httpsFirebase.json
+httpsFirebase.json :
+{
+    "https": "your-link-database"
+}
+
+/database/firebaseKey/to/serviceAccount.json
+serviceAccount.json : 
+1. Your get in project setting -> service account -> generated new private key
+2. your rename "serviceAccount.json" and move to directory db/firebaseKey/
+
+#don't forget edit your rules realtime database is true
