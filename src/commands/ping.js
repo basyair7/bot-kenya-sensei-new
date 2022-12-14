@@ -1,4 +1,4 @@
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async(client, message, args) => {
   try {
@@ -6,7 +6,7 @@ exports.run = async(client, message, args) => {
     message.reply(`:ping_pong: Pong! ${ping}ms`);
   } catch (e) {
     console.log(e);
-    addReport(`Bot-Error`, `ping.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `ping Error: ${e}`);
   }
 }
 

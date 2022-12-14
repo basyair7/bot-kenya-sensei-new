@@ -1,4 +1,4 @@
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async(client, message, args) => {
     try {
@@ -6,6 +6,6 @@ exports.run = async(client, message, args) => {
         message.channel.send(say)
     } catch (e) {
         console.log(e);
-        addReport(`Bot-Error`, `says.ts Error: ${e}`);        
+        model.addReport(`Bot-Error`, `says Error: ${e}`);        
     }    
 }

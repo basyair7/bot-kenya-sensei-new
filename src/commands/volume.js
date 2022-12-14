@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
@@ -51,6 +51,6 @@ exports.run = async (client, message, args) => {
     ).then(message => message.delete({timeout: 10000}));
   } catch(e) {
        console.log(e);
-       addReport(`Bot-Error`, `volume.ts Error: ${e}`);
+       model.addReport(`Bot-Error`, `volume Error: ${e}`);
   }
 };

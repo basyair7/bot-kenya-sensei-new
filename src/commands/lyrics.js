@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 const lyricsFinder = require("lyrics-finder");
 
 exports.run = async (client, message, args) => {
@@ -46,6 +46,6 @@ exports.run = async (client, message, args) => {
           }).catch(console.error);
   } catch (e) {
     console.log(e);
-    addReport(`Bot-Error`, `lyrics.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `lyrics Error: ${e}`);
   }
 };

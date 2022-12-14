@@ -15,7 +15,7 @@ module.exports = {
             message.channel.send(embed).then(msg => msg.delete({timeout: 10000}))
             return addData(`afk-${message.author.id}and${message.guild.id}`, content)
         } catch (error) {
-            addReport(`Bot-Error`, `afk.ts Error: ${error}`);
+            addReport(`Bot-Error`, `afk Error: ${error}`);
             console.log(error);
         }
     }

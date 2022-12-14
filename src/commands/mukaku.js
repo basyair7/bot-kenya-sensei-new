@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, msg, args) => {
   try{
@@ -27,6 +27,6 @@ exports.run = async (client, msg, args) => {
     });
   } catch (e){
     console.log(e);
-    addReport(`Bot-Error`, `mukaku.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `mukaku Error: ${e}`);
   }
 }

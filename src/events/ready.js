@@ -1,15 +1,16 @@
 const { MessageEmbed } = require("discord.js");
 const { platform, arch, cpus } = require("os");
-const { addReport } = require("../model");
+const model = require("../model");
 const { DateTimeBot } = require("../utils");
 
 module.exports = (client) => {
+  try {
     console.log("[Discord API]: Logged In As " + client.user.tag);
     console.log(`${client.user.tag} sudah online!`);
     const model = cpus()[0].model + " " + arch();
     client.user.setUsername(`Kenya-sensei 「 ${client.config.prefix} 」`);
     client.user.setActivity(`Online ${DateTimeBot()}`);
-    addReport(`History-Bot-re-login`, `Datetime : ${DateTimeBot()}`);
+    model.addReport(`History-Bot-re-login`, `Datetime : ${DateTimeBot()}`);
 
     // Send Infomation Bot Online in Channel
     const ch1 = "798163730982502400";
@@ -34,13 +35,15 @@ module.exports = (client) => {
     ch = client.channels.cache.find(channel => channel.id === ch3);
 
     // Auto join bot in channel music WWM
-    ch.join().then( () => {
+    ch.join().then(() => {
       // Yay, it worked!
       console.log("Successfully connected.");
     }).catch(e => {
       // Oh no, it errored! Let's log it to console :)
       console.error(e);
     });
-    
+  } catch (e) {
+    model.addReport(`Bot-Error`, `ready Error: ${e}`);
+  }
+
 };
-  

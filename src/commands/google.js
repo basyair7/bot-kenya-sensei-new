@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 const superagent = require("superagent");
 
 exports.run = async(client, message, args) => {
@@ -41,6 +41,6 @@ exports.run = async(client, message, args) => {
         });
     } catch (error) {
         console.log(error);
-        addReport(`Bot-Error`, `google.ts Error: ${error}`);
+        model.addReport(`Bot-Error`, `google Error: ${error}`);
     }
 }

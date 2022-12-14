@@ -1,5 +1,5 @@
 const { Client, Collection, Intents } = require("discord.js");
-const { addReport } = require("./model");
+const model = require("./model");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -28,11 +28,6 @@ try {
   client.config = config;
   client.queue = new Map();
 
-  // bot ready
-  client.on("ready", async () => {
-  });
-
-
   fs.readdir("./src/events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach((file) => {
@@ -58,5 +53,5 @@ try {
 
   client.login(config.token);
 } catch (error) {
-  addReport(`Bot-Error`, `Server.ts Error: ${error}`)
+  model.addReport(`Bot-Error`, `Server Error: ${error}`)
 }

@@ -34,4 +34,3 @@ function removeData(value) {
 }
 
 module.exports = { readId, readReason, addData, removeData };
-

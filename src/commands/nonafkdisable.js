@@ -26,7 +26,7 @@ module.exports = {
             })
         } catch(e){
             console.log(e);
-            addReport(`Bot-Error`, `nonafk.ts Error: ${e}`);
+            addReport(`Bot-Error`, `nonafk Error: ${e}`);
         }
     }
 }

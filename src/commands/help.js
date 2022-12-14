@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, message) => {
   try {
@@ -45,7 +45,7 @@ exports.run = async (client, message) => {
     invite\`\` - get invite link for the bot
     loop\`\` - enable / disable loop for the currently playing song
     remove <Target number>\`\` - remove a song from the queue
-  lofi <ks.lofi help>\`\` - Play lofi hip hop radio 24/7`;
+    lofi <ks.lofi help>\`\` - Play lofi hip hop radio 24/7`;
 
     const revised = commands
       .split("\n")
@@ -53,8 +53,8 @@ exports.run = async (client, message) => {
       .join("\n");
 
     const filter = (reaction, user) => {
-              return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
-          };
+      return [`❎`].includes(reaction.emoji.name) && user.id === message.author.id;
+    };
 
     message.channel.send(
       new MessageEmbed()
@@ -71,17 +71,17 @@ exports.run = async (client, message) => {
         .addField("Commands 5", cmd5, true)
         .addField("Commands 6", cmd6, true)
     ).then(embedMessage => {
-              embedMessage.react(`❎`);
-              embedMessage.awaitReactions(filter, { max: 1}).then(collected =>{
-                  const reaction = collected.first();
+      embedMessage.react(`❎`);
+      embedMessage.awaitReactions(filter, { max: 1 }).then(collected => {
+        const reaction = collected.first();
 
-                  if (reaction.emoji.name === `❎`){
-                      embedMessage.delete({timeout: 5000});
-                  }
-              }).catch(collected => {console.log("error")});
-          });
+        if (reaction.emoji.name === `❎`) {
+          embedMessage.delete({ timeout: 5000 });
+        }
+      }).catch(collected => { console.log("error") });
+    });
   } catch (error) {
     console.log(error);
-    addReport(`Bot-Error`, `help.ts Error: ${error}`);
+    model.addReport(`Bot-Error`, `help Error: ${error}`);
   }
 };

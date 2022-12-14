@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 module.exports = {
     name: "servericon",
@@ -23,11 +23,13 @@ module.exports = {
                     if (reaction.emoji.name === `❎`){
                         embedMessage.delete({timeout: 10000});
                     }
-                }).catch(collected => {console.log("error")});
+                }).catch(collected => {
+                    console.log("error");
+                });
             });
         } catch (e) {
             console.log(e);
-            addReport(`Bot-Error`, `servericon.ts Error: ${e}`);
+            model.addReport(`Bot-Error`, `servericon Error: ${e}`);
         }
     }
 }

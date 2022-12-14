@@ -1,11 +1,12 @@
 const ms = require("pretty-ms");
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require('../model');
+const model = require('../model');
+const clock = require("../utils");
 
 exports.run = async (client, message) => {
   try {
     const channel = message.member.voice.channel;
-    client.user.setActivity(`Online ${DateTimeBot()}`);
+    client.user.setActivity(`Online ${clock.DateTimeBot()}`);
     /*
     setInterval(() => {
             const uptime = ms(client.uptime, {verbose:true});
@@ -28,26 +29,6 @@ exports.run = async (client, message) => {
     ).then(message => message.delete({timeout: 10000}));
   } catch (err) {
     console.log(err);
-    addReport(`Bot-Error`, `disconnect.ts Error: ${err}`);
+    model.addReport(`Bot-Error`, `disconnect Error: ${err}`);
   }
 };
-
-var { DateTime } = require("luxon");
-
-function DateTimeBot(){
-  var local = DateTime.local();
-  var rezonedString = local.setZone("Asia/Jakarta");
-  
-  // get Date
-  let year = rezonedString.c.year;
-  let month = rezonedString.c.month;
-  let day = rezonedString.c.day;
-  
-  // get Time
-  let hour = rezonedString.c.hour;
-  let minute = rezonedString.c.minute;
-  let second = rezonedString.c.second;
-  
-  let datetime = year+"/"+month+"/"+day+" ("+hour+":"+minute+":"+second+")";
-  return datetime;
-}

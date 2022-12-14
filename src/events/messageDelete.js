@@ -2,14 +2,14 @@ const {
     addReport, 
     addSnipemsg
 } = require("../model");
-const { DateTimeBot } = require("../utils");
+const clock = require("../utils");
 
 module.exports = async (client, message) => {
     try {
         if (message.author.bot) return;
        
         addSnipemsg(
-            DateTimeBot(),
+            clock.DateTimeBot(),
             message.content,
             message.author.tag,
             message.author.id,
@@ -28,6 +28,6 @@ module.exports = async (client, message) => {
         
     } catch (e) {
         console.log(e);
-        addReport(`Bot-Error`, `messageDelete.ts Error: ${e}`);
+        addReport(`Bot-Error`, `messageDelete Error: ${e}`);
     }
 }

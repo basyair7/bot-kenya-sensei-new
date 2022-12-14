@@ -6,7 +6,7 @@ const {
 } = require("../model");
 const { MessageEmbed } = require("discord.js");
 
-module.exports.run = async(client, message, args) => {
+exports.run = async(client, message, args) => {
     try {
        let ch = message.channel.id; 
        var input = args[0];
@@ -42,7 +42,7 @@ module.exports.run = async(client, message, args) => {
             })
         } catch (e) {
             console.log(e);
-            addReport(`Bot-Error`, `snipe.ts Error: ${e}`);
+            addReport(`Bot-Error`, `snipe Error: ${e}`);
         }
 
         /*
@@ -59,6 +59,6 @@ module.exports.run = async(client, message, args) => {
         
     } catch (e) {
         console.log(e);
-        addReport(`Bot-Error`, `snipe.ts Error: ${e}`);
+        addReport(`Bot-Error`, `snipe Error: ${e}`);
     }
 }

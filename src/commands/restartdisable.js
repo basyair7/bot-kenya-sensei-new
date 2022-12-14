@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async(client, message, args) => {
     try {
@@ -29,11 +29,13 @@ exports.run = async(client, message, args) => {
                 else if (reaction.emoji.name === `❎`) {
                     embedMessage.delete({timeout: 10000});
                 }
-            }).catch(collected => {console.log("Error")});
+            }).catch(collected => {
+                console.log("Error");
+            });
         });
     } catch (e) {
         console.log(e);
-        addReport(`Bot-Error`, `restart.ts Error: ${e}`);
+        model.addReport(`Bot-Error`, `restart Error: ${e}`);
     }
 }
   

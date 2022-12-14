@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { platform, arch, cpus } = require("os");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async(client, message, args) => {
   try {
@@ -32,10 +32,10 @@ exports.run = async(client, message, args) => {
           if (reaction.emoji.name === `❎`){
               embedMessage.delete(embed);
           }
-      }).catch(collected => {console.log("Error"); addReport(`Bot-Error`, `stats.ts Error: ${e}`);});
+      }).catch(collected => {console.log("Error")});
   });
   } catch (e) {
     console.log(e);
-    addReport(`Bot-Error`, `stats.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `stats Error: ${e}`);
   }
 }

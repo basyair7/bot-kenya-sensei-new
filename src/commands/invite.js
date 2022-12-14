@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, message) => {
   try {
@@ -22,6 +22,6 @@ exports.run = async (client, message) => {
     );
   } catch (error) {
     console.log(error);
-    addReport(`Bot-Error`, `invite.ts Error: ${error}`);
+    model.addReport(`Bot-Error`, `invite Error: ${error}`);
   }
 };

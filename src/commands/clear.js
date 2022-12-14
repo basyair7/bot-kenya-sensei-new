@@ -1,4 +1,4 @@
-const { addReport } = require('../model');
+const model = require('../model');
 
 module.exports = {
     name : 'clear',
@@ -12,7 +12,7 @@ module.exports = {
             message.channel.send('Deleted ' + args[0]  + " messages.").then(msg => msg.delete({timeout: 5000}));
         } catch (err) {
             console.log(err);
-            addReport(`Bot-Error`, `clear.ts Error: ${err}`);
+            model.addReport(`Bot-Error`, `clear Error: ${err}`);
         }
     }
 }

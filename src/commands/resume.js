@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, message) => {
   try {
@@ -38,6 +38,6 @@ exports.run = async (client, message) => {
     ).then(message => message.delete({timeout: 10000}));
   } catch (e) {
     console.log(e);
-    addReport(`Bot-Error`, `resume.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `resume Error: ${e}`);
   }
 };

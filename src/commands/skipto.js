@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { addReport } = require("../model");
+const model = require("../model");
 
 exports.run = async (client, message, args) => {
   try {
@@ -47,6 +47,7 @@ exports.run = async (client, message, args) => {
       queue.connection.dispatcher.end();
     } catch (e) {
       console.log(e);
+      model.addReport(`Bot-Error`, `skipto Error: ${e}`);
       message.client.queue.delete(message.guild.id);
       queue.vc.leave();
     }
@@ -65,6 +66,6 @@ exports.run = async (client, message, args) => {
     ).then(message => message.delete({timeout: 10000}));
   } catch (e) {
     console.log(e);
-    addReport(`Bot-Error`, `skipto.ts Error: ${e}`);
+    model.addReport(`Bot-Error`, `skipto Error: ${e}`);
   }
 };

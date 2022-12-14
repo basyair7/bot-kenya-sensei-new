@@ -37,4 +37,3 @@ function removeReport(value) {
 }
 
 module.exports = { readSubject, readMessage, addReport, removeReport };
-

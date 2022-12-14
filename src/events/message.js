@@ -70,7 +70,7 @@ module.exports = async (client, message) => {
         cmd.run(client, message, args);
         
     } catch (e) {
-        addReport(`Bot-Error`, `message.ts Error: ${e}`);
+        addReport(`Bot-Error`, `message Error: ${e}`);
         console.log(e);
     }
 
