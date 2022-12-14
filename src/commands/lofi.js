@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const model = require("../model");
 const ytdl = require("ytdl-core");
 const ms = require("pretty-ms");
+const db = require("../database"); 
 
 exports.run = async(client, message, args) => {
   try{
@@ -41,6 +42,9 @@ exports.run = async(client, message, args) => {
     }
 
     else if(cmd === "on"){
+      db.ref("LoFi").once('value', snapshot => {
+        
+      })
       if(setSong[1] === "2"){
         if (!channel)
           return message.channel.send(
