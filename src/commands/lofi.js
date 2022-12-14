@@ -42,107 +42,110 @@ exports.run = async(client, message, args) => {
     }
 
     else if(cmd === "on"){
-      db.ref("LoFi").once('value', snapshot => {
+      db.ref("LoFi").once('value', async(snapshot) => {
+        if (snapshot.val() !== null) {
+          var links = await snapshot.val();
+
+          if(setSong[1] === "2") {
+            if (!channel)
+              return message.channel.send(
+                "KAMU HARUS JOIN CHANNEL DULU NAK!"
+              ).then(message => message.delete({timeout: 10000}));
+      
+            if (!channel.permissionsFor(message.client.user).has("CONNECT"))
+              return console.error("I don't have permission to join the voice channel");
+          
+            if (!channel.permissionsFor(message.client.user).has("SPEAK"))
+              return console.error("I don't have permission to speak in the voice channel");
+      
+            const connect = await channel.join();
+            connect.play(ytdl(links["LoFi-2"]));
+            connect.voice.setSelfDeaf(true);
+      
+            client.user.setPresence({
+              status: 'online',
+              activity: {
+                name: `LoFi Hip-Hop Radio 24/7 ${links["LoFi-2"]}`,
+                type: "PLAYING",
+              }
+            });
+      
+            return message.channel.send(
+              new MessageEmbed()
+              .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
+              .setDescription(`Playing LoFi Hip-Hop Radio 24/7 for ${message.author}\n${links["LoFi-2"]}`)
+              .setColor("BLUE")
+            ).then(message => message.delete({timeout: 10000}));
+          }
+            
+          else if(setSong[1] === "3"){
+            if (!channel)
+            return message.channel.send(
+              "KAMU HARUS JOIN CHANNEL DULU NAK!"
+            ).then(message => message.delete({timeout: 10000}));
+    
+          if (!channel.permissionsFor(message.client.user).has("CONNECT"))
+            return console.error("I don't have permission to join the voice channel");
         
-      })
-      if(setSong[1] === "2"){
-        if (!channel)
+          if (!channel.permissionsFor(message.client.user).has("SPEAK"))
+            return console.error("I don't have permission to speak in the voice channel");
+    
+          const connect = await channel.join();
+          connect.play(ytdl(links["LoFi-3"]));
+          connect.voice.setSelfDeaf(true);
+    
+          client.user.setPresence({
+            status: 'online',
+            activity: {
+              name: `LoFi Hip-Hop Radio 24/7 ${links["LoFi-3"]}`,
+              type: "PLAYING",
+            }
+          });
+    
           return message.channel.send(
-            "KAMU HARUS JOIN CHANNEL DULU NAK!"
+            new MessageEmbed()
+            .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
+            .setDescription(`Playing LoFi Hip-Hop Radio 24/7 for ${message.author}\n${links["LoFi-3"]}`)
+            .setColor("BLUE")
           ).then(message => message.delete({timeout: 10000}));
-  
-        if (!channel.permissionsFor(message.client.user).has("CONNECT"))
-          return console.error("I don't have permission to join the voice channel");
-      
-        if (!channel.permissionsFor(message.client.user).has("SPEAK"))
-          return console.error("I don't have permission to speak in the voice channel");
-  
-        const connect = await channel.join();
-        connect.play(ytdl("https://youtu.be/DWcJFNfaw9c"));
-        connect.voice.setSelfDeaf(true);
-  
-        client.user.setPresence({
-                    status: 'online',
-                    activity: {
-                      name: "lofi hip hop radio - beats to sleep/chill to \nhttps://youtu.be/DWcJFNfaw9c",
-                      type: "PLAYING",
-                    }
-                  });
-  
-        return message.channel.send(
-          new MessageEmbed()
-          .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
-          .setDescription(`Playing Lofi Hip Hop Radio 24/7 for ${message.author}\nhttps://youtu.be/DWcJFNfaw9c`)
-          .setColor("BLUE")
-        ).then(message => message.delete({timeout: 10000}));
-      } 
+          } 
+          
+          else{
+            //TODO
+          }
+    
+          if (!channel)
+            return message.channel.send(
+              "KAMU HARUS JOIN CHANNEL DULU NAK!"
+            ).then(message => message.delete({timeout: 10000}));
+    
+          if (!channel.permissionsFor(message.client.user).has("CONNECT"))
+            return console.error("I don't have permission to join the voice channel");
         
-      else if(setSong[1] === "3"){
-        if (!channel)
-        return message.channel.send(
-          "KAMU HARUS JOIN CHANNEL DULU NAK!"
-        ).then(message => message.delete({timeout: 10000}));
-
-      if (!channel.permissionsFor(message.client.user).has("CONNECT"))
-        return console.error("I don't have permission to join the voice channel");
+          if (!channel.permissionsFor(message.client.user).has("SPEAK"))
+            return console.error("I don't have permission to speak in the voice channel");
     
-      if (!channel.permissionsFor(message.client.user).has("SPEAK"))
-        return console.error("I don't have permission to speak in the voice channel");
-
-      const connect = await channel.join();
-      connect.play(ytdl("https://youtu.be/-5KAN9_CzSA"));
-      connect.voice.setSelfDeaf(true);
-
-      client.user.setPresence({
-                  status: 'online',
-                  activity: {
-                    name: "coffee shop radio // 24/7 lofi hip-hop beats \nhttps://youtu.be/-5KAN9_CzSA",
-                    type: "PLAYING",
-                  }
-                });
-
-      return message.channel.send(
-        new MessageEmbed()
-        .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
-        .setDescription(`Playing Lofi Hip Hop Radio 24/7 for ${message.author}\nhttps://youtu.be/-5KAN9_CzSA`)
-        .setColor("BLUE")
-      ).then(message => message.delete({timeout: 10000}));
-      } 
-      
-      else{
-        //TODO
-      }
-
-      if (!channel)
-        return message.channel.send(
-          "KAMU HARUS JOIN CHANNEL DULU NAK!"
-        ).then(message => message.delete({timeout: 10000}));
-
-      if (!channel.permissionsFor(message.client.user).has("CONNECT"))
-        return console.error("I don't have permission to join the voice channel");
+          const connect = await channel.join();
+          connect.play(ytdl(links["LoFi-1"]));
+          connect.voice.setSelfDeaf(true);
     
-      if (!channel.permissionsFor(message.client.user).has("SPEAK"))
-        return console.error("I don't have permission to speak in the voice channel");
+          client.user.setPresence({
+            status: 'online',
+            activity: {
+              name: `LoFi Hip-Hop Radio 24/7 ${links["LoFi-1"]}`,
+              type: "PLAYING",
+            }
+          });
+    
+          return message.channel.send(
+            new MessageEmbed()
+            .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
+            .setDescription(`Playing LoFi Hip-Hop Radio 24/7 for ${message.author}\n${links["LoFi-1"]}`)
+            .setColor("BLUE")
+          ).then(message => message.delete({timeout: 10000}));
 
-      const connect = await channel.join();
-      connect.play(ytdl("https://youtu.be/jfKfPfyJRdk"));
-      connect.voice.setSelfDeaf(true);
-
-      client.user.setPresence({
-                  status: 'online',
-                  activity: {
-                    name: "lofi hip hop radio - beats to relax/study to \nhttps://youtu.be/jfKfPfyJRdk",
-                    type: "PLAYING",
-                  }
-                });
-
-      return message.channel.send(
-        new MessageEmbed()
-        .setTitle("Started Playing", "https://img.icons8.com/color/2x/cd--v3.gif")
-        .setDescription(`Playing Lofi Hip Hop Radio 24/7 for ${message.author}\nhttps://youtu.be/jfKfPfyJRdk`)
-        .setColor("BLUE")
-      ).then(message => message.delete({timeout: 10000}));
-      
+        } else;
+      });
     }
 
     else if(cmd === "off"){
@@ -162,12 +165,12 @@ exports.run = async(client, message, args) => {
       
       const uptime = ms(client.uptime, {verbose:true});
       return client.user.setPresence({
-                  status: 'online',
-                  activity: {
-                     name: `Uptime (${uptime})`,
-                     type: "COMPETING"
-                  }
-             });
+          status: 'online',
+          activity: {
+              name: `Uptime (${uptime})`,
+              type: "COMPETING"
+          }
+      });
     }
 
     else{
