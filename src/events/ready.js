@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { platform, arch, cpus } = require("os");
 const model = require("../model");
-const { DateTimeBot } = require("../utils");
+const clock = require("../utils");
 
 module.exports = (client) => {
   try {
@@ -9,8 +9,8 @@ module.exports = (client) => {
     console.log(`${client.user.tag} sudah online!`);
     const model = cpus()[0].model + " " + arch();
     client.user.setUsername(`Kenya-sensei 「 ${client.config.prefix} 」`);
-    client.user.setActivity(`Online ${DateTimeBot()}`);
-    model.addReport(`History-Bot-re-login`, `Datetime : ${DateTimeBot()}`);
+    client.user.setActivity(`Online ${clock.DateTimeBot()}`);
+    model.addReport(`History-Bot-re-login`, `Datetime : ${clock.DateTimeBot()}`);
 
     // Send Infomation Bot Online in Channel
     const ch1 = "798163730982502400";
@@ -22,7 +22,7 @@ module.exports = (client) => {
       .setColor("RANDOM")
       .setThumbnail(client.user.displayAvatarURL())
       .addField("System", `
-          Uptime Bot : ${DateTimeBot()}
+          Uptime Bot : ${clock.DateTimeBot()}
           CPU : ${model}
           Platfrom : ${platform}`)
       .setFooter("Powered By Replit.com")
