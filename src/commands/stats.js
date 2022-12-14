@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { platform, arch, cpus } = require("os");
-const model = require("../model");
+const db = require("../model");
 
 exports.run = async(client, message, args) => {
   try {
@@ -36,6 +36,6 @@ exports.run = async(client, message, args) => {
   });
   } catch (e) {
     console.log(e);
-    model.addReport(`Bot-Error`, `stats Error: ${e}`);
+    db.addReport(`Bot-Error`, `stats Error: ${e}`);
   }
 }
