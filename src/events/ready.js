@@ -25,7 +25,7 @@ module.exports = (client) => {
           Uptime Bot : ${clock.DateTimeBot()}
           CPU : ${model}
           Platfrom : ${platform}`)
-      .setFooter("Powered By Replit.com")
+      .setFooter("Powered By Server Ahul")
 
     let ch;
     ch = client.channels.cache.find(channel => channel.id === ch1);

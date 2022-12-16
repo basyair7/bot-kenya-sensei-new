@@ -22,7 +22,7 @@ exports.run = async(client, message, args) => {
     CPU: ${model}
     Platform: ${platform}
     Websocket: ${client.ws.ping} ms(miliseconds)`)
-    .setFooter("Powered By Replit.com")
+    .setFooter("Powered By Server Ahul")
         
     message.channel.send(embed).then(embedMessage => {
       embedMessage.react(`❎`);
