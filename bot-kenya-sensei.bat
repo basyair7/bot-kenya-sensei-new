@@ -1,4 +1,4 @@
-TIMEOUT 5
+TIMEOUT 60
 npm start
 
 cmd /k
