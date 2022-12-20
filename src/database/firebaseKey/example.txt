@@ -1,5 +1,5 @@
-/database/firebaseKey/https/httpsFirebase.json
-httpsFirebase.json :
+/database/firebaseKey/https/index.json
+index.json :
 {
     "https": "your-link-database"
 }
