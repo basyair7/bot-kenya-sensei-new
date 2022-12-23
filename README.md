@@ -2,7 +2,6 @@
 
 <br />
 <div align="left">
-    
     <p>Fitur bot-sensei versi 3.0 (discord.js)</p>
     <ul>
         <li>Tambahan fitur pemutar musik (source youtube)</li>
@@ -19,4 +18,4 @@
     </ul>
 </div>
 
-<img align="right" src="src/images/STK-20220129-WA0213.webp" alt="sensei-say-hi" width="100%" />
+<img align="right" src="src/images/STK-20220129-WA0213.webp" alt="sensei-say-hi" width="50%" />
