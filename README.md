@@ -1,6 +1,5 @@
-<img src="src/images/STK-20220129-WA0213.webp" alt="sensei-say-hi" width="50%" />
-
 <h1 align="left"> bot-kenya-sensei-3 </h1>
+<img align="right" src="src/images/STK-20220129-WA0213.webp" alt="sensei-say-hi" width="100%" />
 <br />
 <div align="left">
     <p>Fitur bot-sensei versi 3.0 (discord.js)</p>
