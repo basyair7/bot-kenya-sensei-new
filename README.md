@@ -1,3 +1,5 @@
+<img src="src/images/STK-20220129-WA0213.webp" alt="sensei-say-hi" width=100% />
+
 <h1 align="left"> bot-kenya-sensei-3 </h1>
 <br />
 <div align="left">
