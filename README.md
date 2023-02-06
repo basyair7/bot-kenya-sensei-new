@@ -1,16 +1,14 @@
-<<<<<<< HEAD
 <h1 align="left"> bot-kenya-sensei-3 </h1>
 
 <br />
 <div align="left">
     <p>Fitur bot-sensei versi 3.0 (discord.js)</p>
-=======
+
 <h1 align="left"> bot-kenya-sensei-2 </h1>
 
 <br />
 <div align="left">
     <p>Fitur bot-sensei versi 2.10 (discord.js)</p>
->>>>>>> f5aabb3c4af36a37b4ccc09525af4cbc4023bfb3
     <ul>
         <li>Tambahan fitur pemutar musik (source youtube)</li>
         <li>Konfigurasi reply pesan menggunakan firebase database</li>
