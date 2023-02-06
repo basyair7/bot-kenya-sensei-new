@@ -1,5 +1,5 @@
 const firebase = require('../database');
-
+const clock = require("../utils");
 function readMessage(subject, callback) {
     firebase.ref('report').child(subject).once(
         'value',
@@ -29,7 +29,7 @@ function readSubject(subject, callback) {
 }
 
 function addReport(subject, content) {
-    firebase.ref('/report/'+subject+'/message/').push(content);
+    firebase.ref('/report/'+subject+'/message/'+clock.DateTimeBot()).set(content);
 }
 
 function removeReport(value) {
