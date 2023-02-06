@@ -4,4 +4,4 @@ function set_volume(vol){
     db.ref('volume-bot').child('volMaster').set(vol);
 }
 
-module.exports = set_volume;
+module.exports = { set_volume };
