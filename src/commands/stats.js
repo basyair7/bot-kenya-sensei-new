@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { platform, arch, cpus } = require("os");
+const { platform, arch, cpus, freemem, totalmem } = require("os");
 const db = require("../model");
 
 exports.run = async(client, message, args) => {
@@ -20,6 +20,8 @@ exports.run = async(client, message, args) => {
     Tanggal Dibuat: ${tanggalBuat}`)
     .addField("System", `
     CPU: ${model}
+    RAM (Free): ${freemem()}
+    RAM (Total): ${totalmem()}
     Platform: ${platform}
     Websocket: ${client.ws.ping} ms(miliseconds)`)
     .setFooter("Powered By Server Ahul")
