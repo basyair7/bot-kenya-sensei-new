@@ -4,6 +4,7 @@ const db = require("../model");
 
 exports.run = async(client, message, args) => {
   try {
+    const formatMemoryUsage = (data) => Math.round(data / 1024 / 1024 * 100) / 100;
     const model = cpus()[0].model + " " + arch();
     
     const tanggalBuat = client.user.createdAt
@@ -21,8 +22,9 @@ exports.run = async(client, message, args) => {
     Tanggal Dibuat: ${tanggalBuat}`)
     .addField("System", `
     CPU: ${model}
-    RAM Free: ${freemem() / (1024 * 1024)}
-    RAM Total: ${totalmem() / (1024 * 1024)}
+    RAM In use: ${formatMemoryUsage(totalmem())} MB
+    RAM Free: ${formatMemoryUsage(totalmem()) - formatMemoryUsage(freemem())} MB
+    RAM Total: ${formatMemoryUsage(freemem())}
     Platform: ${platform}
     Websocket: ${client.ws.ping} ms(miliseconds)`)
     .setFooter("Powered By Server Ahul")
