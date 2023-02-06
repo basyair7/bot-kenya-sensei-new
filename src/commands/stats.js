@@ -1,11 +1,9 @@
 const { MessageEmbed } = require("discord.js");
-const { platform, arch, cpus } = require("os");
+const { platform, arch, cpus, freemem, totalmem } = require("os");
 const db = require("../model");
 
 exports.run = async(client, message, args) => {
   try {
-    const formatMemoryUsage = (data) => `${Math.round(data / 1024 / 1024 * 100) / 100} MB`;
-    const memoryData = process.memoryUsage();
     const model = cpus()[0].model + " " + arch();
     
     const tanggalBuat = client.user.createdAt
@@ -23,8 +21,8 @@ exports.run = async(client, message, args) => {
     Tanggal Dibuat: ${tanggalBuat}`)
     .addField("System", `
     CPU: ${model}
-    RAM Used: ${formatMemoryUsage(memoryData.heapUsed)}
-    RAM Total: ${formatMemoryUsage(memoryData.heapTotal)}
+    RAM Free: ${freemem() / (1024 * 1024)}
+    RAM Total: ${totalmem() / (1024 * 1024)}
     Platform: ${platform}
     Websocket: ${client.ws.ping} ms(miliseconds)`)
     .setFooter("Powered By Server Ahul")
