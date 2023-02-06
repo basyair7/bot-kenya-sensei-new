@@ -10,7 +10,7 @@ module.exports = (client) => {
     const model = cpus()[0].model + " " + arch();
     client.user.setUsername(`Kenya-sensei 「 ${client.config.prefix} 」`);
     client.user.setActivity(`Online ${clock.DateTimeBot()}`);
-    db.addReport(`History-Bot-re-login`, `Kenya-sensei 「 ${client.config.prefix} 」Ready (Websocket: ${client.ws.ping} ms)`);
+    db.addReport(`History-Bot-re-login`, `Kenya-sensei 「 ${client.config.prefix} 」Ready (Websocket: ${client.user.tag})`);
 
     // Send Infomation Bot Online in Channel
     const ch1 = "798163730982502400";

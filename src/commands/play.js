@@ -153,118 +153,120 @@ exports.run = async (client, message, args) => {
 
     }
 
-    async function play(track) {
+    function play(track) {
       try {
-        const data = message.client.queue.get(message.guild.id);
-        const uptime = ms(client.uptime, { verbose: true })
-
-        if (!track) {
-          statusUp(0, "statusIdle");
-          data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({ timeout: 10000 }));
-          /*
-          setTimeout(() => { 
-             message.guild.me.voice.channel.leave();
-          }, 1800000);
-          */
-          //messagePlay.delete({timeout: 5000}, true)
-          return deletequeue(message.guild.id);
-        }
-
-        data.connection.on("disconnect", () => deletequeue(message.guild.id));
-
-        const source = await ytdl(track.url, {
-          filter: "audioonly",
-          quality: "highestaudio",
-          highWaterMark: 1 << 25,
-          opusEncoded: true
-        }, { highWaterMark: 1 << 50 });
-
-        let playnow = new MessageEmbed()
-          .setAuthor(
-            "Started Playing",
-            "https://img.icons8.com/color/2x/cd--v3.gif"
-          )
-          .setColor("9D5CFF")
-          .setImage(track.thumbnail)
-          .addField("Song Name", track.name, false)
-          .addField("Views", track.views, false)
-          .addField("Duration", track.duration, false)
-          .addField("URL", track.url, false)
-          .addField("Requested By", track.requested, false)
-          .setFooter("Youtube Music Player");
-
-        const filter = (reaction, user) => {
-          return [`🛑`, `⏭️`, `↪️`, `🔀`].includes(reaction.emoji.name) && user.id === message.author.id
-        };
-
-        const messagePlay = await message.channel.send(playnow)
-        messagePlay.react(`🛑`);
-        messagePlay.react(`⏭️`);
-        messagePlay.react(`↪️`);
-        messagePlay.react(`🔀`)
-        messagePlay.awaitReactions(filter, { max: 1 }).then(collected => {
-          try {
-            const reaction = collected.first();
-            if (reaction.emoji.name === `🛑`) {
-              if (!message.member.voice.channel) {
-                message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
-              }
-              const stopPlay = require('./stop.js');
-              stopPlay.run(client, message, args);
-            }
-            else if (reaction.emoji.name === `⏭️`) {
-              if (!message.member.voice.channel) {
-                message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
-              }
-              const skipPlay = require('./skip.js');
-              skipPlay.run(client, message, args);
-            }
-            else if (reaction.emoji.name === `↪️`) {
-              if (!message.member.voice.channel) {
-                message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
-              }
-              const looping = require('./loop.js');
-              looping.run(client, message, args);
-            }
-            else if (reaction.emoji.name === `🔀`) {
-              if (!message.member.voice.channel) {
-                message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
-              }
-
-              const shufflePlay = require(`./shuffle.js`);
-              shufflePlay.run(client, message, args);
-            }
-            else {
-              error("Error...").then(message => message.delete({ timeout: 10000 }));
-            }
-          } catch (e) {
-            model.addReport(`Bot-Error`, `play Error: ${e}`);
-            console.log("error");
-          }
-        }).catch(collected => console.log("Error"));
-
-        const player = await data.connection
-          .play(source, { type: "opus", bitrate: 192000 })
-          .on("finish", () => {
-            var removed = data.queue.shift();
-            if (data.loop == true) {
-              data.queue.push(removed)
-            }
-            play(data.queue[0]);
-            messagePlay.delete({ timeout: 10000 });
-          });
-
-        // player.setVolumeLogarithmic(data.volume / 100);
-
-        db.ref("volume-bot").once('value', snapshot => {
+        db.ref("volume-bot").once('value', async (snapshot) => {
           if (snapshot.val() !== null) {
             var volMaster = parseFloat(snapshot.val()['volMaster']);
-            player.setVolumeLogarithmic(volMaster / 100);
-          }
-        })
+            const data = message.client.queue.get(message.guild.id);
+            const uptime = ms(client.uptime, { verbose: true })
 
-        const statusPlaying = `Music : ${track.name}`;
-        statusUp(1, statusPlaying);
+            if (!track) {
+              statusUp(0, "statusIdle");
+              data.channel.send("Queue is empty, Leaving voice channel").then(message => message.delete({ timeout: 10000 }));
+              /*
+              setTimeout(() => { 
+                 message.guild.me.voice.channel.leave();
+              }, 1800000);
+              */
+              //messagePlay.delete({timeout: 5000}, true)
+              return deletequeue(message.guild.id);
+            }
+
+            data.connection.on("disconnect", () => deletequeue(message.guild.id));
+
+            const source = ytdl(track.url, {
+              filter: "audioonly",
+              quality: "highestaudio",
+              highWaterMark: 1 << 25,
+              opusEncoded: true
+            }, { highWaterMark: 1 << 50 });
+
+            let playnow = new MessageEmbed()
+              .setAuthor(
+                "Started Playing",
+                "https://img.icons8.com/color/2x/cd--v3.gif"
+              )
+              .setColor("9D5CFF")
+              .setImage(track.thumbnail)
+              .addField("Song Name", track.name, false)
+              .addField("Views", track.views, false)
+              .addField("Duration", track.duration, false)
+              .addField("URL", track.url, false)
+              .addField("Volume Bot", volMaster, false)
+              .addField("Requested By", track.requested, false)
+              .setFooter("Youtube Music Player");
+
+            const filter = (reaction, user) => {
+              return [`🛑`, `⏭️`, `↪️`, `🔀`].includes(reaction.emoji.name) && user.id === message.author.id
+            };
+
+            const messagePlay = await message.channel.send(playnow)
+            messagePlay.react(`🛑`);
+            messagePlay.react(`⏭️`);
+            messagePlay.react(`↪️`);
+            messagePlay.react(`🔀`)
+            messagePlay.awaitReactions(filter, { max: 1 }).then(collected => {
+              try {
+                const reaction = collected.first();
+                if (reaction.emoji.name === `🛑`) {
+                  if (!message.member.voice.channel) {
+                    message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
+                  }
+                  const stopPlay = require('./stop.js');
+                  stopPlay.run(client, message, args);
+                }
+                else if (reaction.emoji.name === `⏭️`) {
+                  if (!message.member.voice.channel) {
+                    message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
+                  }
+                  const skipPlay = require('./skip.js');
+                  skipPlay.run(client, message, args);
+                }
+                else if (reaction.emoji.name === `↪️`) {
+                  if (!message.member.voice.channel) {
+                    message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
+                  }
+                  const looping = require('./loop.js');
+                  looping.run(client, message, args);
+                }
+                else if (reaction.emoji.name === `🔀`) {
+                  if (!message.member.voice.channel) {
+                    message.reply("KAMU HARUS JOIN CHANNEL DULU NAK!").then(message => message.delete({ timeout: 10000 }));
+                  }
+
+                  const shufflePlay = require(`./shuffle.js`);
+                  shufflePlay.run(client, message, args);
+                }
+                else {
+                  error("Error...").then(message => message.delete({ timeout: 10000 }));
+                }
+              } catch (e) {
+                model.addReport(`Bot-Error`, `play Error: ${e}`);
+                console.log("error");
+              }
+            }).catch(collected => console.log("Error"));
+
+            const player = await data.connection
+              .play(source, { type: "opus", bitrate: 192000 })
+              .on("finish", () => {
+                var removed = data.queue.shift();
+                if (data.loop == true) {
+                  data.queue.push(removed)
+                }
+                play(data.queue[0]);
+                messagePlay.delete({ timeout: 10000 });
+              });
+
+            // player.setVolumeLogarithmic(data.volume / 100);
+            player.setVolumeLogarithmic(volMaster / 100);
+
+
+            const statusPlaying = `Music : ${track.name}`;
+            statusUp(1, statusPlaying);
+
+          }
+        });
 
       } catch (e) {
         model.addReport(`Bot-Error`, `play Error: ${e}`);
