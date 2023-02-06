@@ -17,6 +17,10 @@ const {
     removeSnipemsg,
     removeChannelmsg
 } = require("./dbMessage");
+const {
+    get_volume,
+    set_volume
+} = require('./dbVolume');
 
 module.exports = {
     readId,
@@ -32,4 +36,5 @@ module.exports = {
     readSnipemsg,
     removeSnipemsg,
     removeChannelmsg,
+    set_volume,
 }

@@ -5,6 +5,7 @@ const { MessageEmbed, Util } = require("discord.js");
 const model = require("../model");
 const { forHumans } = require("../utils");
 const ms = require("pretty-ms");
+const db = require("../database");
 
 exports.run = async (client, message, args) => {
   try {
@@ -253,7 +254,15 @@ exports.run = async (client, message, args) => {
             messagePlay.delete({ timeout: 10000 });
           });
 
-        player.setVolumeLogarithmic(data.volume / 100);
+        // player.setVolumeLogarithmic(data.volume / 100);
+
+        db.ref("volume-bot").once('value', snapshot => {
+          if (snapshot.val() !== null) {
+            var volMaster = parseFloat(snapshot.val()['volMaster']);
+            player.setVolumeLogarithmic(volMaster / 100);
+          }
+        })
+
         const statusPlaying = `Music : ${track.name}`;
         statusUp(1, statusPlaying);
 
