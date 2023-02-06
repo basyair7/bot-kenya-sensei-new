@@ -14,7 +14,7 @@ function DateTimeBot() {
   let minute = rezonedString.c.minute;
   let second = rezonedString.c.second;
 
-  let datetime = year + "-" + month + "-" + day + "-" + hour + "-" + minute + "-" + second;
+  let datetime = year + "-" + month + "-" + day + "(" + hour + ":" + minute + ":" + second + ")";
   return datetime;
 }
 
