@@ -3,7 +3,7 @@ const { platform, arch, cpus } = require("os");
 const db = require("../model");
 const clock = require("../utils");
 
-module.exports = (client) => {
+module.exports = async (client) => {
   try {
     console.log("[Discord API]: Logged In As " + client.user.tag);
     console.log(`${client.user.tag} sudah online!`);
@@ -27,15 +27,15 @@ module.exports = (client) => {
           Platfrom : ${platform}`)
       .setFooter("Powered By Server Ahul")
 
-    let ch;
+    let ch, ch_vc;
     ch = client.channels.cache.find(channel => channel.id === ch1);
     ch.send(embed).then(msg => msg.delete({ timeout: 30000 }));
     ch = client.channels.cache.find(channel => channel.id === ch2);
     ch.send(embed).then(msg => msg.delete({ timeout: 30000 }));
-    ch = client.channels.cache.find(channel => channel.id === ch3);
+    ch_vc = client.channels.cache.find(channel => channel.id === ch3);
 
     // Auto join bot in channel music WWM
-    ch.join().then(() => {
+    await ch_vc.join().then(() => {
       // Yay, it worked!
       console.log("Successfully connected.");
     }).catch(e => {
