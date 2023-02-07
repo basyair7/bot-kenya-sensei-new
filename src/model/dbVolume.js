@@ -1,7 +1,7 @@
 const db = require("../database");
 
-function set_volume(vol){
-    db.ref('volume-bot').child('volMaster').set(vol);
+function set_volume(id, vol){
+    db.ref('volume-bot').child(id).set(vol);
 }
 
 module.exports = { set_volume };

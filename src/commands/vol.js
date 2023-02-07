@@ -3,6 +3,7 @@ const model = require("../model");
 
 exports.run = async (client, message, args) => {
   const channel = message.member.voice.channel;
+  const idChannel = message.channel.id;
   try{
   
     if (!channel){
@@ -39,7 +40,7 @@ exports.run = async (client, message, args) => {
 
     queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
     queue.volume = args[0];
-    model.set_volume(args[0]);
+    model.set_volume(idChannel, args[0]);
     
     message.channel.send(
       new MessageEmbed()

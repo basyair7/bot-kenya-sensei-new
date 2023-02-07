@@ -155,9 +155,10 @@ exports.run = async (client, message, args) => {
 
     function play(track) {
       try {
+        const idChannel = message.channel.id;
         db.ref("volume-bot").once('value', async (snapshot) => {
           if (snapshot.val() !== null) {
-            var volMaster = parseFloat(snapshot.val()['volMaster']);
+            var volMaster = parseFloat(snapshot.val()[idChannel]) || parseFloat(snapshot.val()['volMaster']);
             const data = message.client.queue.get(message.guild.id);
             const uptime = ms(client.uptime, { verbose: true })
 
