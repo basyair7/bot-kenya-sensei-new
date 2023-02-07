@@ -17,12 +17,12 @@ exports.run = async (client, message) => {
     google\`\`=> mesin pencarian google (ks.google halo)
     snipe\`\` => menampilkan pesan member yang dihapus`;
 
-    const cmd1 = '`indonesia`, `ping`, `bajul`, `hmm/hm`, `iya buk`, `yaa buk`, `y`, `iya buk`, `ya buk`, `iyaa buk`';
-    const cmd2 = '`gak mau buk`, `engga mau buk`, `ga mau buk`, `gak mau`, `halo`, `hallo`, `alo`, `hello`, `helo`';
-    const cmd3 = '`p`, `assalamualaikum`, `assalamualaikum warahmatullahi wabarakatuh`';
-    const cmd4 = '`buk kenya, gimana cara kita cepat lulus sekolah?`, `sensei, gimana cara cepat lulus sekolah?`, `curhat dong sensei`, `buk kenya, curhat dong`';
-    const cmd5 = '`ngakak`, `ohayou!`, `ohayou`, `oha`, `konnichiwa`, `konbanwa`, `anyeonghaseo`';
-    const cmd6 = '`diam`, `diam!`, `diem lu`, `diem`, `diem lo`, `nugas`, `belajar`, `ada tugas`, `mau belajar`, `mau bljr`, `bljr`';
+    const cmd1 = '•>`indonesia`\n•>`ping`\n•>`bajul`\n•>`hmm/hm`\n•>`iya buk`\n•>`yaa buk`\n•>`y`\n•>`iya buk`\n•>`ya buk`\n•>`iyaa buk`';
+    const cmd2 = '•>`gak mau buk`\n•>`engga mau buk`\n•>`ga mau buk`\n•>`gak mau`\n•>`halo`\n•>`hallo`\n•>`alo`\n•>`hello`\n•>`helo`';
+    const cmd3 = '•>`p`\n•>`assalamualaikum`\n•>`assalamualaikum warahmatullahi wabarakatuh`';
+    const cmd4 = '•>`buk kenya, gimana cara kita cepat lulus sekolah?`\n•>`sensei, gimana cara cepat lulus sekolah?`\n•>`curhat dong sensei`\n•>`buk kenya, curhat dong`';
+    const cmd5 = '•>`ngakak`\n•>`ohayou!`\n•>`ohayou`\n•>`oha`\n•>`konnichiwa`\n•>`konbanwa`\n•>`anyeonghaseo`';
+    const cmd6 = '•>`diam`\n•>`diam!`\n•>`diem lu`\n•>`diem`\n•>`diem lo`\n•>`nugas`\n•>`belajar`\n•>`ada tugas`\n•>`mau belajar`\n•>`mau bljr`\n•>`bljr`';
 
     const revisedHelp = listHelp
       .split('\n')
