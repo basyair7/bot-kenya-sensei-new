@@ -22,9 +22,9 @@ exports.run = async(client, message, args) => {
     Tanggal Dibuat: ${tanggalBuat}`)
     .addField("System", `
     CPU: ${model}
-    RAM In use: ${formatMemoryUsage(totalmem())} MB
-    RAM Free: ${formatMemoryUsage(totalmem()) - formatMemoryUsage(freemem())} MB
-    RAM Total: ${formatMemoryUsage(freemem())}
+    RAM In use: ${formatMemoryUsage((totalmem() - freemem()))} MB
+    RAM Free: ${formatMemoryUsage(freemem())} MB
+    RAM Total: ${formatMemoryUsage(totalmem())} MB
     Platform: ${platform}
     Websocket: ${client.ws.ping} ms(miliseconds)`)
     .setFooter("Powered By Server Ahul")
