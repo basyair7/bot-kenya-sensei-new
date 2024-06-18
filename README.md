@@ -2,11 +2,6 @@
 
 <br />
 <div align="left">
-    <p>Fitur bot-sensei versi 3.0 (discord.js)</p>
-<h1 align="left"> bot-kenya-sensei-2 </h1>
-
-<br />
-<div align="left">
     <p>Fitur bot-sensei versi 2.10 (discord.js)</p>
     <ul>
         <li>Tambahan fitur pemutar musik (source youtube)</li>
